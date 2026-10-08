@@ -9,9 +9,8 @@ export const LOADING_STATE: ReaderViewportState = {
 };
 
 export const READER_STYLES = `
-  :root, body, #root { height: 100%; margin: 0; overflow: hidden; }
-  * { box-sizing: border-box; }
-  .reader-root { background: #fff; color: #111; height: 100%; outline: none; overflow: hidden; touch-action: pan-y; width: 100%; }
+  .reader-root, .reader-root * { box-sizing: border-box; }
+  .reader-root { position: absolute; inset: 0; background: #fff; color: #111; height: 100%; outline: none; overflow: hidden; touch-action: pan-y; width: 100%; }
   .reader-dark { background: #111; color: #f5f5f5; }
   .reader-sepia { background: #f4ecd8; color: #3f3527; }
   .reader-content { height: 100%; overflow: auto; position: relative; width: 100%; }
