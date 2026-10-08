@@ -44,13 +44,15 @@ describe('validateEpubArchiveEntriesAsync archive budgets', () => {
     expect(entry.localDirectory).toBeUndefined();
   });
 
+});
+
+describe('validateEpubArchiveEntriesAsync expansion limits', () => {
   test('rejects excessive aggregate expansion before reading entry data', async () => {
     const entries = await createArchiveEntries(
       Array.from({ length: 9 }, (_, index) => [`chapter-${index}.xhtml`, '<p>Chapter</p>']),
     );
 
     for (const entry of entries) {
-      if (entry === undefined) throw new Error('Expected an EPUB fixture entry.');
       entry.uncompressedSize = 64 * 1024 * 1024;
       entry.compressedSize = entry.uncompressedSize;
     }
@@ -65,7 +67,6 @@ describe('validateEpubArchiveEntriesAsync archive budgets', () => {
     const [entry] = await createArchiveEntries([['chapter.xhtml', '<p>Chapter</p>']]);
     if (entry === undefined) throw new Error('Expected an EPUB fixture entry.');
     entry.uncompressedSize = 10_001;
-    if (entry === undefined) throw new Error('Expected an EPUB fixture entry.');
     entry.compressedSize = 100;
 
     expect(validateEpubArchiveEntriesAsync([entry])).rejects.toThrow(
