@@ -1,0 +1,106 @@
+{
+  "name": "@ankhorage/reader",
+  "version": "0.1.0",
+  "description": "Standalone EPUB 3 and PDF reader engine for web and React Native.",
+  "license": "MIT",
+  "type": "module",
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ankhorage/reader.git"
+  },
+  "homepage": "https://github.com/ankhorage/reader#readme",
+  "bugs": {
+    "url": "https://github.com/ankhorage/reader/issues"
+  },
+  "keywords": [
+    "ankhorage",
+    "reader",
+    "epub",
+    "pdf",
+    "react-native",
+    "web"
+  ],
+  "files": [
+    "dist",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "react-native": "./dist/index.native.js",
+      "browser": "./dist/index.web.js",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "build": "rm -rf dist tsconfig.tsbuildinfo tsconfig.build.tsbuildinfo && bun x tsc -p tsconfig.build.json",
+    "check-types": "bun x tsc --noEmit -p tsconfig.json",
+    "typecheck": "bun run check-types",
+    "test": "bun test src",
+    "prepack": "bun run build",
+    "lint": "ankhorage-eslint . --max-warnings=0",
+    "lint:fix": "ankhorage-eslint . --fix --max-warnings=0",
+    "format": "ankhorage-prettier --write .",
+    "format:check": "ankhorage-prettier --check .",
+    "knip:check": "ankhorage-knip",
+    "changeset": "ankhorage-changeset",
+    "changeset:status": "ankhorage-changeset status --since=origin/main",
+    "version-packages": "ankhorage-changeset version",
+    "docs": "paradox"
+  },
+  "dependencies": {
+    "@readium/navigator": "2.11.1",
+    "@readium/shared": "2.6.0",
+    "@zip.js/zip.js": "2.23.0",
+    "pdfjs-dist": "6.4.299"
+  },
+  "peerDependencies": {
+    "expo": "^57.0.0",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "react-native": "0.86.x",
+    "react-native-web": "~0.21.3"
+  },
+  "peerDependenciesMeta": {
+    "expo": {
+      "optional": true
+    },
+    "react-dom": {
+      "optional": true
+    },
+    "react-native": {
+      "optional": true
+    },
+    "react-native-web": {
+      "optional": true
+    }
+  },
+  "packageManager": "bun@1.4.2",
+  "devDependencies": {
+    "@ankhorage/devtools": "^2.3.0",
+    "@ankhorage/paradox": "^0.3.1",
+    "@types/bun": "^1.4.2",
+    "@types/node": "^26.6.4",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "expo": "57.0.27",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "react-native": "0.86.3",
+    "react-native-web": "~0.21.3",
+    "typescript": "~6.0.3"
+  }
+}
