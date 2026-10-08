@@ -133,10 +133,10 @@ export class EpubReaderDriver implements ReaderDriver {
       canGoNext: this.#navigator.canGoForward,
       canGoPrevious: this.#navigator.canGoBackward,
       chapterId: locator.href,
-      chapterTitle: locator.title,
+      ...(locator.title === undefined ? {} : { chapterTitle: locator.title }),
       locator: JSON.stringify(locator.serialize()),
       page: this.#page,
-      pageCount: this.#fixedLayout ? this.#publication.readingOrder.items.length : undefined,
+      ...(this.#fixedLayout ? { pageCount: this.#publication.readingOrder.items.length } : {}),
       progression: Math.max(0, Math.min(1, totalProgression)),
     };
   }
