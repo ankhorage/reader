@@ -56,7 +56,7 @@ export async function validateEpubArchiveEntriesAsync(
 
     await entry.getData(new Uint8ArrayWriter(), {
       checkOverlappingEntryOnly: true,
-      signal,
+      ...(signal === undefined ? {} : { signal }),
       strictness: 'strict',
     });
   }
