@@ -90,7 +90,7 @@ function useReaderDriverEffect(
         reader: {
           appearance: { colorScheme, fontScale, lineHeight },
           format,
-          initialLocation,
+          ...(initialLocation === undefined ? {} : { initialLocation }),
           onError,
           onOpenExternalLink,
           sourceUri,
@@ -154,7 +154,7 @@ async function initializeReaderDriver(
     return PdfReaderDriver.create({
       bytes,
       container,
-      initialLocation: props.initialLocation,
+      ...(props.initialLocation === undefined ? {} : { initialLocation: props.initialLocation }),
       onExternalLink: (url) => void props.onOpenExternalLink({ url }),
       onRenderError: (error) => void props.onError(normalizeReaderError(error, props.format)),
     });
@@ -163,7 +163,7 @@ async function initializeReaderDriver(
     appearance: props.appearance,
     bytes,
     container,
-    initialLocation: props.initialLocation,
+    ...(props.initialLocation === undefined ? {} : { initialLocation: props.initialLocation }),
     onExternalLink: (url) => void props.onOpenExternalLink({ url }),
     onStateChange: (state) => emitState(state, 'location'),
     signal,
@@ -293,7 +293,7 @@ function toViewportState(
     canGoPrevious: state.canGoPrevious,
     location: { format, trigger, ...state },
     page: state.page,
-    pageCount: state.pageCount,
+    ...(state.pageCount === undefined ? {} : { pageCount: state.pageCount }),
     progress: state.progression,
     status: 'ready',
   };
