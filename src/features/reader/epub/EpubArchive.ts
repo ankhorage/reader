@@ -52,7 +52,7 @@ export class EpubArchive {
     return entry.getData(new Uint8ArrayWriter(), {
       checkCrc32: true,
       checkOverlappingEntry: true,
-      signal,
+      ...(signal === undefined ? {} : { signal }),
       strictness: 'strict',
     });
   }
