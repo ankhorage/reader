@@ -43,7 +43,6 @@ describe('validateEpubArchiveEntriesAsync archive budgets', () => {
     );
     expect(entry.localDirectory).toBeUndefined();
   });
-
 });
 
 describe('validateEpubArchiveEntriesAsync expansion limits', () => {
