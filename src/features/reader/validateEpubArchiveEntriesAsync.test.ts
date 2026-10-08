@@ -51,7 +51,7 @@ describe('validateEpubArchiveEntriesAsync archive budgets', () => {
 
     for (const entry of entries) {
       if (entry === undefined) throw new Error('Expected an EPUB fixture entry.');
-    entry.uncompressedSize = 64 * 1024 * 1024;
+      entry.uncompressedSize = 64 * 1024 * 1024;
       entry.compressedSize = entry.uncompressedSize;
     }
 

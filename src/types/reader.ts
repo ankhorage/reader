@@ -3,16 +3,9 @@ import type { DOMProps } from 'expo/dom';
 export type ReaderDocumentFormat = 'epub' | 'pdf';
 export type ReaderStatus = 'idle' | 'loading' | 'ready' | 'error';
 export type ReaderNavigationTrigger =
-  | 'swipe'
-  | 'previousControl'
-  | 'nextControl'
-  | 'keyboard'
-  | 'location';
+  'swipe' | 'previousControl' | 'nextControl' | 'keyboard' | 'location';
 export type ReaderErrorCode =
-  | 'invalid-document'
-  | 'load-failed'
-  | 'protected-document'
-  | 'unsupported-format';
+  'invalid-document' | 'load-failed' | 'protected-document' | 'unsupported-format';
 
 export interface ReaderLocationChangeEvent {
   readonly format: ReaderDocumentFormat;

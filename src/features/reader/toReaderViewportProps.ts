@@ -1,4 +1,4 @@
-import type { ReaderViewProps, ReaderViewportProps } from '../../types/reader.js';
+import type { ReaderViewportProps, ReaderViewProps } from '../../types/reader.js';
 
 /*** Adapt the independent public ReaderView API to the serializable DOM viewport boundary. */
 export function toReaderViewportProps(props: ReaderViewProps): ReaderViewportProps {

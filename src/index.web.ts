@@ -8,6 +8,6 @@ export type {
   ReaderLocationChangeEvent,
   ReaderNavigationTrigger,
   ReaderStatus,
-  ReaderViewProps,
   ReaderViewportState,
+  ReaderViewProps,
 } from './types/reader.js';

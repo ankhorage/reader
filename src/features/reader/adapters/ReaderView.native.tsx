@@ -19,10 +19,7 @@ const DOM_CONFIGURATION = {
 export function ReaderView(props: ReaderViewProps): React.ReactElement {
   return (
     <View style={props.style ?? { flex: 1, minHeight: 360 }}>
-      <ReaderViewport
-        {...toReaderViewportProps(props)}
-        dom={DOM_CONFIGURATION}
-      />
+      <ReaderViewport {...toReaderViewportProps(props)} dom={DOM_CONFIGURATION} />
     </View>
   );
 }

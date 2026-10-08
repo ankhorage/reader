@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'bun:test';
 
-import type { ReaderViewProps, ReaderViewportState } from '../../types/reader.js';
+import type { ReaderViewportState, ReaderViewProps } from '../../types/reader.js';
 import { toReaderViewportProps } from './toReaderViewportProps.js';
 
 describe('ReaderView platform-neutral adapter contract', () => {
@@ -30,9 +30,15 @@ describe('ReaderView platform-neutral adapter contract', () => {
     const input: ReaderViewProps = {
       sourceUri: 'file:///book.pdf',
       format: 'pdf',
-      onStateChange: (event) => { seen.push(event.status); },
-      onError: (event) => { seen.push(event.code); },
-      onOpenExternalLink: (event) => { seen.push(event.url); },
+      onStateChange: (event) => {
+        seen.push(event.status);
+      },
+      onError: (event) => {
+        seen.push(event.code);
+      },
+      onOpenExternalLink: (event) => {
+        seen.push(event.url);
+      },
     };
     const props = toReaderViewportProps(input);
     const state: ReaderViewportState = {
