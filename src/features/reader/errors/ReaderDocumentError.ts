@@ -1,4 +1,4 @@
-import type { ReaderErrorCode } from '@ankhorage/zora';
+import type { ReaderErrorCode } from '../../../types/reader.js';
 
 export class ReaderDocumentError extends Error {
   constructor(
