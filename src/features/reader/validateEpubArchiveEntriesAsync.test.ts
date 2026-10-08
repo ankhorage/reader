@@ -25,6 +25,7 @@ describe('validateEpubArchiveEntriesAsync archive budgets', () => {
   test('rejects excessive entry counts before reading entry data', async () => {
     const [entry] = await createArchiveEntries([['mimetype', 'application/epub+zip']]);
 
+    if (entry === undefined) throw new Error('Expected an EPUB fixture entry.');
     expect(validateEpubArchiveEntriesAsync(Array<Entry>(10_001).fill(entry))).rejects.toThrow(
       'exceeds the 10000-entry limit',
     );
@@ -33,6 +34,7 @@ describe('validateEpubArchiveEntriesAsync archive budgets', () => {
 
   test('rejects an oversized entry before reading entry data', async () => {
     const [entry] = await createArchiveEntries([['chapter.xhtml', '<p>Chapter</p>']]);
+    if (entry === undefined) throw new Error('Expected an EPUB fixture entry.');
     entry.uncompressedSize = 64 * 1024 * 1024 + 1;
     entry.compressedSize = entry.uncompressedSize;
 
@@ -48,7 +50,8 @@ describe('validateEpubArchiveEntriesAsync archive budgets', () => {
     );
 
     for (const entry of entries) {
-      entry.uncompressedSize = 64 * 1024 * 1024;
+      if (entry === undefined) throw new Error('Expected an EPUB fixture entry.');
+    entry.uncompressedSize = 64 * 1024 * 1024;
       entry.compressedSize = entry.uncompressedSize;
     }
 
@@ -60,7 +63,9 @@ describe('validateEpubArchiveEntriesAsync archive budgets', () => {
 
   test('rejects suspicious compression ratios before reading entry data', async () => {
     const [entry] = await createArchiveEntries([['chapter.xhtml', '<p>Chapter</p>']]);
+    if (entry === undefined) throw new Error('Expected an EPUB fixture entry.');
     entry.uncompressedSize = 10_001;
+    if (entry === undefined) throw new Error('Expected an EPUB fixture entry.');
     entry.compressedSize = 100;
 
     expect(validateEpubArchiveEntriesAsync([entry])).rejects.toThrow(
@@ -73,6 +78,7 @@ describe('validateEpubArchiveEntriesAsync archive budgets', () => {
 describe('validateEpubArchiveEntriesAsync archive structure', () => {
   test('rejects invalid declared sizes before reading entry data', async () => {
     const [entry] = await createArchiveEntries([['chapter.xhtml', '<p>Chapter</p>']]);
+    if (entry === undefined) throw new Error('Expected an EPUB fixture entry.');
     entry.compressedSize = Number.NaN;
 
     expect(validateEpubArchiveEntriesAsync([entry])).rejects.toThrow('declares invalid sizes');
@@ -84,15 +90,18 @@ describe('validateEpubArchiveEntriesAsync archive structure', () => {
       ['first.txt', 'same'],
       ['other.txt', 'same'],
     ]);
-    const centralDirectoryOffsets = findSignatureOffsets(archive, 0x02014b50);
+    const [firstOffset, secondOffset] = findSignatureOffsets(archive, 0x02014b50);
+    if (firstOffset === undefined || secondOffset === undefined) {
+      throw new Error('Expected two central directory offsets.');
+    }
     const archiveView = new DataView(archive.buffer, archive.byteOffset, archive.byteLength);
-    const firstLocalHeaderOffset = archiveView.getUint32(centralDirectoryOffsets[0] + 42, true);
+    const firstLocalHeaderOffset = archiveView.getUint32(firstOffset + 42, true);
     const firstCentralFilename = archive.slice(
-      centralDirectoryOffsets[0] + 46,
-      centralDirectoryOffsets[0] + 46 + 'first.txt'.length,
+      firstOffset + 46,
+      firstOffset + 46 + 'first.txt'.length,
     );
-    archive.set(firstCentralFilename, centralDirectoryOffsets[1] + 46);
-    archiveView.setUint32(centralDirectoryOffsets[1] + 42, firstLocalHeaderOffset, true);
+    archive.set(firstCentralFilename, secondOffset + 46);
+    archiveView.setUint32(secondOffset + 42, firstLocalHeaderOffset, true);
     const entries = await readArchiveEntries(archive, 'balanced');
 
     expect(validateEpubArchiveEntriesAsync(entries)).rejects.toThrow(ERR_OVERLAPPING_ENTRY);
