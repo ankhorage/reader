@@ -99,7 +99,7 @@ export async function parseEpubPackage(
   return {
     direction,
     fixedLayout,
-    language,
+    ...(language === undefined ? {} : { language }),
     packagePath,
     readingOrder,
     resources: [...manifestItems.values()].filter((item) => !readingPaths.has(item.href)),
