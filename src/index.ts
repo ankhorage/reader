@@ -10,4 +10,5 @@ export type {
   ReaderStatus,
   ReaderViewportState,
   ReaderViewProps,
+  ReaderViewStyle,
 } from './types/reader.js';
