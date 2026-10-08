@@ -19,6 +19,18 @@ jobs:
         run: bun install
       - name: Run canonical Ankhorage Devtools sync
         run: bunx @ankhorage/ankh devtools sync .
+      - name: Verify Reader build
+        run: bun run build
+      - name: Verify Reader TypeScript
+        run: bun run check-types
+      - name: Run Reader tests
+        run: bun test src
+      - name: Verify Reader lint
+        run: bun run lint
+      - name: Verify Reader Knip
+        run: bun run knip:check
+      - name: Verify Reader formatting
+        run: bun run format:check
       - name: Commit generated Devtools files to the implementation branch
         run: |
           git config user.name "github-actions[bot]"
