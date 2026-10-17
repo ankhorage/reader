@@ -1,0 +1,114 @@
+graph TD
+  package__ankhorage_reader["@ankhorage/reader"]
+  entrypoint_src_index_ts["src/index.ts"]
+  package__ankhorage_reader --> entrypoint_src_index_ts
+  module_src_features_reader_adapters_ReaderView_native_tsx["src/features/reader/adapters/ReaderView.native.tsx"]
+  package__ankhorage_reader -.-> module_src_features_reader_adapters_ReaderView_native_tsx
+  module_src_features_reader_adapters_ReaderView_native_tsx --> module_src_features_reader_ReaderViewport_tsx
+  module_src_features_reader_adapters_ReaderView_native_tsx --> module_src_features_reader_toReaderViewportProps_ts
+  module_src_features_reader_adapters_ReaderView_native_tsx --> module_src_types_reader_ts
+  module_src_features_reader_adapters_ReaderView_tsx["src/features/reader/adapters/ReaderView.tsx"]
+  package__ankhorage_reader -.-> module_src_features_reader_adapters_ReaderView_tsx
+  module_src_features_reader_adapters_ReaderView_tsx --> module_src_types_reader_ts
+  module_src_features_reader_adapters_ReaderView_web_tsx["src/features/reader/adapters/ReaderView.web.tsx"]
+  package__ankhorage_reader -.-> module_src_features_reader_adapters_ReaderView_web_tsx
+  module_src_features_reader_adapters_ReaderView_web_tsx --> module_src_features_reader_ReaderViewport_tsx
+  module_src_features_reader_adapters_ReaderView_web_tsx --> module_src_features_reader_toReaderViewportProps_ts
+  module_src_features_reader_adapters_ReaderView_web_tsx --> module_src_types_reader_ts
+  module_src_features_reader_drivers_EpubReaderDriver_ts["src/features/reader/drivers/EpubReaderDriver.ts"]
+  package__ankhorage_reader -.-> module_src_features_reader_drivers_EpubReaderDriver_ts
+  module_src_features_reader_drivers_EpubReaderDriver_ts --> module_src_features_reader_epub_EpubArchive_ts
+  module_src_features_reader_drivers_EpubReaderDriver_ts --> module_src_features_reader_epub_EpubArchiveFetcher_ts
+  module_src_features_reader_drivers_EpubReaderDriver_ts --> module_src_features_reader_epub_mediaTypes_ts
+  module_src_features_reader_drivers_EpubReaderDriver_ts --> module_src_features_reader_epub_parseEpubPackage_ts
+  module_src_features_reader_drivers_EpubReaderDriver_ts --> module_src_features_reader_epub_sanitizeEpubDocument_ts
+  module_src_features_reader_drivers_EpubReaderDriver_ts --> module_src_types_reader_ts
+  module_src_features_reader_drivers_PdfReaderDriver_ts["src/features/reader/drivers/PdfReaderDriver.ts"]
+  package__ankhorage_reader -.-> module_src_features_reader_drivers_PdfReaderDriver_ts
+  module_src_features_reader_drivers_PdfReaderDriver_ts --> module_src_features_reader_errors_ReaderDocumentError_ts
+  module_src_features_reader_drivers_PdfReaderDriver_ts --> module_src_types_reader_ts
+  module_src_features_reader_epub_EpubArchive_ts["src/features/reader/epub/EpubArchive.ts"]
+  package__ankhorage_reader -.-> module_src_features_reader_epub_EpubArchive_ts
+  module_src_features_reader_epub_EpubArchive_ts --> module_src_features_reader_epub_path_ts
+  module_src_features_reader_epub_EpubArchive_ts --> module_src_features_reader_epub_validateEpubArchiveEntriesAsync_ts
+  module_src_features_reader_epub_EpubArchive_ts --> module_src_features_reader_errors_ReaderDocumentError_ts
+  module_src_features_reader_epub_EpubArchiveFetcher_ts["src/features/reader/epub/EpubArchiveFetcher.ts"]
+  package__ankhorage_reader -.-> module_src_features_reader_epub_EpubArchiveFetcher_ts
+  module_src_features_reader_epub_EpubArchiveFetcher_ts --> module_src_features_reader_epub_EpubArchive_ts
+  module_src_features_reader_epub_mediaTypes_ts["src/features/reader/epub/mediaTypes.ts"]
+  package__ankhorage_reader -.-> module_src_features_reader_epub_mediaTypes_ts
+  module_src_features_reader_epub_parseEpubPackage_test_ts["src/features/reader/epub/parseEpubPackage.test.ts"]
+  package__ankhorage_reader -.-> module_src_features_reader_epub_parseEpubPackage_test_ts
+  module_src_features_reader_epub_parseEpubPackage_test_ts --> module_src_features_reader_epub_EpubArchive_ts
+  module_src_features_reader_epub_parseEpubPackage_test_ts --> module_src_features_reader_epub_parseEpubPackage_ts
+  module_src_features_reader_epub_parseEpubPackage_ts["src/features/reader/epub/parseEpubPackage.ts"]
+  package__ankhorage_reader -.-> module_src_features_reader_epub_parseEpubPackage_ts
+  module_src_features_reader_epub_parseEpubPackage_ts --> module_src_features_reader_epub_EpubArchive_ts
+  module_src_features_reader_epub_parseEpubPackage_ts --> module_src_features_reader_epub_path_ts
+  module_src_features_reader_epub_parseEpubPackage_ts --> module_src_features_reader_errors_ReaderDocumentError_ts
+  module_src_features_reader_epub_path_test_ts["src/features/reader/epub/path.test.ts"]
+  package__ankhorage_reader -.-> module_src_features_reader_epub_path_test_ts
+  module_src_features_reader_epub_path_test_ts --> module_src_features_reader_epub_path_ts
+  module_src_features_reader_epub_path_ts["src/features/reader/epub/path.ts"]
+  package__ankhorage_reader -.-> module_src_features_reader_epub_path_ts
+  module_src_features_reader_epub_sanitizeEpubDocument_ts["src/features/reader/epub/sanitizeEpubDocument.ts"]
+  package__ankhorage_reader -.-> module_src_features_reader_epub_sanitizeEpubDocument_ts
+  module_src_features_reader_epub_sanitizeEpubDocument_ts --> module_src_features_reader_epub_path_ts
+  module_src_features_reader_epub_validateEpubArchiveEntriesAsync_ts["src/features/reader/epub/validateEpubArchiveEntriesAsync.ts"]
+  package__ankhorage_reader -.-> module_src_features_reader_epub_validateEpubArchiveEntriesAsync_ts
+  module_src_features_reader_errors_ReaderDocumentError_ts["src/features/reader/errors/ReaderDocumentError.ts"]
+  package__ankhorage_reader -.-> module_src_features_reader_errors_ReaderDocumentError_ts
+  module_src_features_reader_errors_ReaderDocumentError_ts --> module_src_types_reader_ts
+  module_src_features_reader_loadReaderSourceAsync_test_ts["src/features/reader/loadReaderSourceAsync.test.ts"]
+  package__ankhorage_reader -.-> module_src_features_reader_loadReaderSourceAsync_test_ts
+  module_src_features_reader_loadReaderSourceAsync_test_ts --> module_src_features_reader_loadReaderSourceAsync_ts
+  module_src_features_reader_loadReaderSourceAsync_ts["src/features/reader/loadReaderSourceAsync.ts"]
+  package__ankhorage_reader -.-> module_src_features_reader_loadReaderSourceAsync_ts
+  module_src_features_reader_navigation_resolveReaderKeyboardIntent_test_ts["src/features/reader/navigation/resolveReaderKeyboardIntent.test.ts"]
+  package__ankhorage_reader -.-> module_src_features_reader_navigation_resolveReaderKeyboardIntent_test_ts
+  module_src_features_reader_navigation_resolveReaderKeyboardIntent_test_ts --> module_src_features_reader_navigation_resolveReaderKeyboardIntent_ts
+  module_src_features_reader_navigation_resolveReaderKeyboardIntent_ts["src/features/reader/navigation/resolveReaderKeyboardIntent.ts"]
+  package__ankhorage_reader -.-> module_src_features_reader_navigation_resolveReaderKeyboardIntent_ts
+  module_src_features_reader_navigation_resolveReaderNavigationIntent_test_ts["src/features/reader/navigation/resolveReaderNavigationIntent.test.ts"]
+  package__ankhorage_reader -.-> module_src_features_reader_navigation_resolveReaderNavigationIntent_test_ts
+  module_src_features_reader_navigation_resolveReaderNavigationIntent_test_ts --> module_src_features_reader_navigation_resolveReaderNavigationIntent_ts
+  module_src_features_reader_navigation_resolveReaderNavigationIntent_ts["src/features/reader/navigation/resolveReaderNavigationIntent.ts"]
+  package__ankhorage_reader -.-> module_src_features_reader_navigation_resolveReaderNavigationIntent_ts
+  module_src_features_reader_ReaderViewport_tsx["src/features/reader/ReaderViewport.tsx"]
+  package__ankhorage_reader -.-> module_src_features_reader_ReaderViewport_tsx
+  module_src_features_reader_ReaderViewport_tsx --> module_src_features_reader_drivers_EpubReaderDriver_ts
+  module_src_features_reader_ReaderViewport_tsx --> module_src_features_reader_drivers_PdfReaderDriver_ts
+  module_src_features_reader_ReaderViewport_tsx --> module_src_features_reader_errors_ReaderDocumentError_ts
+  module_src_features_reader_ReaderViewport_tsx --> module_src_features_reader_loadReaderSourceAsync_ts
+  module_src_features_reader_ReaderViewport_tsx --> module_src_features_reader_navigation_resolveReaderKeyboardIntent_ts
+  module_src_features_reader_ReaderViewport_tsx --> module_src_features_reader_navigation_resolveReaderNavigationIntent_ts
+  module_src_features_reader_ReaderViewport_tsx --> module_src_features_reader_readerViewportPresentation_ts
+  module_src_features_reader_ReaderViewport_tsx --> module_src_types_reader_ts
+  module_src_features_reader_readerViewportPresentation_test_ts["src/features/reader/readerViewportPresentation.test.ts"]
+  package__ankhorage_reader -.-> module_src_features_reader_readerViewportPresentation_test_ts
+  module_src_features_reader_readerViewportPresentation_test_ts --> module_src_features_reader_readerViewportPresentation_ts
+  module_src_features_reader_readerViewportPresentation_ts["src/features/reader/readerViewportPresentation.ts"]
+  package__ankhorage_reader -.-> module_src_features_reader_readerViewportPresentation_ts
+  module_src_features_reader_readerViewportPresentation_ts --> module_src_types_reader_ts
+  module_src_features_reader_rendererPackages_test_ts["src/features/reader/rendererPackages.test.ts"]
+  package__ankhorage_reader -.-> module_src_features_reader_rendererPackages_test_ts
+  module_src_features_reader_toReaderViewportProps_test_ts["src/features/reader/toReaderViewportProps.test.ts"]
+  package__ankhorage_reader -.-> module_src_features_reader_toReaderViewportProps_test_ts
+  module_src_features_reader_toReaderViewportProps_test_ts --> module_src_features_reader_toReaderViewportProps_ts
+  module_src_features_reader_toReaderViewportProps_test_ts --> module_src_types_reader_ts
+  module_src_features_reader_toReaderViewportProps_ts["src/features/reader/toReaderViewportProps.ts"]
+  package__ankhorage_reader -.-> module_src_features_reader_toReaderViewportProps_ts
+  module_src_features_reader_toReaderViewportProps_ts --> module_src_types_reader_ts
+  module_src_features_reader_validateEpubArchiveEntriesAsync_test_ts["src/features/reader/validateEpubArchiveEntriesAsync.test.ts"]
+  package__ankhorage_reader -.-> module_src_features_reader_validateEpubArchiveEntriesAsync_test_ts
+  module_src_features_reader_validateEpubArchiveEntriesAsync_test_ts --> module_src_features_reader_epub_validateEpubArchiveEntriesAsync_ts
+  module_src_index_native_ts["src/index.native.ts"]
+  package__ankhorage_reader -.-> module_src_index_native_ts
+  module_src_index_test_ts["src/index.test.ts"]
+  package__ankhorage_reader -.-> module_src_index_test_ts
+  module_src_index_test_ts --> module_src_index_ts
+  module_src_index_ts["src/index.ts"]
+  module_src_index_web_ts["src/index.web.ts"]
+  package__ankhorage_reader -.-> module_src_index_web_ts
+  module_src_types_reader_ts["src/types/reader.ts"]
+  package__ankhorage_reader -.-> module_src_types_reader_ts

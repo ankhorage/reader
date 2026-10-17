@@ -1,0 +1,556 @@
+[
+  {
+    "name": "ReaderAppearance",
+    "title": null,
+    "description": null,
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "type",
+    "modulePath": "src/types/reader.ts",
+    "sourceLocation": {
+      "filePath": "src/types/reader.ts",
+      "line": 27,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/index.ts"
+    ],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [
+      {
+        "name": "colorScheme",
+        "kind": "property",
+        "type": "\"dark\" | \"light\" | \"sepia\" | \"system\"",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "fontScale",
+        "kind": "property",
+        "type": "number",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "lineHeight",
+        "kind": "property",
+        "type": "number",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "ReaderCommand",
+    "title": null,
+    "description": null,
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "type",
+    "modulePath": "src/types/reader.ts",
+    "sourceLocation": {
+      "filePath": "src/types/reader.ts",
+      "line": 33,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/index.ts"
+    ],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [
+      {
+        "name": "id",
+        "kind": "property",
+        "type": "number",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "sourceUri",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "type",
+        "kind": "property",
+        "type": "\"next\" | \"previous\"",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "ReaderDocumentFormat",
+    "title": null,
+    "description": null,
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "unknown",
+    "modulePath": "src/types/reader.ts",
+    "sourceLocation": {
+      "filePath": "src/types/reader.ts",
+      "line": 3,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/index.ts"
+    ],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "ReaderErrorCode",
+    "title": null,
+    "description": null,
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "unknown",
+    "modulePath": "src/types/reader.ts",
+    "sourceLocation": {
+      "filePath": "src/types/reader.ts",
+      "line": 7,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/index.ts"
+    ],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "ReaderErrorEvent",
+    "title": null,
+    "description": null,
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "type",
+    "modulePath": "src/types/reader.ts",
+    "sourceLocation": {
+      "filePath": "src/types/reader.ts",
+      "line": 21,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/index.ts"
+    ],
+    "relatedSymbols": [
+      "ReaderDocumentFormat",
+      "ReaderErrorCode"
+    ],
+    "signatures": [],
+    "members": [
+      {
+        "name": "code",
+        "kind": "property",
+        "type": "ReaderErrorCode",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "format",
+        "kind": "property",
+        "type": "ReaderDocumentFormat",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "message",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "ReaderLocationChangeEvent",
+    "title": null,
+    "description": null,
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "type",
+    "modulePath": "src/types/reader.ts",
+    "sourceLocation": {
+      "filePath": "src/types/reader.ts",
+      "line": 10,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/index.ts"
+    ],
+    "relatedSymbols": [
+      "ReaderDocumentFormat",
+      "ReaderNavigationTrigger"
+    ],
+    "signatures": [],
+    "members": [
+      {
+        "name": "chapterId",
+        "kind": "property",
+        "type": "string",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "chapterTitle",
+        "kind": "property",
+        "type": "string",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "format",
+        "kind": "property",
+        "type": "ReaderDocumentFormat",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "locator",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "page",
+        "kind": "property",
+        "type": "number",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "pageCount",
+        "kind": "property",
+        "type": "number",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "progression",
+        "kind": "property",
+        "type": "number",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "trigger",
+        "kind": "property",
+        "type": "ReaderNavigationTrigger",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "ReaderNavigationTrigger",
+    "title": null,
+    "description": null,
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "unknown",
+    "modulePath": "src/types/reader.ts",
+    "sourceLocation": {
+      "filePath": "src/types/reader.ts",
+      "line": 5,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/index.ts"
+    ],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "ReaderStatus",
+    "title": null,
+    "description": null,
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "unknown",
+    "modulePath": "src/types/reader.ts",
+    "sourceLocation": {
+      "filePath": "src/types/reader.ts",
+      "line": 4,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/index.ts"
+    ],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "ReaderView",
+    "title": null,
+    "description": "Fail clearly when an entrypoint without web/native platform resolution is used.",
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "function",
+    "modulePath": "src/features/reader/adapters/ReaderView.tsx",
+    "sourceLocation": {
+      "filePath": "src/features/reader/adapters/ReaderView.tsx",
+      "line": 4,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/index.ts"
+    ],
+    "relatedSymbols": [
+      "ReaderViewProps"
+    ],
+    "signatures": [
+      {
+        "label": "(_props: ReaderViewProps) => never",
+        "parameters": [
+          {
+            "name": "_props",
+            "type": "ReaderViewProps",
+            "required": true,
+            "description": null
+          }
+        ],
+        "returnType": "never",
+        "returnDescription": null
+      }
+    ],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "ReaderViewportState",
+    "title": null,
+    "description": null,
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "type",
+    "modulePath": "src/types/reader.ts",
+    "sourceLocation": {
+      "filePath": "src/types/reader.ts",
+      "line": 57,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/index.ts"
+    ],
+    "relatedSymbols": [
+      "ReaderLocationChangeEvent"
+    ],
+    "signatures": [],
+    "members": [
+      {
+        "name": "canGoNext",
+        "kind": "property",
+        "type": "boolean",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "canGoPrevious",
+        "kind": "property",
+        "type": "boolean",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "location",
+        "kind": "property",
+        "type": "ReaderLocationChangeEvent",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "page",
+        "kind": "property",
+        "type": "number",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "pageCount",
+        "kind": "property",
+        "type": "number",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "progress",
+        "kind": "property",
+        "type": "number",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "status",
+        "kind": "property",
+        "type": "\"loading\" | \"ready\"",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "ReaderViewProps",
+    "title": null,
+    "description": null,
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "type",
+    "modulePath": "src/types/reader.ts",
+    "sourceLocation": {
+      "filePath": "src/types/reader.ts",
+      "line": 45,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/index.ts"
+    ],
+    "relatedSymbols": [
+      "ReaderAppearance",
+      "ReaderCommand",
+      "ReaderDocumentFormat",
+      "ReaderErrorEvent",
+      "ReaderViewportState",
+      "ReaderViewStyle"
+    ],
+    "signatures": [],
+    "members": [
+      {
+        "name": "appearance",
+        "kind": "property",
+        "type": "Partial<ReaderAppearance>",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "command",
+        "kind": "property",
+        "type": "ReaderCommand",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "format",
+        "kind": "property",
+        "type": "ReaderDocumentFormat",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "initialLocation",
+        "kind": "property",
+        "type": "string",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "onError",
+        "kind": "property",
+        "type": "(event: ReaderErrorEvent) => void | Promise<void>",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "onOpenExternalLink",
+        "kind": "property",
+        "type": "(event: { readonly url: string; }) => void | Promise<void>",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "onStateChange",
+        "kind": "property",
+        "type": "(state: ReaderViewportState) => void | Promise<void>",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "sourceUri",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "style",
+        "kind": "property",
+        "type": "ReaderViewStyle",
+        "required": false,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "ReaderViewStyle",
+    "title": null,
+    "description": null,
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "type",
+    "modulePath": "src/types/reader.ts",
+    "sourceLocation": {
+      "filePath": "src/types/reader.ts",
+      "line": 39,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/index.ts"
+    ],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [
+      {
+        "name": "flex",
+        "kind": "property",
+        "type": "number",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "height",
+        "kind": "property",
+        "type": "number | `${number}%`",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "width",
+        "kind": "property",
+        "type": "number | `${number}%`",
+        "required": false,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  }
+]

@@ -1,0 +1,1811 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ankhorage/reader • Paradox</title>
+    <style>
+      :root {
+        color-scheme: light;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background: #f5f7fb;
+        color: #11203b;
+      }
+      * { box-sizing: border-box; }
+      body { margin: 0; }
+      a { color: #2459d3; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      button { font: inherit; }
+      code, pre { font-family: "SFMono-Regular", ui-monospace, SFMono-Regular, Menlo, monospace; }
+      .layout {
+        display: grid;
+        grid-template-columns: minmax(16rem, 22rem) minmax(0, 1fr);
+        min-height: 100vh;
+      }
+      .sidebar {
+        padding: 1.5rem;
+        border-right: 1px solid #d8dfec;
+        background: #ffffff;
+        position: sticky;
+        top: 0;
+        max-height: 100vh;
+        overflow: auto;
+      }
+      .content { padding: 2rem; }
+      .panel, .item {
+        background: #ffffff;
+        border: 1px solid #d8dfec;
+        border-radius: 0.9rem;
+        padding: 1rem 1.2rem;
+        margin-bottom: 1rem;
+        box-shadow: 0 8px 24px rgba(17, 32, 59, 0.06);
+      }
+      .summary {
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+      }
+      .summary strong {
+        display: block;
+        font-size: 1.5rem;
+      }
+      .search {
+        width: 100%;
+        padding: 0.75rem 0.9rem;
+        border-radius: 0.75rem;
+        border: 1px solid #c7d2e5;
+        margin: 1rem 0 1.5rem;
+      }
+      .nav-list, .meta-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .nav-list li + li { margin-top: 0.5rem; }
+      .nav-button {
+        width: 100%;
+        display: block;
+        border: 0;
+        border-radius: 0.7rem;
+        background: transparent;
+        color: #24427a;
+        cursor: pointer;
+        padding: 0.55rem 0.7rem;
+        text-align: left;
+      }
+      .nav-button:hover, .nav-button[aria-current="page"] {
+        background: #e8eefb;
+        text-decoration: none;
+      }
+      .nav-button small {
+        display: block;
+        color: #5e6d8c;
+        margin-top: 0.15rem;
+      }
+      .view[hidden] { display: none; }
+      .muted { color: #5e6d8c; }
+      .chips { display: flex; flex-wrap: wrap; gap: 0.5rem; padding: 0; list-style: none; }
+      .chip {
+        border-radius: 999px;
+        background: #e8eefb;
+        color: #24427a;
+        padding: 0.25rem 0.65rem;
+        font-size: 0.85rem;
+      }
+      table { width: 100%; border-collapse: collapse; margin-top: 0.8rem; }
+      th, td { padding: 0.6rem; border-bottom: 1px solid #e2e7f2; text-align: left; vertical-align: top; }
+      pre {
+        overflow: auto;
+        border-radius: 0.75rem;
+        background: #0f1729;
+        color: #e7edf7;
+        padding: 1rem;
+      }
+      .empty { font-style: italic; color: #6f7f9c; }
+      .mermaid { margin: 1rem 0; overflow: auto; }
+      details > summary { cursor: pointer; color: #5e6d8c; font-size: 0.9rem; margin-top: 0.5rem; user-select: none; }
+      @media (max-width: 900px) {
+        .layout { grid-template-columns: 1fr; }
+        .sidebar { position: static; max-height: none; border-right: 0; border-bottom: 1px solid #d8dfec; }
+        .content { padding: 1rem; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="layout">
+      <aside class="sidebar">
+        <p class="muted">Generated with Paradox</p>
+        <h1>@ankhorage/reader</h1>
+        <p>Standalone EPUB 3 and PDF reader engine for web and React Native.</p>
+        <input id="search" class="search" type="search" placeholder="Search current view" />
+        <nav aria-label="Documentation sections">
+          <ul class="nav-list">
+            <li>
+              <button class="nav-button" type="button" data-target="home" aria-current="page">
+                Home
+                <small>Overview, CLI, public API, diagrams</small>
+              </button>
+            </li>
+            <li>
+    <button class="nav-button" type="button" data-target="src/features/reader/adapters/ReaderView.native.tsx">
+      src/features/reader/adapters/ReaderView.native.tsx
+      <small>1 function</small>
+    </button>
+  </li><li>
+    <button class="nav-button" type="button" data-target="src/features/reader/adapters/ReaderView.tsx">
+      src/features/reader/adapters/ReaderView.tsx
+      <small>1 function</small>
+    </button>
+  </li><li>
+    <button class="nav-button" type="button" data-target="src/features/reader/adapters/ReaderView.web.tsx">
+      src/features/reader/adapters/ReaderView.web.tsx
+      <small>1 function</small>
+    </button>
+  </li><li>
+    <button class="nav-button" type="button" data-target="src/features/reader/drivers/EpubReaderDriver.ts">
+      src/features/reader/drivers/EpubReaderDriver.ts
+      <small>8 functions</small>
+    </button>
+  </li><li>
+    <button class="nav-button" type="button" data-target="src/features/reader/drivers/PdfReaderDriver.ts">
+      src/features/reader/drivers/PdfReaderDriver.ts
+      <small>3 functions</small>
+    </button>
+  </li><li>
+    <button class="nav-button" type="button" data-target="src/features/reader/epub/EpubArchive.ts">
+      src/features/reader/epub/EpubArchive.ts
+      <small>1 function</small>
+    </button>
+  </li><li>
+    <button class="nav-button" type="button" data-target="src/features/reader/epub/mediaTypes.ts">
+      src/features/reader/epub/mediaTypes.ts
+      <small>1 function</small>
+    </button>
+  </li><li>
+    <button class="nav-button" type="button" data-target="src/features/reader/epub/parseEpubPackage.test.ts">
+      src/features/reader/epub/parseEpubPackage.test.ts
+      <small>2 functions</small>
+    </button>
+  </li><li>
+    <button class="nav-button" type="button" data-target="src/features/reader/epub/parseEpubPackage.ts">
+      src/features/reader/epub/parseEpubPackage.ts
+      <small>5 functions</small>
+    </button>
+  </li><li>
+    <button class="nav-button" type="button" data-target="src/features/reader/epub/path.ts">
+      src/features/reader/epub/path.ts
+      <small>3 functions</small>
+    </button>
+  </li><li>
+    <button class="nav-button" type="button" data-target="src/features/reader/epub/sanitizeEpubDocument.ts">
+      src/features/reader/epub/sanitizeEpubDocument.ts
+      <small>6 functions</small>
+    </button>
+  </li><li>
+    <button class="nav-button" type="button" data-target="src/features/reader/epub/validateEpubArchiveEntriesAsync.ts">
+      src/features/reader/epub/validateEpubArchiveEntriesAsync.ts
+      <small>2 functions</small>
+    </button>
+  </li><li>
+    <button class="nav-button" type="button" data-target="src/features/reader/loadReaderSourceAsync.ts">
+      src/features/reader/loadReaderSourceAsync.ts
+      <small>2 functions</small>
+    </button>
+  </li><li>
+    <button class="nav-button" type="button" data-target="src/features/reader/navigation/resolveReaderKeyboardIntent.ts">
+      src/features/reader/navigation/resolveReaderKeyboardIntent.ts
+      <small>1 function</small>
+    </button>
+  </li><li>
+    <button class="nav-button" type="button" data-target="src/features/reader/navigation/resolveReaderNavigationIntent.ts">
+      src/features/reader/navigation/resolveReaderNavigationIntent.ts
+      <small>1 function</small>
+    </button>
+  </li><li>
+    <button class="nav-button" type="button" data-target="src/features/reader/ReaderViewport.tsx">
+      src/features/reader/ReaderViewport.tsx
+      <small>14 functions</small>
+    </button>
+  </li><li>
+    <button class="nav-button" type="button" data-target="src/features/reader/toReaderViewportProps.ts">
+      src/features/reader/toReaderViewportProps.ts
+      <small>1 function</small>
+    </button>
+  </li><li>
+    <button class="nav-button" type="button" data-target="src/features/reader/validateEpubArchiveEntriesAsync.test.ts">
+      src/features/reader/validateEpubArchiveEntriesAsync.test.ts
+      <small>4 functions</small>
+    </button>
+  </li>
+          </ul>
+        </nav>
+      </aside>
+      <main class="content">
+        <section id="view-home" class="view" data-view="home">
+          
+    <section class="panel">
+      <h2>Package overview</h2>
+      <div class="summary">
+        <div><strong>12</strong><span class="muted">public exports</span></div>
+        <div><strong>0</strong><span class="muted">components</span></div>
+        <div><strong>33</strong><span class="muted">modules</span></div>
+        <div><strong>1</strong><span class="muted">entrypoints</span></div>
+      </div>
+      <h3>Entrypoints</h3>
+      <ul class="meta-list">
+        <li><code>src/index.ts</code></li>
+      </ul>
+    </section>
+    
+    <section class="panel"><h2>Policy</h2><p>No documentation findings.</p></section>
+    <section class="panel">
+      <h2>Modules</h2>
+      <article class="item" data-search="src/features/reader/adapters/ReaderView.native.tsx src/features/reader/ReaderViewport.tsx src/features/reader/toReaderViewportProps.ts src/types/reader.ts ReaderView">
+    <h3>src/features/reader/adapters/ReaderView.native.tsx</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/features/reader/ReaderViewport.tsx</code>, <code>src/features/reader/toReaderViewportProps.ts</code>, <code>src/types/reader.ts</code></p>
+    <p><strong>Exports:</strong> <code>ReaderView</code></p>
+  </article><article class="item" data-search="src/features/reader/adapters/ReaderView.tsx src/types/reader.ts ReaderView">
+    <h3>src/features/reader/adapters/ReaderView.tsx</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/types/reader.ts</code></p>
+    <p><strong>Exports:</strong> <code>ReaderView</code></p>
+  </article><article class="item" data-search="src/features/reader/adapters/ReaderView.web.tsx src/features/reader/ReaderViewport.tsx src/features/reader/toReaderViewportProps.ts src/types/reader.ts ReaderView">
+    <h3>src/features/reader/adapters/ReaderView.web.tsx</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/features/reader/ReaderViewport.tsx</code>, <code>src/features/reader/toReaderViewportProps.ts</code>, <code>src/types/reader.ts</code></p>
+    <p><strong>Exports:</strong> <code>ReaderView</code></p>
+  </article><article class="item" data-search="src/features/reader/drivers/EpubReaderDriver.ts src/features/reader/epub/EpubArchive.ts src/features/reader/epub/EpubArchiveFetcher.ts src/features/reader/epub/mediaTypes.ts src/features/reader/epub/parseEpubPackage.ts src/features/reader/epub/sanitizeEpubDocument.ts src/types/reader.ts EpubReaderDriver">
+    <h3>src/features/reader/drivers/EpubReaderDriver.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/features/reader/epub/EpubArchive.ts</code>, <code>src/features/reader/epub/EpubArchiveFetcher.ts</code>, <code>src/features/reader/epub/mediaTypes.ts</code>, <code>src/features/reader/epub/parseEpubPackage.ts</code>, <code>src/features/reader/epub/sanitizeEpubDocument.ts</code>, <code>src/types/reader.ts</code></p>
+    <p><strong>Exports:</strong> <code>EpubReaderDriver</code></p>
+  </article><article class="item" data-search="src/features/reader/drivers/PdfReaderDriver.ts src/features/reader/errors/ReaderDocumentError.ts src/types/reader.ts PdfReaderDriver">
+    <h3>src/features/reader/drivers/PdfReaderDriver.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/features/reader/errors/ReaderDocumentError.ts</code>, <code>src/types/reader.ts</code></p>
+    <p><strong>Exports:</strong> <code>PdfReaderDriver</code></p>
+  </article><article class="item" data-search="src/features/reader/epub/EpubArchive.ts src/features/reader/epub/path.ts src/features/reader/epub/validateEpubArchiveEntriesAsync.ts src/features/reader/errors/ReaderDocumentError.ts EpubArchive">
+    <h3>src/features/reader/epub/EpubArchive.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/features/reader/epub/path.ts</code>, <code>src/features/reader/epub/validateEpubArchiveEntriesAsync.ts</code>, <code>src/features/reader/errors/ReaderDocumentError.ts</code></p>
+    <p><strong>Exports:</strong> <code>EpubArchive</code></p>
+  </article><article class="item" data-search="src/features/reader/epub/EpubArchiveFetcher.ts src/features/reader/epub/EpubArchive.ts EpubArchiveFetcher">
+    <h3>src/features/reader/epub/EpubArchiveFetcher.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/features/reader/epub/EpubArchive.ts</code></p>
+    <p><strong>Exports:</strong> <code>EpubArchiveFetcher</code></p>
+  </article><article class="item" data-search="src/features/reader/epub/mediaTypes.ts HTML_MEDIA_TYPES inferEpubMediaType">
+    <h3>src/features/reader/epub/mediaTypes.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
+    <p><strong>Exports:</strong> <code>HTML_MEDIA_TYPES</code>, <code>inferEpubMediaType</code></p>
+  </article><article class="item" data-search="src/features/reader/epub/parseEpubPackage.test.ts src/features/reader/epub/EpubArchive.ts src/features/reader/epub/parseEpubPackage.ts">
+    <h3>src/features/reader/epub/parseEpubPackage.test.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/features/reader/epub/EpubArchive.ts</code>, <code>src/features/reader/epub/parseEpubPackage.ts</code></p>
+    <p><strong>Exports:</strong> <span class="empty">None</span></p>
+  </article><article class="item" data-search="src/features/reader/epub/parseEpubPackage.ts src/features/reader/epub/EpubArchive.ts src/features/reader/epub/path.ts src/features/reader/errors/ReaderDocumentError.ts ParsedEpubPackage parseEpubPackage">
+    <h3>src/features/reader/epub/parseEpubPackage.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/features/reader/epub/EpubArchive.ts</code>, <code>src/features/reader/epub/path.ts</code>, <code>src/features/reader/errors/ReaderDocumentError.ts</code></p>
+    <p><strong>Exports:</strong> <code>ParsedEpubPackage</code>, <code>parseEpubPackage</code></p>
+  </article><article class="item" data-search="src/features/reader/epub/path.test.ts src/features/reader/epub/path.ts">
+    <h3>src/features/reader/epub/path.test.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/features/reader/epub/path.ts</code></p>
+    <p><strong>Exports:</strong> <span class="empty">None</span></p>
+  </article><article class="item" data-search="src/features/reader/epub/path.ts isExternalReference normalizeArchivePath resolveArchivePath">
+    <h3>src/features/reader/epub/path.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
+    <p><strong>Exports:</strong> <code>isExternalReference</code>, <code>normalizeArchivePath</code>, <code>resolveArchivePath</code></p>
+  </article><article class="item" data-search="src/features/reader/epub/sanitizeEpubDocument.ts src/features/reader/epub/path.ts sanitizeEpubDocument sanitizeEpubStylesheet">
+    <h3>src/features/reader/epub/sanitizeEpubDocument.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/features/reader/epub/path.ts</code></p>
+    <p><strong>Exports:</strong> <code>sanitizeEpubDocument</code>, <code>sanitizeEpubStylesheet</code></p>
+  </article><article class="item" data-search="src/features/reader/epub/validateEpubArchiveEntriesAsync.ts validateEpubArchiveEntriesAsync">
+    <h3>src/features/reader/epub/validateEpubArchiveEntriesAsync.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
+    <p><strong>Exports:</strong> <code>validateEpubArchiveEntriesAsync</code></p>
+  </article><article class="item" data-search="src/features/reader/errors/ReaderDocumentError.ts src/types/reader.ts ReaderDocumentError">
+    <h3>src/features/reader/errors/ReaderDocumentError.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/types/reader.ts</code></p>
+    <p><strong>Exports:</strong> <code>ReaderDocumentError</code></p>
+  </article><article class="item" data-search="src/features/reader/loadReaderSourceAsync.test.ts src/features/reader/loadReaderSourceAsync.ts">
+    <h3>src/features/reader/loadReaderSourceAsync.test.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/features/reader/loadReaderSourceAsync.ts</code></p>
+    <p><strong>Exports:</strong> <span class="empty">None</span></p>
+  </article><article class="item" data-search="src/features/reader/loadReaderSourceAsync.ts loadReaderSourceAsync">
+    <h3>src/features/reader/loadReaderSourceAsync.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
+    <p><strong>Exports:</strong> <code>loadReaderSourceAsync</code></p>
+  </article><article class="item" data-search="src/features/reader/navigation/resolveReaderKeyboardIntent.test.ts src/features/reader/navigation/resolveReaderKeyboardIntent.ts">
+    <h3>src/features/reader/navigation/resolveReaderKeyboardIntent.test.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/features/reader/navigation/resolveReaderKeyboardIntent.ts</code></p>
+    <p><strong>Exports:</strong> <span class="empty">None</span></p>
+  </article><article class="item" data-search="src/features/reader/navigation/resolveReaderKeyboardIntent.ts resolveReaderKeyboardIntent">
+    <h3>src/features/reader/navigation/resolveReaderKeyboardIntent.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
+    <p><strong>Exports:</strong> <code>resolveReaderKeyboardIntent</code></p>
+  </article><article class="item" data-search="src/features/reader/navigation/resolveReaderNavigationIntent.test.ts src/features/reader/navigation/resolveReaderNavigationIntent.ts">
+    <h3>src/features/reader/navigation/resolveReaderNavigationIntent.test.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/features/reader/navigation/resolveReaderNavigationIntent.ts</code></p>
+    <p><strong>Exports:</strong> <span class="empty">None</span></p>
+  </article><article class="item" data-search="src/features/reader/navigation/resolveReaderNavigationIntent.ts resolveReaderNavigationIntent">
+    <h3>src/features/reader/navigation/resolveReaderNavigationIntent.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
+    <p><strong>Exports:</strong> <code>resolveReaderNavigationIntent</code></p>
+  </article><article class="item" data-search="src/features/reader/ReaderViewport.tsx src/features/reader/drivers/EpubReaderDriver.ts src/features/reader/drivers/PdfReaderDriver.ts src/features/reader/errors/ReaderDocumentError.ts src/features/reader/loadReaderSourceAsync.ts src/features/reader/navigation/resolveReaderKeyboardIntent.ts src/features/reader/navigation/resolveReaderNavigationIntent.ts src/features/reader/readerViewportPresentation.ts src/types/reader.ts default">
+    <h3>src/features/reader/ReaderViewport.tsx</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/features/reader/drivers/EpubReaderDriver.ts</code>, <code>src/features/reader/drivers/PdfReaderDriver.ts</code>, <code>src/features/reader/errors/ReaderDocumentError.ts</code>, <code>src/features/reader/loadReaderSourceAsync.ts</code>, <code>src/features/reader/navigation/resolveReaderKeyboardIntent.ts</code>, <code>src/features/reader/navigation/resolveReaderNavigationIntent.ts</code>, <code>src/features/reader/readerViewportPresentation.ts</code>, <code>src/types/reader.ts</code></p>
+    <p><strong>Exports:</strong> <code>default</code></p>
+  </article><article class="item" data-search="src/features/reader/readerViewportPresentation.test.ts src/features/reader/readerViewportPresentation.ts">
+    <h3>src/features/reader/readerViewportPresentation.test.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/features/reader/readerViewportPresentation.ts</code></p>
+    <p><strong>Exports:</strong> <span class="empty">None</span></p>
+  </article><article class="item" data-search="src/features/reader/readerViewportPresentation.ts src/types/reader.ts LOADING_STATE READER_STYLES">
+    <h3>src/features/reader/readerViewportPresentation.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/types/reader.ts</code></p>
+    <p><strong>Exports:</strong> <code>LOADING_STATE</code>, <code>READER_STYLES</code></p>
+  </article><article class="item" data-search="src/features/reader/rendererPackages.test.ts">
+    <h3>src/features/reader/rendererPackages.test.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
+    <p><strong>Exports:</strong> <span class="empty">None</span></p>
+  </article><article class="item" data-search="src/features/reader/toReaderViewportProps.test.ts src/features/reader/toReaderViewportProps.ts src/types/reader.ts">
+    <h3>src/features/reader/toReaderViewportProps.test.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/features/reader/toReaderViewportProps.ts</code>, <code>src/types/reader.ts</code></p>
+    <p><strong>Exports:</strong> <span class="empty">None</span></p>
+  </article><article class="item" data-search="src/features/reader/toReaderViewportProps.ts src/types/reader.ts toReaderViewportProps">
+    <h3>src/features/reader/toReaderViewportProps.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/types/reader.ts</code></p>
+    <p><strong>Exports:</strong> <code>toReaderViewportProps</code></p>
+  </article><article class="item" data-search="src/features/reader/validateEpubArchiveEntriesAsync.test.ts src/features/reader/epub/validateEpubArchiveEntriesAsync.ts">
+    <h3>src/features/reader/validateEpubArchiveEntriesAsync.test.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/features/reader/epub/validateEpubArchiveEntriesAsync.ts</code></p>
+    <p><strong>Exports:</strong> <span class="empty">None</span></p>
+  </article><article class="item" data-search="src/index.native.ts ReaderAppearance ReaderCommand ReaderDocumentFormat ReaderErrorCode ReaderErrorEvent ReaderLocationChangeEvent ReaderNavigationTrigger ReaderStatus ReaderView ReaderViewportState ReaderViewProps ReaderViewStyle">
+    <h3>src/index.native.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
+    <p><strong>Exports:</strong> <code>ReaderAppearance</code>, <code>ReaderCommand</code>, <code>ReaderDocumentFormat</code>, <code>ReaderErrorCode</code>, <code>ReaderErrorEvent</code>, <code>ReaderLocationChangeEvent</code>, <code>ReaderNavigationTrigger</code>, <code>ReaderStatus</code>, <code>ReaderView</code>, <code>ReaderViewportState</code>, <code>ReaderViewProps</code>, <code>ReaderViewStyle</code></p>
+  </article><article class="item" data-search="src/index.test.ts src/index.ts">
+    <h3>src/index.test.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/index.ts</code></p>
+    <p><strong>Exports:</strong> <span class="empty">None</span></p>
+  </article><article class="item" data-search="src/index.ts ReaderAppearance ReaderCommand ReaderDocumentFormat ReaderErrorCode ReaderErrorEvent ReaderLocationChangeEvent ReaderNavigationTrigger ReaderStatus ReaderView ReaderViewportState ReaderViewProps ReaderViewStyle">
+    <h3>src/index.ts</h3>
+    <p class="muted">Configured entrypoint</p>
+    <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
+    <p><strong>Exports:</strong> <code>ReaderAppearance</code>, <code>ReaderCommand</code>, <code>ReaderDocumentFormat</code>, <code>ReaderErrorCode</code>, <code>ReaderErrorEvent</code>, <code>ReaderLocationChangeEvent</code>, <code>ReaderNavigationTrigger</code>, <code>ReaderStatus</code>, <code>ReaderView</code>, <code>ReaderViewportState</code>, <code>ReaderViewProps</code>, <code>ReaderViewStyle</code></p>
+  </article><article class="item" data-search="src/index.web.ts ReaderAppearance ReaderCommand ReaderDocumentFormat ReaderErrorCode ReaderErrorEvent ReaderLocationChangeEvent ReaderNavigationTrigger ReaderStatus ReaderView ReaderViewportState ReaderViewProps ReaderViewStyle">
+    <h3>src/index.web.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
+    <p><strong>Exports:</strong> <code>ReaderAppearance</code>, <code>ReaderCommand</code>, <code>ReaderDocumentFormat</code>, <code>ReaderErrorCode</code>, <code>ReaderErrorEvent</code>, <code>ReaderLocationChangeEvent</code>, <code>ReaderNavigationTrigger</code>, <code>ReaderStatus</code>, <code>ReaderView</code>, <code>ReaderViewportState</code>, <code>ReaderViewProps</code>, <code>ReaderViewStyle</code></p>
+  </article><article class="item" data-search="src/types/reader.ts ReaderAppearance ReaderCommand ReaderDocumentFormat ReaderDriver ReaderDriverState ReaderErrorCode ReaderErrorEvent ReaderLocationChangeEvent ReaderNavigationTrigger ReaderStatus ReaderTouchStart ReaderViewportProps ReaderViewportState ReaderViewProps ReaderViewStyle">
+    <h3>src/types/reader.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
+    <p><strong>Exports:</strong> <code>ReaderAppearance</code>, <code>ReaderCommand</code>, <code>ReaderDocumentFormat</code>, <code>ReaderDriver</code>, <code>ReaderDriverState</code>, <code>ReaderErrorCode</code>, <code>ReaderErrorEvent</code>, <code>ReaderLocationChangeEvent</code>, <code>ReaderNavigationTrigger</code>, <code>ReaderStatus</code>, <code>ReaderTouchStart</code>, <code>ReaderViewportProps</code>, <code>ReaderViewportState</code>, <code>ReaderViewProps</code>, <code>ReaderViewStyle</code></p>
+  </article>
+    </section>
+    <section class="panel">
+      <h2>Public API</h2>
+      
+            <section>
+              <h3>src/features/reader/adapters/ReaderView.tsx</h3>
+              <article class="item" id="symbol-readerview" data-search="ReaderView  function src/features/reader/adapters/ReaderView.tsx Fail clearly when an entrypoint without web/native platform resolution is used. ReaderViewProps (_props: ReaderViewProps) =&gt; never">
+    <h4>ReaderView</h4>
+    
+    <p class="muted">function • <code>src/features/reader/adapters/ReaderView.tsx:4:1</code></p>
+    <p>Fail clearly when an entrypoint without web/native platform resolution is used.</p>
+    
+    <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+    <div><strong>Related symbols:</strong> <ul class="chips"><li class="chip">ReaderViewProps</li></ul></div>
+    <div>
+        <h5>Signature</h5>
+        <pre>(_props: ReaderViewProps) =&gt; never</pre>
+        <table>
+                <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                <tbody>
+                  <tr>
+                        <td><code>_props</code></td>
+                        <td><code>ReaderViewProps</code></td>
+                        <td>yes</td>
+                        <td></td>
+                      </tr>
+                </tbody>
+              </table>
+        <p><strong>Returns:</strong> <code>never</code></p>
+      </div>
+    
+  </article>
+            </section>
+            <section>
+              <h3>src/types/reader.ts</h3>
+              <article class="item" id="symbol-readerappearance" data-search="ReaderAppearance  type src/types/reader.ts ">
+    <h4>ReaderAppearance</h4>
+    
+    <p class="muted">type • <code>src/types/reader.ts:27:1</code></p>
+    
+    
+    <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+    <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
+    
+    <table>
+    <thead><tr><th>Member</th><th>Kind</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr>
+            <td><code>colorScheme</code></td>
+            <td>property</td>
+            <td><code>&quot;dark&quot; | &quot;light&quot; | &quot;sepia&quot; | &quot;system&quot;</code></td>
+            <td>yes</td>
+            <td></td>
+          </tr><tr>
+            <td><code>fontScale</code></td>
+            <td>property</td>
+            <td><code>number</code></td>
+            <td>yes</td>
+            <td></td>
+          </tr><tr>
+            <td><code>lineHeight</code></td>
+            <td>property</td>
+            <td><code>number</code></td>
+            <td>yes</td>
+            <td></td>
+          </tr>
+    </tbody>
+  </table>
+  </article><article class="item" id="symbol-readercommand" data-search="ReaderCommand  type src/types/reader.ts ">
+    <h4>ReaderCommand</h4>
+    
+    <p class="muted">type • <code>src/types/reader.ts:33:1</code></p>
+    
+    
+    <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+    <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
+    
+    <table>
+    <thead><tr><th>Member</th><th>Kind</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr>
+            <td><code>id</code></td>
+            <td>property</td>
+            <td><code>number</code></td>
+            <td>yes</td>
+            <td></td>
+          </tr><tr>
+            <td><code>sourceUri</code></td>
+            <td>property</td>
+            <td><code>string</code></td>
+            <td>yes</td>
+            <td></td>
+          </tr><tr>
+            <td><code>type</code></td>
+            <td>property</td>
+            <td><code>&quot;next&quot; | &quot;previous&quot;</code></td>
+            <td>yes</td>
+            <td></td>
+          </tr>
+    </tbody>
+  </table>
+  </article><article class="item" id="symbol-readerdocumentformat" data-search="ReaderDocumentFormat  unknown src/types/reader.ts ">
+    <h4>ReaderDocumentFormat</h4>
+    
+    <p class="muted">unknown • <code>src/types/reader.ts:3:1</code></p>
+    
+    
+    <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+    <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
+    
+    
+  </article><article class="item" id="symbol-readererrorcode" data-search="ReaderErrorCode  unknown src/types/reader.ts ">
+    <h4>ReaderErrorCode</h4>
+    
+    <p class="muted">unknown • <code>src/types/reader.ts:7:1</code></p>
+    
+    
+    <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+    <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
+    
+    
+  </article><article class="item" id="symbol-readererrorevent" data-search="ReaderErrorEvent  type src/types/reader.ts  ReaderDocumentFormat ReaderErrorCode">
+    <h4>ReaderErrorEvent</h4>
+    
+    <p class="muted">type • <code>src/types/reader.ts:21:1</code></p>
+    
+    
+    <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+    <div><strong>Related symbols:</strong> <ul class="chips"><li class="chip">ReaderDocumentFormat</li><li class="chip">ReaderErrorCode</li></ul></div>
+    
+    <table>
+    <thead><tr><th>Member</th><th>Kind</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr>
+            <td><code>code</code></td>
+            <td>property</td>
+            <td><code>ReaderErrorCode</code></td>
+            <td>yes</td>
+            <td></td>
+          </tr><tr>
+            <td><code>format</code></td>
+            <td>property</td>
+            <td><code>ReaderDocumentFormat</code></td>
+            <td>no</td>
+            <td></td>
+          </tr><tr>
+            <td><code>message</code></td>
+            <td>property</td>
+            <td><code>string</code></td>
+            <td>yes</td>
+            <td></td>
+          </tr>
+    </tbody>
+  </table>
+  </article><article class="item" id="symbol-readerlocationchangeevent" data-search="ReaderLocationChangeEvent  type src/types/reader.ts  ReaderDocumentFormat ReaderNavigationTrigger">
+    <h4>ReaderLocationChangeEvent</h4>
+    
+    <p class="muted">type • <code>src/types/reader.ts:10:1</code></p>
+    
+    
+    <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+    <div><strong>Related symbols:</strong> <ul class="chips"><li class="chip">ReaderDocumentFormat</li><li class="chip">ReaderNavigationTrigger</li></ul></div>
+    
+    <table>
+    <thead><tr><th>Member</th><th>Kind</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr>
+            <td><code>chapterId</code></td>
+            <td>property</td>
+            <td><code>string</code></td>
+            <td>no</td>
+            <td></td>
+          </tr><tr>
+            <td><code>chapterTitle</code></td>
+            <td>property</td>
+            <td><code>string</code></td>
+            <td>no</td>
+            <td></td>
+          </tr><tr>
+            <td><code>format</code></td>
+            <td>property</td>
+            <td><code>ReaderDocumentFormat</code></td>
+            <td>yes</td>
+            <td></td>
+          </tr><tr>
+            <td><code>locator</code></td>
+            <td>property</td>
+            <td><code>string</code></td>
+            <td>yes</td>
+            <td></td>
+          </tr><tr>
+            <td><code>page</code></td>
+            <td>property</td>
+            <td><code>number</code></td>
+            <td>yes</td>
+            <td></td>
+          </tr><tr>
+            <td><code>pageCount</code></td>
+            <td>property</td>
+            <td><code>number</code></td>
+            <td>no</td>
+            <td></td>
+          </tr><tr>
+            <td><code>progression</code></td>
+            <td>property</td>
+            <td><code>number</code></td>
+            <td>yes</td>
+            <td></td>
+          </tr><tr>
+            <td><code>trigger</code></td>
+            <td>property</td>
+            <td><code>ReaderNavigationTrigger</code></td>
+            <td>yes</td>
+            <td></td>
+          </tr>
+    </tbody>
+  </table>
+  </article><article class="item" id="symbol-readernavigationtrigger" data-search="ReaderNavigationTrigger  unknown src/types/reader.ts ">
+    <h4>ReaderNavigationTrigger</h4>
+    
+    <p class="muted">unknown • <code>src/types/reader.ts:5:1</code></p>
+    
+    
+    <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+    <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
+    
+    
+  </article><article class="item" id="symbol-readerstatus" data-search="ReaderStatus  unknown src/types/reader.ts ">
+    <h4>ReaderStatus</h4>
+    
+    <p class="muted">unknown • <code>src/types/reader.ts:4:1</code></p>
+    
+    
+    <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+    <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
+    
+    
+  </article><article class="item" id="symbol-readerviewportstate" data-search="ReaderViewportState  type src/types/reader.ts  ReaderLocationChangeEvent">
+    <h4>ReaderViewportState</h4>
+    
+    <p class="muted">type • <code>src/types/reader.ts:57:1</code></p>
+    
+    
+    <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+    <div><strong>Related symbols:</strong> <ul class="chips"><li class="chip">ReaderLocationChangeEvent</li></ul></div>
+    
+    <table>
+    <thead><tr><th>Member</th><th>Kind</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr>
+            <td><code>canGoNext</code></td>
+            <td>property</td>
+            <td><code>boolean</code></td>
+            <td>yes</td>
+            <td></td>
+          </tr><tr>
+            <td><code>canGoPrevious</code></td>
+            <td>property</td>
+            <td><code>boolean</code></td>
+            <td>yes</td>
+            <td></td>
+          </tr><tr>
+            <td><code>location</code></td>
+            <td>property</td>
+            <td><code>ReaderLocationChangeEvent</code></td>
+            <td>no</td>
+            <td></td>
+          </tr><tr>
+            <td><code>page</code></td>
+            <td>property</td>
+            <td><code>number</code></td>
+            <td>yes</td>
+            <td></td>
+          </tr><tr>
+            <td><code>pageCount</code></td>
+            <td>property</td>
+            <td><code>number</code></td>
+            <td>no</td>
+            <td></td>
+          </tr><tr>
+            <td><code>progress</code></td>
+            <td>property</td>
+            <td><code>number</code></td>
+            <td>yes</td>
+            <td></td>
+          </tr><tr>
+            <td><code>status</code></td>
+            <td>property</td>
+            <td><code>&quot;loading&quot; | &quot;ready&quot;</code></td>
+            <td>yes</td>
+            <td></td>
+          </tr>
+    </tbody>
+  </table>
+  </article><article class="item" id="symbol-readerviewprops" data-search="ReaderViewProps  type src/types/reader.ts  ReaderAppearance ReaderCommand ReaderDocumentFormat ReaderErrorEvent ReaderViewportState ReaderViewStyle">
+    <h4>ReaderViewProps</h4>
+    
+    <p class="muted">type • <code>src/types/reader.ts:45:1</code></p>
+    
+    
+    <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+    <div><strong>Related symbols:</strong> <ul class="chips"><li class="chip">ReaderAppearance</li><li class="chip">ReaderCommand</li><li class="chip">ReaderDocumentFormat</li><li class="chip">ReaderErrorEvent</li><li class="chip">ReaderViewportState</li><li class="chip">ReaderViewStyle</li></ul></div>
+    
+    <table>
+    <thead><tr><th>Member</th><th>Kind</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr>
+            <td><code>appearance</code></td>
+            <td>property</td>
+            <td><code>Partial&lt;ReaderAppearance&gt;</code></td>
+            <td>no</td>
+            <td></td>
+          </tr><tr>
+            <td><code>command</code></td>
+            <td>property</td>
+            <td><code>ReaderCommand</code></td>
+            <td>no</td>
+            <td></td>
+          </tr><tr>
+            <td><code>format</code></td>
+            <td>property</td>
+            <td><code>ReaderDocumentFormat</code></td>
+            <td>yes</td>
+            <td></td>
+          </tr><tr>
+            <td><code>initialLocation</code></td>
+            <td>property</td>
+            <td><code>string</code></td>
+            <td>no</td>
+            <td></td>
+          </tr><tr>
+            <td><code>onError</code></td>
+            <td>property</td>
+            <td><code>(event: ReaderErrorEvent) =&gt; void | Promise&lt;void&gt;</code></td>
+            <td>no</td>
+            <td></td>
+          </tr><tr>
+            <td><code>onOpenExternalLink</code></td>
+            <td>property</td>
+            <td><code>(event: { readonly url: string; }) =&gt; void | Promise&lt;void&gt;</code></td>
+            <td>no</td>
+            <td></td>
+          </tr><tr>
+            <td><code>onStateChange</code></td>
+            <td>property</td>
+            <td><code>(state: ReaderViewportState) =&gt; void | Promise&lt;void&gt;</code></td>
+            <td>no</td>
+            <td></td>
+          </tr><tr>
+            <td><code>sourceUri</code></td>
+            <td>property</td>
+            <td><code>string</code></td>
+            <td>yes</td>
+            <td></td>
+          </tr><tr>
+            <td><code>style</code></td>
+            <td>property</td>
+            <td><code>ReaderViewStyle</code></td>
+            <td>no</td>
+            <td></td>
+          </tr>
+    </tbody>
+  </table>
+  </article><article class="item" id="symbol-readerviewstyle" data-search="ReaderViewStyle  type src/types/reader.ts ">
+    <h4>ReaderViewStyle</h4>
+    
+    <p class="muted">type • <code>src/types/reader.ts:39:1</code></p>
+    
+    
+    <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+    <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
+    
+    <table>
+    <thead><tr><th>Member</th><th>Kind</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr>
+            <td><code>flex</code></td>
+            <td>property</td>
+            <td><code>number</code></td>
+            <td>no</td>
+            <td></td>
+          </tr><tr>
+            <td><code>height</code></td>
+            <td>property</td>
+            <td><code>number | `${number}%`</code></td>
+            <td>no</td>
+            <td></td>
+          </tr><tr>
+            <td><code>width</code></td>
+            <td>property</td>
+            <td><code>number | `${number}%`</code></td>
+            <td>no</td>
+            <td></td>
+          </tr>
+    </tbody>
+  </table>
+  </article>
+            </section>
+    </section>
+    <section class="panel">
+      <h2>Component registry</h2>
+      <p class="empty">No components were detected.</p>
+    </section>
+    <section class="panel">
+      <h2>Diagrams</h2>
+      <article class="item" data-search="Architecture overview diagrams/architecture-overview.mmd">
+    <h3>Architecture overview</h3>
+    <p class="muted"><code>diagrams/architecture-overview.mmd</code></p>
+    <div class="mermaid">graph TD
+  package__ankhorage_reader[&quot;@ankhorage/reader&quot;]
+  entrypoint_src_index_ts[&quot;src/index.ts&quot;]
+  package__ankhorage_reader --&gt; entrypoint_src_index_ts
+  module_src_features_reader_adapters_ReaderView_native_tsx[&quot;src/features/reader/adapters/ReaderView.native.tsx&quot;]
+  package__ankhorage_reader -.-&gt; module_src_features_reader_adapters_ReaderView_native_tsx
+  module_src_features_reader_adapters_ReaderView_native_tsx --&gt; module_src_features_reader_ReaderViewport_tsx
+  module_src_features_reader_adapters_ReaderView_native_tsx --&gt; module_src_features_reader_toReaderViewportProps_ts
+  module_src_features_reader_adapters_ReaderView_native_tsx --&gt; module_src_types_reader_ts
+  module_src_features_reader_adapters_ReaderView_tsx[&quot;src/features/reader/adapters/ReaderView.tsx&quot;]
+  package__ankhorage_reader -.-&gt; module_src_features_reader_adapters_ReaderView_tsx
+  module_src_features_reader_adapters_ReaderView_tsx --&gt; module_src_types_reader_ts
+  module_src_features_reader_adapters_ReaderView_web_tsx[&quot;src/features/reader/adapters/ReaderView.web.tsx&quot;]
+  package__ankhorage_reader -.-&gt; module_src_features_reader_adapters_ReaderView_web_tsx
+  module_src_features_reader_adapters_ReaderView_web_tsx --&gt; module_src_features_reader_ReaderViewport_tsx
+  module_src_features_reader_adapters_ReaderView_web_tsx --&gt; module_src_features_reader_toReaderViewportProps_ts
+  module_src_features_reader_adapters_ReaderView_web_tsx --&gt; module_src_types_reader_ts
+  module_src_features_reader_drivers_EpubReaderDriver_ts[&quot;src/features/reader/drivers/EpubReaderDriver.ts&quot;]
+  package__ankhorage_reader -.-&gt; module_src_features_reader_drivers_EpubReaderDriver_ts
+  module_src_features_reader_drivers_EpubReaderDriver_ts --&gt; module_src_features_reader_epub_EpubArchive_ts
+  module_src_features_reader_drivers_EpubReaderDriver_ts --&gt; module_src_features_reader_epub_EpubArchiveFetcher_ts
+  module_src_features_reader_drivers_EpubReaderDriver_ts --&gt; module_src_features_reader_epub_mediaTypes_ts
+  module_src_features_reader_drivers_EpubReaderDriver_ts --&gt; module_src_features_reader_epub_parseEpubPackage_ts
+  module_src_features_reader_drivers_EpubReaderDriver_ts --&gt; module_src_features_reader_epub_sanitizeEpubDocument_ts
+  module_src_features_reader_drivers_EpubReaderDriver_ts --&gt; module_src_types_reader_ts
+  module_src_features_reader_drivers_PdfReaderDriver_ts[&quot;src/features/reader/drivers/PdfReaderDriver.ts&quot;]
+  package__ankhorage_reader -.-&gt; module_src_features_reader_drivers_PdfReaderDriver_ts
+  module_src_features_reader_drivers_PdfReaderDriver_ts --&gt; module_src_features_reader_errors_ReaderDocumentError_ts
+  module_src_features_reader_drivers_PdfReaderDriver_ts --&gt; module_src_types_reader_ts
+  module_src_features_reader_epub_EpubArchive_ts[&quot;src/features/reader/epub/EpubArchive.ts&quot;]
+  package__ankhorage_reader -.-&gt; module_src_features_reader_epub_EpubArchive_ts
+  module_src_features_reader_epub_EpubArchive_ts --&gt; module_src_features_reader_epub_path_ts
+  module_src_features_reader_epub_EpubArchive_ts --&gt; module_src_features_reader_epub_validateEpubArchiveEntriesAsync_ts
+  module_src_features_reader_epub_EpubArchive_ts --&gt; module_src_features_reader_errors_ReaderDocumentError_ts
+  module_src_features_reader_epub_EpubArchiveFetcher_ts[&quot;src/features/reader/epub/EpubArchiveFetcher.ts&quot;]
+  package__ankhorage_reader -.-&gt; module_src_features_reader_epub_EpubArchiveFetcher_ts
+  module_src_features_reader_epub_EpubArchiveFetcher_ts --&gt; module_src_features_reader_epub_EpubArchive_ts
+  module_src_features_reader_epub_mediaTypes_ts[&quot;src/features/reader/epub/mediaTypes.ts&quot;]
+  package__ankhorage_reader -.-&gt; module_src_features_reader_epub_mediaTypes_ts
+  module_src_features_reader_epub_parseEpubPackage_test_ts[&quot;src/features/reader/epub/parseEpubPackage.test.ts&quot;]
+  package__ankhorage_reader -.-&gt; module_src_features_reader_epub_parseEpubPackage_test_ts
+  module_src_features_reader_epub_parseEpubPackage_test_ts --&gt; module_src_features_reader_epub_EpubArchive_ts
+  module_src_features_reader_epub_parseEpubPackage_test_ts --&gt; module_src_features_reader_epub_parseEpubPackage_ts
+  module_src_features_reader_epub_parseEpubPackage_ts[&quot;src/features/reader/epub/parseEpubPackage.ts&quot;]
+  package__ankhorage_reader -.-&gt; module_src_features_reader_epub_parseEpubPackage_ts
+  module_src_features_reader_epub_parseEpubPackage_ts --&gt; module_src_features_reader_epub_EpubArchive_ts
+  module_src_features_reader_epub_parseEpubPackage_ts --&gt; module_src_features_reader_epub_path_ts
+  module_src_features_reader_epub_parseEpubPackage_ts --&gt; module_src_features_reader_errors_ReaderDocumentError_ts
+  module_src_features_reader_epub_path_test_ts[&quot;src/features/reader/epub/path.test.ts&quot;]
+  package__ankhorage_reader -.-&gt; module_src_features_reader_epub_path_test_ts
+  module_src_features_reader_epub_path_test_ts --&gt; module_src_features_reader_epub_path_ts
+  module_src_features_reader_epub_path_ts[&quot;src/features/reader/epub/path.ts&quot;]
+  package__ankhorage_reader -.-&gt; module_src_features_reader_epub_path_ts
+  module_src_features_reader_epub_sanitizeEpubDocument_ts[&quot;src/features/reader/epub/sanitizeEpubDocument.ts&quot;]
+  package__ankhorage_reader -.-&gt; module_src_features_reader_epub_sanitizeEpubDocument_ts
+  module_src_features_reader_epub_sanitizeEpubDocument_ts --&gt; module_src_features_reader_epub_path_ts
+  module_src_features_reader_epub_validateEpubArchiveEntriesAsync_ts[&quot;src/features/reader/epub/validateEpubArchiveEntriesAsync.ts&quot;]
+  package__ankhorage_reader -.-&gt; module_src_features_reader_epub_validateEpubArchiveEntriesAsync_ts
+  module_src_features_reader_errors_ReaderDocumentError_ts[&quot;src/features/reader/errors/ReaderDocumentError.ts&quot;]
+  package__ankhorage_reader -.-&gt; module_src_features_reader_errors_ReaderDocumentError_ts
+  module_src_features_reader_errors_ReaderDocumentError_ts --&gt; module_src_types_reader_ts
+  module_src_features_reader_loadReaderSourceAsync_test_ts[&quot;src/features/reader/loadReaderSourceAsync.test.ts&quot;]
+  package__ankhorage_reader -.-&gt; module_src_features_reader_loadReaderSourceAsync_test_ts
+  module_src_features_reader_loadReaderSourceAsync_test_ts --&gt; module_src_features_reader_loadReaderSourceAsync_ts
+  module_src_features_reader_loadReaderSourceAsync_ts[&quot;src/features/reader/loadReaderSourceAsync.ts&quot;]
+  package__ankhorage_reader -.-&gt; module_src_features_reader_loadReaderSourceAsync_ts
+  module_src_features_reader_navigation_resolveReaderKeyboardIntent_test_ts[&quot;src/features/reader/navigation/resolveReaderKeyboardIntent.test.ts&quot;]
+  package__ankhorage_reader -.-&gt; module_src_features_reader_navigation_resolveReaderKeyboardIntent_test_ts
+  module_src_features_reader_navigation_resolveReaderKeyboardIntent_test_ts --&gt; module_src_features_reader_navigation_resolveReaderKeyboardIntent_ts
+  module_src_features_reader_navigation_resolveReaderKeyboardIntent_ts[&quot;src/features/reader/navigation/resolveReaderKeyboardIntent.ts&quot;]
+  package__ankhorage_reader -.-&gt; module_src_features_reader_navigation_resolveReaderKeyboardIntent_ts
+  module_src_features_reader_navigation_resolveReaderNavigationIntent_test_ts[&quot;src/features/reader/navigation/resolveReaderNavigationIntent.test.ts&quot;]
+  package__ankhorage_reader -.-&gt; module_src_features_reader_navigation_resolveReaderNavigationIntent_test_ts
+  module_src_features_reader_navigation_resolveReaderNavigationIntent_test_ts --&gt; module_src_features_reader_navigation_resolveReaderNavigationIntent_ts
+  module_src_features_reader_navigation_resolveReaderNavigationIntent_ts[&quot;src/features/reader/navigation/resolveReaderNavigationIntent.ts&quot;]
+  package__ankhorage_reader -.-&gt; module_src_features_reader_navigation_resolveReaderNavigationIntent_ts
+  module_src_features_reader_ReaderViewport_tsx[&quot;src/features/reader/ReaderViewport.tsx&quot;]
+  package__ankhorage_reader -.-&gt; module_src_features_reader_ReaderViewport_tsx
+  module_src_features_reader_ReaderViewport_tsx --&gt; module_src_features_reader_drivers_EpubReaderDriver_ts
+  module_src_features_reader_ReaderViewport_tsx --&gt; module_src_features_reader_drivers_PdfReaderDriver_ts
+  module_src_features_reader_ReaderViewport_tsx --&gt; module_src_features_reader_errors_ReaderDocumentError_ts
+  module_src_features_reader_ReaderViewport_tsx --&gt; module_src_features_reader_loadReaderSourceAsync_ts
+  module_src_features_reader_ReaderViewport_tsx --&gt; module_src_features_reader_navigation_resolveReaderKeyboardIntent_ts
+  module_src_features_reader_ReaderViewport_tsx --&gt; module_src_features_reader_navigation_resolveReaderNavigationIntent_ts
+  module_src_features_reader_ReaderViewport_tsx --&gt; module_src_features_reader_readerViewportPresentation_ts
+  module_src_features_reader_ReaderViewport_tsx --&gt; module_src_types_reader_ts
+  module_src_features_reader_readerViewportPresentation_test_ts[&quot;src/features/reader/readerViewportPresentation.test.ts&quot;]
+  package__ankhorage_reader -.-&gt; module_src_features_reader_readerViewportPresentation_test_ts
+  module_src_features_reader_readerViewportPresentation_test_ts --&gt; module_src_features_reader_readerViewportPresentation_ts
+  module_src_features_reader_readerViewportPresentation_ts[&quot;src/features/reader/readerViewportPresentation.ts&quot;]
+  package__ankhorage_reader -.-&gt; module_src_features_reader_readerViewportPresentation_ts
+  module_src_features_reader_readerViewportPresentation_ts --&gt; module_src_types_reader_ts
+  module_src_features_reader_rendererPackages_test_ts[&quot;src/features/reader/rendererPackages.test.ts&quot;]
+  package__ankhorage_reader -.-&gt; module_src_features_reader_rendererPackages_test_ts
+  module_src_features_reader_toReaderViewportProps_test_ts[&quot;src/features/reader/toReaderViewportProps.test.ts&quot;]
+  package__ankhorage_reader -.-&gt; module_src_features_reader_toReaderViewportProps_test_ts
+  module_src_features_reader_toReaderViewportProps_test_ts --&gt; module_src_features_reader_toReaderViewportProps_ts
+  module_src_features_reader_toReaderViewportProps_test_ts --&gt; module_src_types_reader_ts
+  module_src_features_reader_toReaderViewportProps_ts[&quot;src/features/reader/toReaderViewportProps.ts&quot;]
+  package__ankhorage_reader -.-&gt; module_src_features_reader_toReaderViewportProps_ts
+  module_src_features_reader_toReaderViewportProps_ts --&gt; module_src_types_reader_ts
+  module_src_features_reader_validateEpubArchiveEntriesAsync_test_ts[&quot;src/features/reader/validateEpubArchiveEntriesAsync.test.ts&quot;]
+  package__ankhorage_reader -.-&gt; module_src_features_reader_validateEpubArchiveEntriesAsync_test_ts
+  module_src_features_reader_validateEpubArchiveEntriesAsync_test_ts --&gt; module_src_features_reader_epub_validateEpubArchiveEntriesAsync_ts
+  module_src_index_native_ts[&quot;src/index.native.ts&quot;]
+  package__ankhorage_reader -.-&gt; module_src_index_native_ts
+  module_src_index_test_ts[&quot;src/index.test.ts&quot;]
+  package__ankhorage_reader -.-&gt; module_src_index_test_ts
+  module_src_index_test_ts --&gt; module_src_index_ts
+  module_src_index_ts[&quot;src/index.ts&quot;]
+  module_src_index_web_ts[&quot;src/index.web.ts&quot;]
+  package__ankhorage_reader -.-&gt; module_src_index_web_ts
+  module_src_types_reader_ts[&quot;src/types/reader.ts&quot;]
+  package__ankhorage_reader -.-&gt; module_src_types_reader_ts
+</div>
+    <details>
+      <summary>View Mermaid source</summary>
+      <pre>graph TD
+  package__ankhorage_reader[&quot;@ankhorage/reader&quot;]
+  entrypoint_src_index_ts[&quot;src/index.ts&quot;]
+  package__ankhorage_reader --&gt; entrypoint_src_index_ts
+  module_src_features_reader_adapters_ReaderView_native_tsx[&quot;src/features/reader/adapters/ReaderView.native.tsx&quot;]
+  package__ankhorage_reader -.-&gt; module_src_features_reader_adapters_ReaderView_native_tsx
+  module_src_features_reader_adapters_ReaderView_native_tsx --&gt; module_src_features_reader_ReaderViewport_tsx
+  module_src_features_reader_adapters_ReaderView_native_tsx --&gt; module_src_features_reader_toReaderViewportProps_ts
+  module_src_features_reader_adapters_ReaderView_native_tsx --&gt; module_src_types_reader_ts
+  module_src_features_reader_adapters_ReaderView_tsx[&quot;src/features/reader/adapters/ReaderView.tsx&quot;]
+  package__ankhorage_reader -.-&gt; module_src_features_reader_adapters_ReaderView_tsx
+  module_src_features_reader_adapters_ReaderView_tsx --&gt; module_src_types_reader_ts
+  module_src_features_reader_adapters_ReaderView_web_tsx[&quot;src/features/reader/adapters/ReaderView.web.tsx&quot;]
+  package__ankhorage_reader -.-&gt; module_src_features_reader_adapters_ReaderView_web_tsx
+  module_src_features_reader_adapters_ReaderView_web_tsx --&gt; module_src_features_reader_ReaderViewport_tsx
+  module_src_features_reader_adapters_ReaderView_web_tsx --&gt; module_src_features_reader_toReaderViewportProps_ts
+  module_src_features_reader_adapters_ReaderView_web_tsx --&gt; module_src_types_reader_ts
+  module_src_features_reader_drivers_EpubReaderDriver_ts[&quot;src/features/reader/drivers/EpubReaderDriver.ts&quot;]
+  package__ankhorage_reader -.-&gt; module_src_features_reader_drivers_EpubReaderDriver_ts
+  module_src_features_reader_drivers_EpubReaderDriver_ts --&gt; module_src_features_reader_epub_EpubArchive_ts
+  module_src_features_reader_drivers_EpubReaderDriver_ts --&gt; module_src_features_reader_epub_EpubArchiveFetcher_ts
+  module_src_features_reader_drivers_EpubReaderDriver_ts --&gt; module_src_features_reader_epub_mediaTypes_ts
+  module_src_features_reader_drivers_EpubReaderDriver_ts --&gt; module_src_features_reader_epub_parseEpubPackage_ts
+  module_src_features_reader_drivers_EpubReaderDriver_ts --&gt; module_src_features_reader_epub_sanitizeEpubDocument_ts
+  module_src_features_reader_drivers_EpubReaderDriver_ts --&gt; module_src_types_reader_ts
+  module_src_features_reader_drivers_PdfReaderDriver_ts[&quot;src/features/reader/drivers/PdfReaderDriver.ts&quot;]
+  package__ankhorage_reader -.-&gt; module_src_features_reader_drivers_PdfReaderDriver_ts
+  module_src_features_reader_drivers_PdfReaderDriver_ts --&gt; module_src_features_reader_errors_ReaderDocumentError_ts
+  module_src_features_reader_drivers_PdfReaderDriver_ts --&gt; module_src_types_reader_ts
+  module_src_features_reader_epub_EpubArchive_ts[&quot;src/features/reader/epub/EpubArchive.ts&quot;]
+  package__ankhorage_reader -.-&gt; module_src_features_reader_epub_EpubArchive_ts
+  module_src_features_reader_epub_EpubArchive_ts --&gt; module_src_features_reader_epub_path_ts
+  module_src_features_reader_epub_EpubArchive_ts --&gt; module_src_features_reader_epub_validateEpubArchiveEntriesAsync_ts
+  module_src_features_reader_epub_EpubArchive_ts --&gt; module_src_features_reader_errors_ReaderDocumentError_ts
+  module_src_features_reader_epub_EpubArchiveFetcher_ts[&quot;src/features/reader/epub/EpubArchiveFetcher.ts&quot;]
+  package__ankhorage_reader -.-&gt; module_src_features_reader_epub_EpubArchiveFetcher_ts
+  module_src_features_reader_epub_EpubArchiveFetcher_ts --&gt; module_src_features_reader_epub_EpubArchive_ts
+  module_src_features_reader_epub_mediaTypes_ts[&quot;src/features/reader/epub/mediaTypes.ts&quot;]
+  package__ankhorage_reader -.-&gt; module_src_features_reader_epub_mediaTypes_ts
+  module_src_features_reader_epub_parseEpubPackage_test_ts[&quot;src/features/reader/epub/parseEpubPackage.test.ts&quot;]
+  package__ankhorage_reader -.-&gt; module_src_features_reader_epub_parseEpubPackage_test_ts
+  module_src_features_reader_epub_parseEpubPackage_test_ts --&gt; module_src_features_reader_epub_EpubArchive_ts
+  module_src_features_reader_epub_parseEpubPackage_test_ts --&gt; module_src_features_reader_epub_parseEpubPackage_ts
+  module_src_features_reader_epub_parseEpubPackage_ts[&quot;src/features/reader/epub/parseEpubPackage.ts&quot;]
+  package__ankhorage_reader -.-&gt; module_src_features_reader_epub_parseEpubPackage_ts
+  module_src_features_reader_epub_parseEpubPackage_ts --&gt; module_src_features_reader_epub_EpubArchive_ts
+  module_src_features_reader_epub_parseEpubPackage_ts --&gt; module_src_features_reader_epub_path_ts
+  module_src_features_reader_epub_parseEpubPackage_ts --&gt; module_src_features_reader_errors_ReaderDocumentError_ts
+  module_src_features_reader_epub_path_test_ts[&quot;src/features/reader/epub/path.test.ts&quot;]
+  package__ankhorage_reader -.-&gt; module_src_features_reader_epub_path_test_ts
+  module_src_features_reader_epub_path_test_ts --&gt; module_src_features_reader_epub_path_ts
+  module_src_features_reader_epub_path_ts[&quot;src/features/reader/epub/path.ts&quot;]
+  package__ankhorage_reader -.-&gt; module_src_features_reader_epub_path_ts
+  module_src_features_reader_epub_sanitizeEpubDocument_ts[&quot;src/features/reader/epub/sanitizeEpubDocument.ts&quot;]
+  package__ankhorage_reader -.-&gt; module_src_features_reader_epub_sanitizeEpubDocument_ts
+  module_src_features_reader_epub_sanitizeEpubDocument_ts --&gt; module_src_features_reader_epub_path_ts
+  module_src_features_reader_epub_validateEpubArchiveEntriesAsync_ts[&quot;src/features/reader/epub/validateEpubArchiveEntriesAsync.ts&quot;]
+  package__ankhorage_reader -.-&gt; module_src_features_reader_epub_validateEpubArchiveEntriesAsync_ts
+  module_src_features_reader_errors_ReaderDocumentError_ts[&quot;src/features/reader/errors/ReaderDocumentError.ts&quot;]
+  package__ankhorage_reader -.-&gt; module_src_features_reader_errors_ReaderDocumentError_ts
+  module_src_features_reader_errors_ReaderDocumentError_ts --&gt; module_src_types_reader_ts
+  module_src_features_reader_loadReaderSourceAsync_test_ts[&quot;src/features/reader/loadReaderSourceAsync.test.ts&quot;]
+  package__ankhorage_reader -.-&gt; module_src_features_reader_loadReaderSourceAsync_test_ts
+  module_src_features_reader_loadReaderSourceAsync_test_ts --&gt; module_src_features_reader_loadReaderSourceAsync_ts
+  module_src_features_reader_loadReaderSourceAsync_ts[&quot;src/features/reader/loadReaderSourceAsync.ts&quot;]
+  package__ankhorage_reader -.-&gt; module_src_features_reader_loadReaderSourceAsync_ts
+  module_src_features_reader_navigation_resolveReaderKeyboardIntent_test_ts[&quot;src/features/reader/navigation/resolveReaderKeyboardIntent.test.ts&quot;]
+  package__ankhorage_reader -.-&gt; module_src_features_reader_navigation_resolveReaderKeyboardIntent_test_ts
+  module_src_features_reader_navigation_resolveReaderKeyboardIntent_test_ts --&gt; module_src_features_reader_navigation_resolveReaderKeyboardIntent_ts
+  module_src_features_reader_navigation_resolveReaderKeyboardIntent_ts[&quot;src/features/reader/navigation/resolveReaderKeyboardIntent.ts&quot;]
+  package__ankhorage_reader -.-&gt; module_src_features_reader_navigation_resolveReaderKeyboardIntent_ts
+  module_src_features_reader_navigation_resolveReaderNavigationIntent_test_ts[&quot;src/features/reader/navigation/resolveReaderNavigationIntent.test.ts&quot;]
+  package__ankhorage_reader -.-&gt; module_src_features_reader_navigation_resolveReaderNavigationIntent_test_ts
+  module_src_features_reader_navigation_resolveReaderNavigationIntent_test_ts --&gt; module_src_features_reader_navigation_resolveReaderNavigationIntent_ts
+  module_src_features_reader_navigation_resolveReaderNavigationIntent_ts[&quot;src/features/reader/navigation/resolveReaderNavigationIntent.ts&quot;]
+  package__ankhorage_reader -.-&gt; module_src_features_reader_navigation_resolveReaderNavigationIntent_ts
+  module_src_features_reader_ReaderViewport_tsx[&quot;src/features/reader/ReaderViewport.tsx&quot;]
+  package__ankhorage_reader -.-&gt; module_src_features_reader_ReaderViewport_tsx
+  module_src_features_reader_ReaderViewport_tsx --&gt; module_src_features_reader_drivers_EpubReaderDriver_ts
+  module_src_features_reader_ReaderViewport_tsx --&gt; module_src_features_reader_drivers_PdfReaderDriver_ts
+  module_src_features_reader_ReaderViewport_tsx --&gt; module_src_features_reader_errors_ReaderDocumentError_ts
+  module_src_features_reader_ReaderViewport_tsx --&gt; module_src_features_reader_loadReaderSourceAsync_ts
+  module_src_features_reader_ReaderViewport_tsx --&gt; module_src_features_reader_navigation_resolveReaderKeyboardIntent_ts
+  module_src_features_reader_ReaderViewport_tsx --&gt; module_src_features_reader_navigation_resolveReaderNavigationIntent_ts
+  module_src_features_reader_ReaderViewport_tsx --&gt; module_src_features_reader_readerViewportPresentation_ts
+  module_src_features_reader_ReaderViewport_tsx --&gt; module_src_types_reader_ts
+  module_src_features_reader_readerViewportPresentation_test_ts[&quot;src/features/reader/readerViewportPresentation.test.ts&quot;]
+  package__ankhorage_reader -.-&gt; module_src_features_reader_readerViewportPresentation_test_ts
+  module_src_features_reader_readerViewportPresentation_test_ts --&gt; module_src_features_reader_readerViewportPresentation_ts
+  module_src_features_reader_readerViewportPresentation_ts[&quot;src/features/reader/readerViewportPresentation.ts&quot;]
+  package__ankhorage_reader -.-&gt; module_src_features_reader_readerViewportPresentation_ts
+  module_src_features_reader_readerViewportPresentation_ts --&gt; module_src_types_reader_ts
+  module_src_features_reader_rendererPackages_test_ts[&quot;src/features/reader/rendererPackages.test.ts&quot;]
+  package__ankhorage_reader -.-&gt; module_src_features_reader_rendererPackages_test_ts
+  module_src_features_reader_toReaderViewportProps_test_ts[&quot;src/features/reader/toReaderViewportProps.test.ts&quot;]
+  package__ankhorage_reader -.-&gt; module_src_features_reader_toReaderViewportProps_test_ts
+  module_src_features_reader_toReaderViewportProps_test_ts --&gt; module_src_features_reader_toReaderViewportProps_ts
+  module_src_features_reader_toReaderViewportProps_test_ts --&gt; module_src_types_reader_ts
+  module_src_features_reader_toReaderViewportProps_ts[&quot;src/features/reader/toReaderViewportProps.ts&quot;]
+  package__ankhorage_reader -.-&gt; module_src_features_reader_toReaderViewportProps_ts
+  module_src_features_reader_toReaderViewportProps_ts --&gt; module_src_types_reader_ts
+  module_src_features_reader_validateEpubArchiveEntriesAsync_test_ts[&quot;src/features/reader/validateEpubArchiveEntriesAsync.test.ts&quot;]
+  package__ankhorage_reader -.-&gt; module_src_features_reader_validateEpubArchiveEntriesAsync_test_ts
+  module_src_features_reader_validateEpubArchiveEntriesAsync_test_ts --&gt; module_src_features_reader_epub_validateEpubArchiveEntriesAsync_ts
+  module_src_index_native_ts[&quot;src/index.native.ts&quot;]
+  package__ankhorage_reader -.-&gt; module_src_index_native_ts
+  module_src_index_test_ts[&quot;src/index.test.ts&quot;]
+  package__ankhorage_reader -.-&gt; module_src_index_test_ts
+  module_src_index_test_ts --&gt; module_src_index_ts
+  module_src_index_ts[&quot;src/index.ts&quot;]
+  module_src_index_web_ts[&quot;src/index.web.ts&quot;]
+  package__ankhorage_reader -.-&gt; module_src_index_web_ts
+  module_src_types_reader_ts[&quot;src/types/reader.ts&quot;]
+  package__ankhorage_reader -.-&gt; module_src_types_reader_ts
+</pre>
+    </details>
+  </article><article class="item" data-search="Module relationships diagrams/module-relationships.mmd">
+    <h3>Module relationships</h3>
+    <p class="muted"><code>diagrams/module-relationships.mmd</code></p>
+    <div class="mermaid">graph LR
+  module_src_features_reader_adapters_ReaderView_native_tsx[&quot;src/features/reader/adapters/ReaderView.native.tsx&quot;]
+  module_src_features_reader_adapters_ReaderView_tsx[&quot;src/features/reader/adapters/ReaderView.tsx&quot;]
+  module_src_features_reader_adapters_ReaderView_web_tsx[&quot;src/features/reader/adapters/ReaderView.web.tsx&quot;]
+  module_src_features_reader_drivers_EpubReaderDriver_ts[&quot;src/features/reader/drivers/EpubReaderDriver.ts&quot;]
+  module_src_features_reader_drivers_PdfReaderDriver_ts[&quot;src/features/reader/drivers/PdfReaderDriver.ts&quot;]
+  module_src_features_reader_epub_EpubArchive_ts[&quot;src/features/reader/epub/EpubArchive.ts&quot;]
+  module_src_features_reader_epub_EpubArchiveFetcher_ts[&quot;src/features/reader/epub/EpubArchiveFetcher.ts&quot;]
+  module_src_features_reader_epub_mediaTypes_ts[&quot;src/features/reader/epub/mediaTypes.ts&quot;]
+  module_src_features_reader_epub_parseEpubPackage_test_ts[&quot;src/features/reader/epub/parseEpubPackage.test.ts&quot;]
+  module_src_features_reader_epub_parseEpubPackage_ts[&quot;src/features/reader/epub/parseEpubPackage.ts&quot;]
+  module_src_features_reader_epub_path_test_ts[&quot;src/features/reader/epub/path.test.ts&quot;]
+  module_src_features_reader_epub_path_ts[&quot;src/features/reader/epub/path.ts&quot;]
+  module_src_features_reader_epub_sanitizeEpubDocument_ts[&quot;src/features/reader/epub/sanitizeEpubDocument.ts&quot;]
+  module_src_features_reader_epub_validateEpubArchiveEntriesAsync_ts[&quot;src/features/reader/epub/validateEpubArchiveEntriesAsync.ts&quot;]
+  module_src_features_reader_errors_ReaderDocumentError_ts[&quot;src/features/reader/errors/ReaderDocumentError.ts&quot;]
+  module_src_features_reader_loadReaderSourceAsync_test_ts[&quot;src/features/reader/loadReaderSourceAsync.test.ts&quot;]
+  module_src_features_reader_loadReaderSourceAsync_ts[&quot;src/features/reader/loadReaderSourceAsync.ts&quot;]
+  module_src_features_reader_navigation_resolveReaderKeyboardIntent_test_ts[&quot;src/features/reader/navigation/resolveReaderKeyboardIntent.test.ts&quot;]
+  module_src_features_reader_navigation_resolveReaderKeyboardIntent_ts[&quot;src/features/reader/navigation/resolveReaderKeyboardIntent.ts&quot;]
+  module_src_features_reader_navigation_resolveReaderNavigationIntent_test_ts[&quot;src/features/reader/navigation/resolveReaderNavigationIntent.test.ts&quot;]
+  module_src_features_reader_navigation_resolveReaderNavigationIntent_ts[&quot;src/features/reader/navigation/resolveReaderNavigationIntent.ts&quot;]
+  module_src_features_reader_ReaderViewport_tsx[&quot;src/features/reader/ReaderViewport.tsx&quot;]
+  module_src_features_reader_readerViewportPresentation_test_ts[&quot;src/features/reader/readerViewportPresentation.test.ts&quot;]
+  module_src_features_reader_readerViewportPresentation_ts[&quot;src/features/reader/readerViewportPresentation.ts&quot;]
+  module_src_features_reader_rendererPackages_test_ts[&quot;src/features/reader/rendererPackages.test.ts&quot;]
+  module_src_features_reader_toReaderViewportProps_test_ts[&quot;src/features/reader/toReaderViewportProps.test.ts&quot;]
+  module_src_features_reader_toReaderViewportProps_ts[&quot;src/features/reader/toReaderViewportProps.ts&quot;]
+  module_src_features_reader_validateEpubArchiveEntriesAsync_test_ts[&quot;src/features/reader/validateEpubArchiveEntriesAsync.test.ts&quot;]
+  module_src_index_native_ts[&quot;src/index.native.ts&quot;]
+  module_src_index_test_ts[&quot;src/index.test.ts&quot;]
+  module_src_index_ts[&quot;src/index.ts&quot;]
+  module_src_index_web_ts[&quot;src/index.web.ts&quot;]
+  module_src_types_reader_ts[&quot;src/types/reader.ts&quot;]
+  module_src_features_reader_adapters_ReaderView_native_tsx --&gt; module_src_features_reader_ReaderViewport_tsx
+  module_src_features_reader_adapters_ReaderView_native_tsx --&gt; module_src_features_reader_toReaderViewportProps_ts
+  module_src_features_reader_adapters_ReaderView_native_tsx --&gt; module_src_types_reader_ts
+  module_src_features_reader_adapters_ReaderView_tsx --&gt; module_src_types_reader_ts
+  module_src_features_reader_adapters_ReaderView_web_tsx --&gt; module_src_features_reader_ReaderViewport_tsx
+  module_src_features_reader_adapters_ReaderView_web_tsx --&gt; module_src_features_reader_toReaderViewportProps_ts
+  module_src_features_reader_adapters_ReaderView_web_tsx --&gt; module_src_types_reader_ts
+  module_src_features_reader_drivers_EpubReaderDriver_ts --&gt; module_src_features_reader_epub_EpubArchive_ts
+  module_src_features_reader_drivers_EpubReaderDriver_ts --&gt; module_src_features_reader_epub_EpubArchiveFetcher_ts
+  module_src_features_reader_drivers_EpubReaderDriver_ts --&gt; module_src_features_reader_epub_mediaTypes_ts
+  module_src_features_reader_drivers_EpubReaderDriver_ts --&gt; module_src_features_reader_epub_parseEpubPackage_ts
+  module_src_features_reader_drivers_EpubReaderDriver_ts --&gt; module_src_features_reader_epub_sanitizeEpubDocument_ts
+  module_src_features_reader_drivers_EpubReaderDriver_ts --&gt; module_src_types_reader_ts
+  module_src_features_reader_drivers_PdfReaderDriver_ts --&gt; module_src_features_reader_errors_ReaderDocumentError_ts
+  module_src_features_reader_drivers_PdfReaderDriver_ts --&gt; module_src_types_reader_ts
+  module_src_features_reader_epub_EpubArchive_ts --&gt; module_src_features_reader_epub_path_ts
+  module_src_features_reader_epub_EpubArchive_ts --&gt; module_src_features_reader_epub_validateEpubArchiveEntriesAsync_ts
+  module_src_features_reader_epub_EpubArchive_ts --&gt; module_src_features_reader_errors_ReaderDocumentError_ts
+  module_src_features_reader_epub_EpubArchiveFetcher_ts --&gt; module_src_features_reader_epub_EpubArchive_ts
+  module_src_features_reader_epub_parseEpubPackage_test_ts --&gt; module_src_features_reader_epub_EpubArchive_ts
+  module_src_features_reader_epub_parseEpubPackage_test_ts --&gt; module_src_features_reader_epub_parseEpubPackage_ts
+  module_src_features_reader_epub_parseEpubPackage_ts --&gt; module_src_features_reader_epub_EpubArchive_ts
+  module_src_features_reader_epub_parseEpubPackage_ts --&gt; module_src_features_reader_epub_path_ts
+  module_src_features_reader_epub_parseEpubPackage_ts --&gt; module_src_features_reader_errors_ReaderDocumentError_ts
+  module_src_features_reader_epub_path_test_ts --&gt; module_src_features_reader_epub_path_ts
+  module_src_features_reader_epub_sanitizeEpubDocument_ts --&gt; module_src_features_reader_epub_path_ts
+  module_src_features_reader_errors_ReaderDocumentError_ts --&gt; module_src_types_reader_ts
+  module_src_features_reader_loadReaderSourceAsync_test_ts --&gt; module_src_features_reader_loadReaderSourceAsync_ts
+  module_src_features_reader_navigation_resolveReaderKeyboardIntent_test_ts --&gt; module_src_features_reader_navigation_resolveReaderKeyboardIntent_ts
+  module_src_features_reader_navigation_resolveReaderNavigationIntent_test_ts --&gt; module_src_features_reader_navigation_resolveReaderNavigationIntent_ts
+  module_src_features_reader_ReaderViewport_tsx --&gt; module_src_features_reader_drivers_EpubReaderDriver_ts
+  module_src_features_reader_ReaderViewport_tsx --&gt; module_src_features_reader_drivers_PdfReaderDriver_ts
+  module_src_features_reader_ReaderViewport_tsx --&gt; module_src_features_reader_errors_ReaderDocumentError_ts
+  module_src_features_reader_ReaderViewport_tsx --&gt; module_src_features_reader_loadReaderSourceAsync_ts
+  module_src_features_reader_ReaderViewport_tsx --&gt; module_src_features_reader_navigation_resolveReaderKeyboardIntent_ts
+  module_src_features_reader_ReaderViewport_tsx --&gt; module_src_features_reader_navigation_resolveReaderNavigationIntent_ts
+  module_src_features_reader_ReaderViewport_tsx --&gt; module_src_features_reader_readerViewportPresentation_ts
+  module_src_features_reader_ReaderViewport_tsx --&gt; module_src_types_reader_ts
+  module_src_features_reader_readerViewportPresentation_test_ts --&gt; module_src_features_reader_readerViewportPresentation_ts
+  module_src_features_reader_readerViewportPresentation_ts --&gt; module_src_types_reader_ts
+  module_src_features_reader_toReaderViewportProps_test_ts --&gt; module_src_features_reader_toReaderViewportProps_ts
+  module_src_features_reader_toReaderViewportProps_test_ts --&gt; module_src_types_reader_ts
+  module_src_features_reader_toReaderViewportProps_ts --&gt; module_src_types_reader_ts
+  module_src_features_reader_validateEpubArchiveEntriesAsync_test_ts --&gt; module_src_features_reader_epub_validateEpubArchiveEntriesAsync_ts
+  module_src_index_test_ts --&gt; module_src_index_ts
+</div>
+    <details>
+      <summary>View Mermaid source</summary>
+      <pre>graph LR
+  module_src_features_reader_adapters_ReaderView_native_tsx[&quot;src/features/reader/adapters/ReaderView.native.tsx&quot;]
+  module_src_features_reader_adapters_ReaderView_tsx[&quot;src/features/reader/adapters/ReaderView.tsx&quot;]
+  module_src_features_reader_adapters_ReaderView_web_tsx[&quot;src/features/reader/adapters/ReaderView.web.tsx&quot;]
+  module_src_features_reader_drivers_EpubReaderDriver_ts[&quot;src/features/reader/drivers/EpubReaderDriver.ts&quot;]
+  module_src_features_reader_drivers_PdfReaderDriver_ts[&quot;src/features/reader/drivers/PdfReaderDriver.ts&quot;]
+  module_src_features_reader_epub_EpubArchive_ts[&quot;src/features/reader/epub/EpubArchive.ts&quot;]
+  module_src_features_reader_epub_EpubArchiveFetcher_ts[&quot;src/features/reader/epub/EpubArchiveFetcher.ts&quot;]
+  module_src_features_reader_epub_mediaTypes_ts[&quot;src/features/reader/epub/mediaTypes.ts&quot;]
+  module_src_features_reader_epub_parseEpubPackage_test_ts[&quot;src/features/reader/epub/parseEpubPackage.test.ts&quot;]
+  module_src_features_reader_epub_parseEpubPackage_ts[&quot;src/features/reader/epub/parseEpubPackage.ts&quot;]
+  module_src_features_reader_epub_path_test_ts[&quot;src/features/reader/epub/path.test.ts&quot;]
+  module_src_features_reader_epub_path_ts[&quot;src/features/reader/epub/path.ts&quot;]
+  module_src_features_reader_epub_sanitizeEpubDocument_ts[&quot;src/features/reader/epub/sanitizeEpubDocument.ts&quot;]
+  module_src_features_reader_epub_validateEpubArchiveEntriesAsync_ts[&quot;src/features/reader/epub/validateEpubArchiveEntriesAsync.ts&quot;]
+  module_src_features_reader_errors_ReaderDocumentError_ts[&quot;src/features/reader/errors/ReaderDocumentError.ts&quot;]
+  module_src_features_reader_loadReaderSourceAsync_test_ts[&quot;src/features/reader/loadReaderSourceAsync.test.ts&quot;]
+  module_src_features_reader_loadReaderSourceAsync_ts[&quot;src/features/reader/loadReaderSourceAsync.ts&quot;]
+  module_src_features_reader_navigation_resolveReaderKeyboardIntent_test_ts[&quot;src/features/reader/navigation/resolveReaderKeyboardIntent.test.ts&quot;]
+  module_src_features_reader_navigation_resolveReaderKeyboardIntent_ts[&quot;src/features/reader/navigation/resolveReaderKeyboardIntent.ts&quot;]
+  module_src_features_reader_navigation_resolveReaderNavigationIntent_test_ts[&quot;src/features/reader/navigation/resolveReaderNavigationIntent.test.ts&quot;]
+  module_src_features_reader_navigation_resolveReaderNavigationIntent_ts[&quot;src/features/reader/navigation/resolveReaderNavigationIntent.ts&quot;]
+  module_src_features_reader_ReaderViewport_tsx[&quot;src/features/reader/ReaderViewport.tsx&quot;]
+  module_src_features_reader_readerViewportPresentation_test_ts[&quot;src/features/reader/readerViewportPresentation.test.ts&quot;]
+  module_src_features_reader_readerViewportPresentation_ts[&quot;src/features/reader/readerViewportPresentation.ts&quot;]
+  module_src_features_reader_rendererPackages_test_ts[&quot;src/features/reader/rendererPackages.test.ts&quot;]
+  module_src_features_reader_toReaderViewportProps_test_ts[&quot;src/features/reader/toReaderViewportProps.test.ts&quot;]
+  module_src_features_reader_toReaderViewportProps_ts[&quot;src/features/reader/toReaderViewportProps.ts&quot;]
+  module_src_features_reader_validateEpubArchiveEntriesAsync_test_ts[&quot;src/features/reader/validateEpubArchiveEntriesAsync.test.ts&quot;]
+  module_src_index_native_ts[&quot;src/index.native.ts&quot;]
+  module_src_index_test_ts[&quot;src/index.test.ts&quot;]
+  module_src_index_ts[&quot;src/index.ts&quot;]
+  module_src_index_web_ts[&quot;src/index.web.ts&quot;]
+  module_src_types_reader_ts[&quot;src/types/reader.ts&quot;]
+  module_src_features_reader_adapters_ReaderView_native_tsx --&gt; module_src_features_reader_ReaderViewport_tsx
+  module_src_features_reader_adapters_ReaderView_native_tsx --&gt; module_src_features_reader_toReaderViewportProps_ts
+  module_src_features_reader_adapters_ReaderView_native_tsx --&gt; module_src_types_reader_ts
+  module_src_features_reader_adapters_ReaderView_tsx --&gt; module_src_types_reader_ts
+  module_src_features_reader_adapters_ReaderView_web_tsx --&gt; module_src_features_reader_ReaderViewport_tsx
+  module_src_features_reader_adapters_ReaderView_web_tsx --&gt; module_src_features_reader_toReaderViewportProps_ts
+  module_src_features_reader_adapters_ReaderView_web_tsx --&gt; module_src_types_reader_ts
+  module_src_features_reader_drivers_EpubReaderDriver_ts --&gt; module_src_features_reader_epub_EpubArchive_ts
+  module_src_features_reader_drivers_EpubReaderDriver_ts --&gt; module_src_features_reader_epub_EpubArchiveFetcher_ts
+  module_src_features_reader_drivers_EpubReaderDriver_ts --&gt; module_src_features_reader_epub_mediaTypes_ts
+  module_src_features_reader_drivers_EpubReaderDriver_ts --&gt; module_src_features_reader_epub_parseEpubPackage_ts
+  module_src_features_reader_drivers_EpubReaderDriver_ts --&gt; module_src_features_reader_epub_sanitizeEpubDocument_ts
+  module_src_features_reader_drivers_EpubReaderDriver_ts --&gt; module_src_types_reader_ts
+  module_src_features_reader_drivers_PdfReaderDriver_ts --&gt; module_src_features_reader_errors_ReaderDocumentError_ts
+  module_src_features_reader_drivers_PdfReaderDriver_ts --&gt; module_src_types_reader_ts
+  module_src_features_reader_epub_EpubArchive_ts --&gt; module_src_features_reader_epub_path_ts
+  module_src_features_reader_epub_EpubArchive_ts --&gt; module_src_features_reader_epub_validateEpubArchiveEntriesAsync_ts
+  module_src_features_reader_epub_EpubArchive_ts --&gt; module_src_features_reader_errors_ReaderDocumentError_ts
+  module_src_features_reader_epub_EpubArchiveFetcher_ts --&gt; module_src_features_reader_epub_EpubArchive_ts
+  module_src_features_reader_epub_parseEpubPackage_test_ts --&gt; module_src_features_reader_epub_EpubArchive_ts
+  module_src_features_reader_epub_parseEpubPackage_test_ts --&gt; module_src_features_reader_epub_parseEpubPackage_ts
+  module_src_features_reader_epub_parseEpubPackage_ts --&gt; module_src_features_reader_epub_EpubArchive_ts
+  module_src_features_reader_epub_parseEpubPackage_ts --&gt; module_src_features_reader_epub_path_ts
+  module_src_features_reader_epub_parseEpubPackage_ts --&gt; module_src_features_reader_errors_ReaderDocumentError_ts
+  module_src_features_reader_epub_path_test_ts --&gt; module_src_features_reader_epub_path_ts
+  module_src_features_reader_epub_sanitizeEpubDocument_ts --&gt; module_src_features_reader_epub_path_ts
+  module_src_features_reader_errors_ReaderDocumentError_ts --&gt; module_src_types_reader_ts
+  module_src_features_reader_loadReaderSourceAsync_test_ts --&gt; module_src_features_reader_loadReaderSourceAsync_ts
+  module_src_features_reader_navigation_resolveReaderKeyboardIntent_test_ts --&gt; module_src_features_reader_navigation_resolveReaderKeyboardIntent_ts
+  module_src_features_reader_navigation_resolveReaderNavigationIntent_test_ts --&gt; module_src_features_reader_navigation_resolveReaderNavigationIntent_ts
+  module_src_features_reader_ReaderViewport_tsx --&gt; module_src_features_reader_drivers_EpubReaderDriver_ts
+  module_src_features_reader_ReaderViewport_tsx --&gt; module_src_features_reader_drivers_PdfReaderDriver_ts
+  module_src_features_reader_ReaderViewport_tsx --&gt; module_src_features_reader_errors_ReaderDocumentError_ts
+  module_src_features_reader_ReaderViewport_tsx --&gt; module_src_features_reader_loadReaderSourceAsync_ts
+  module_src_features_reader_ReaderViewport_tsx --&gt; module_src_features_reader_navigation_resolveReaderKeyboardIntent_ts
+  module_src_features_reader_ReaderViewport_tsx --&gt; module_src_features_reader_navigation_resolveReaderNavigationIntent_ts
+  module_src_features_reader_ReaderViewport_tsx --&gt; module_src_features_reader_readerViewportPresentation_ts
+  module_src_features_reader_ReaderViewport_tsx --&gt; module_src_types_reader_ts
+  module_src_features_reader_readerViewportPresentation_test_ts --&gt; module_src_features_reader_readerViewportPresentation_ts
+  module_src_features_reader_readerViewportPresentation_ts --&gt; module_src_types_reader_ts
+  module_src_features_reader_toReaderViewportProps_test_ts --&gt; module_src_features_reader_toReaderViewportProps_ts
+  module_src_features_reader_toReaderViewportProps_test_ts --&gt; module_src_types_reader_ts
+  module_src_features_reader_toReaderViewportProps_ts --&gt; module_src_types_reader_ts
+  module_src_features_reader_validateEpubArchiveEntriesAsync_test_ts --&gt; module_src_features_reader_epub_validateEpubArchiveEntriesAsync_ts
+  module_src_index_test_ts --&gt; module_src_index_ts
+</pre>
+    </details>
+  </article><article class="item" data-search="Export graph diagrams/export-graph.mmd">
+    <h3>Export graph</h3>
+    <p class="muted"><code>diagrams/export-graph.mmd</code></p>
+    <div class="mermaid">graph LR
+  module_src_features_reader_adapters_ReaderView_native_tsx[&quot;src/features/reader/adapters/ReaderView.native.tsx&quot;]
+  module_src_features_reader_adapters_ReaderView_tsx[&quot;src/features/reader/adapters/ReaderView.tsx&quot;]
+  module_src_features_reader_adapters_ReaderView_web_tsx[&quot;src/features/reader/adapters/ReaderView.web.tsx&quot;]
+  module_src_features_reader_drivers_EpubReaderDriver_ts[&quot;src/features/reader/drivers/EpubReaderDriver.ts&quot;]
+  module_src_features_reader_drivers_PdfReaderDriver_ts[&quot;src/features/reader/drivers/PdfReaderDriver.ts&quot;]
+  module_src_features_reader_epub_EpubArchive_ts[&quot;src/features/reader/epub/EpubArchive.ts&quot;]
+  module_src_features_reader_epub_EpubArchiveFetcher_ts[&quot;src/features/reader/epub/EpubArchiveFetcher.ts&quot;]
+  module_src_features_reader_epub_mediaTypes_ts[&quot;src/features/reader/epub/mediaTypes.ts&quot;]
+  module_src_features_reader_epub_parseEpubPackage_test_ts[&quot;src/features/reader/epub/parseEpubPackage.test.ts&quot;]
+  module_src_features_reader_epub_parseEpubPackage_ts[&quot;src/features/reader/epub/parseEpubPackage.ts&quot;]
+  module_src_features_reader_epub_path_test_ts[&quot;src/features/reader/epub/path.test.ts&quot;]
+  module_src_features_reader_epub_path_ts[&quot;src/features/reader/epub/path.ts&quot;]
+  module_src_features_reader_epub_sanitizeEpubDocument_ts[&quot;src/features/reader/epub/sanitizeEpubDocument.ts&quot;]
+  module_src_features_reader_epub_validateEpubArchiveEntriesAsync_ts[&quot;src/features/reader/epub/validateEpubArchiveEntriesAsync.ts&quot;]
+  module_src_features_reader_errors_ReaderDocumentError_ts[&quot;src/features/reader/errors/ReaderDocumentError.ts&quot;]
+  module_src_features_reader_loadReaderSourceAsync_test_ts[&quot;src/features/reader/loadReaderSourceAsync.test.ts&quot;]
+  module_src_features_reader_loadReaderSourceAsync_ts[&quot;src/features/reader/loadReaderSourceAsync.ts&quot;]
+  module_src_features_reader_navigation_resolveReaderKeyboardIntent_test_ts[&quot;src/features/reader/navigation/resolveReaderKeyboardIntent.test.ts&quot;]
+  module_src_features_reader_navigation_resolveReaderKeyboardIntent_ts[&quot;src/features/reader/navigation/resolveReaderKeyboardIntent.ts&quot;]
+  module_src_features_reader_navigation_resolveReaderNavigationIntent_test_ts[&quot;src/features/reader/navigation/resolveReaderNavigationIntent.test.ts&quot;]
+  module_src_features_reader_navigation_resolveReaderNavigationIntent_ts[&quot;src/features/reader/navigation/resolveReaderNavigationIntent.ts&quot;]
+  module_src_features_reader_ReaderViewport_tsx[&quot;src/features/reader/ReaderViewport.tsx&quot;]
+  module_src_features_reader_readerViewportPresentation_test_ts[&quot;src/features/reader/readerViewportPresentation.test.ts&quot;]
+  module_src_features_reader_readerViewportPresentation_ts[&quot;src/features/reader/readerViewportPresentation.ts&quot;]
+  module_src_features_reader_rendererPackages_test_ts[&quot;src/features/reader/rendererPackages.test.ts&quot;]
+  module_src_features_reader_toReaderViewportProps_test_ts[&quot;src/features/reader/toReaderViewportProps.test.ts&quot;]
+  module_src_features_reader_toReaderViewportProps_ts[&quot;src/features/reader/toReaderViewportProps.ts&quot;]
+  module_src_features_reader_validateEpubArchiveEntriesAsync_test_ts[&quot;src/features/reader/validateEpubArchiveEntriesAsync.test.ts&quot;]
+  module_src_index_native_ts[&quot;src/index.native.ts&quot;]
+  module_src_index_test_ts[&quot;src/index.test.ts&quot;]
+  module_src_index_ts[&quot;src/index.ts&quot;]
+  module_src_index_web_ts[&quot;src/index.web.ts&quot;]
+  module_src_types_reader_ts[&quot;src/types/reader.ts&quot;]
+  export_ReaderAppearance[&quot;ReaderAppearance&quot;]
+  module_src_types_reader_ts --&gt; export_ReaderAppearance
+  export_ReaderCommand[&quot;ReaderCommand&quot;]
+  module_src_types_reader_ts --&gt; export_ReaderCommand
+  export_ReaderDocumentFormat[&quot;ReaderDocumentFormat&quot;]
+  module_src_types_reader_ts --&gt; export_ReaderDocumentFormat
+  export_ReaderErrorCode[&quot;ReaderErrorCode&quot;]
+  module_src_types_reader_ts --&gt; export_ReaderErrorCode
+  export_ReaderErrorEvent[&quot;ReaderErrorEvent&quot;]
+  module_src_types_reader_ts --&gt; export_ReaderErrorEvent
+  export_ReaderErrorEvent -.-&gt; export_ReaderDocumentFormat
+  export_ReaderErrorEvent -.-&gt; export_ReaderErrorCode
+  export_ReaderLocationChangeEvent[&quot;ReaderLocationChangeEvent&quot;]
+  module_src_types_reader_ts --&gt; export_ReaderLocationChangeEvent
+  export_ReaderLocationChangeEvent -.-&gt; export_ReaderDocumentFormat
+  export_ReaderLocationChangeEvent -.-&gt; export_ReaderNavigationTrigger
+  export_ReaderNavigationTrigger[&quot;ReaderNavigationTrigger&quot;]
+  module_src_types_reader_ts --&gt; export_ReaderNavigationTrigger
+  export_ReaderStatus[&quot;ReaderStatus&quot;]
+  module_src_types_reader_ts --&gt; export_ReaderStatus
+  export_ReaderView[&quot;ReaderView&quot;]
+  module_src_features_reader_adapters_ReaderView_tsx --&gt; export_ReaderView
+  export_ReaderView -.-&gt; export_ReaderViewProps
+  export_ReaderViewportState[&quot;ReaderViewportState&quot;]
+  module_src_types_reader_ts --&gt; export_ReaderViewportState
+  export_ReaderViewportState -.-&gt; export_ReaderLocationChangeEvent
+  export_ReaderViewProps[&quot;ReaderViewProps&quot;]
+  module_src_types_reader_ts --&gt; export_ReaderViewProps
+  export_ReaderViewProps -.-&gt; export_ReaderAppearance
+  export_ReaderViewProps -.-&gt; export_ReaderCommand
+  export_ReaderViewProps -.-&gt; export_ReaderDocumentFormat
+  export_ReaderViewProps -.-&gt; export_ReaderErrorEvent
+  export_ReaderViewProps -.-&gt; export_ReaderViewportState
+  export_ReaderViewProps -.-&gt; export_ReaderViewStyle
+  export_ReaderViewStyle[&quot;ReaderViewStyle&quot;]
+  module_src_types_reader_ts --&gt; export_ReaderViewStyle
+</div>
+    <details>
+      <summary>View Mermaid source</summary>
+      <pre>graph LR
+  module_src_features_reader_adapters_ReaderView_native_tsx[&quot;src/features/reader/adapters/ReaderView.native.tsx&quot;]
+  module_src_features_reader_adapters_ReaderView_tsx[&quot;src/features/reader/adapters/ReaderView.tsx&quot;]
+  module_src_features_reader_adapters_ReaderView_web_tsx[&quot;src/features/reader/adapters/ReaderView.web.tsx&quot;]
+  module_src_features_reader_drivers_EpubReaderDriver_ts[&quot;src/features/reader/drivers/EpubReaderDriver.ts&quot;]
+  module_src_features_reader_drivers_PdfReaderDriver_ts[&quot;src/features/reader/drivers/PdfReaderDriver.ts&quot;]
+  module_src_features_reader_epub_EpubArchive_ts[&quot;src/features/reader/epub/EpubArchive.ts&quot;]
+  module_src_features_reader_epub_EpubArchiveFetcher_ts[&quot;src/features/reader/epub/EpubArchiveFetcher.ts&quot;]
+  module_src_features_reader_epub_mediaTypes_ts[&quot;src/features/reader/epub/mediaTypes.ts&quot;]
+  module_src_features_reader_epub_parseEpubPackage_test_ts[&quot;src/features/reader/epub/parseEpubPackage.test.ts&quot;]
+  module_src_features_reader_epub_parseEpubPackage_ts[&quot;src/features/reader/epub/parseEpubPackage.ts&quot;]
+  module_src_features_reader_epub_path_test_ts[&quot;src/features/reader/epub/path.test.ts&quot;]
+  module_src_features_reader_epub_path_ts[&quot;src/features/reader/epub/path.ts&quot;]
+  module_src_features_reader_epub_sanitizeEpubDocument_ts[&quot;src/features/reader/epub/sanitizeEpubDocument.ts&quot;]
+  module_src_features_reader_epub_validateEpubArchiveEntriesAsync_ts[&quot;src/features/reader/epub/validateEpubArchiveEntriesAsync.ts&quot;]
+  module_src_features_reader_errors_ReaderDocumentError_ts[&quot;src/features/reader/errors/ReaderDocumentError.ts&quot;]
+  module_src_features_reader_loadReaderSourceAsync_test_ts[&quot;src/features/reader/loadReaderSourceAsync.test.ts&quot;]
+  module_src_features_reader_loadReaderSourceAsync_ts[&quot;src/features/reader/loadReaderSourceAsync.ts&quot;]
+  module_src_features_reader_navigation_resolveReaderKeyboardIntent_test_ts[&quot;src/features/reader/navigation/resolveReaderKeyboardIntent.test.ts&quot;]
+  module_src_features_reader_navigation_resolveReaderKeyboardIntent_ts[&quot;src/features/reader/navigation/resolveReaderKeyboardIntent.ts&quot;]
+  module_src_features_reader_navigation_resolveReaderNavigationIntent_test_ts[&quot;src/features/reader/navigation/resolveReaderNavigationIntent.test.ts&quot;]
+  module_src_features_reader_navigation_resolveReaderNavigationIntent_ts[&quot;src/features/reader/navigation/resolveReaderNavigationIntent.ts&quot;]
+  module_src_features_reader_ReaderViewport_tsx[&quot;src/features/reader/ReaderViewport.tsx&quot;]
+  module_src_features_reader_readerViewportPresentation_test_ts[&quot;src/features/reader/readerViewportPresentation.test.ts&quot;]
+  module_src_features_reader_readerViewportPresentation_ts[&quot;src/features/reader/readerViewportPresentation.ts&quot;]
+  module_src_features_reader_rendererPackages_test_ts[&quot;src/features/reader/rendererPackages.test.ts&quot;]
+  module_src_features_reader_toReaderViewportProps_test_ts[&quot;src/features/reader/toReaderViewportProps.test.ts&quot;]
+  module_src_features_reader_toReaderViewportProps_ts[&quot;src/features/reader/toReaderViewportProps.ts&quot;]
+  module_src_features_reader_validateEpubArchiveEntriesAsync_test_ts[&quot;src/features/reader/validateEpubArchiveEntriesAsync.test.ts&quot;]
+  module_src_index_native_ts[&quot;src/index.native.ts&quot;]
+  module_src_index_test_ts[&quot;src/index.test.ts&quot;]
+  module_src_index_ts[&quot;src/index.ts&quot;]
+  module_src_index_web_ts[&quot;src/index.web.ts&quot;]
+  module_src_types_reader_ts[&quot;src/types/reader.ts&quot;]
+  export_ReaderAppearance[&quot;ReaderAppearance&quot;]
+  module_src_types_reader_ts --&gt; export_ReaderAppearance
+  export_ReaderCommand[&quot;ReaderCommand&quot;]
+  module_src_types_reader_ts --&gt; export_ReaderCommand
+  export_ReaderDocumentFormat[&quot;ReaderDocumentFormat&quot;]
+  module_src_types_reader_ts --&gt; export_ReaderDocumentFormat
+  export_ReaderErrorCode[&quot;ReaderErrorCode&quot;]
+  module_src_types_reader_ts --&gt; export_ReaderErrorCode
+  export_ReaderErrorEvent[&quot;ReaderErrorEvent&quot;]
+  module_src_types_reader_ts --&gt; export_ReaderErrorEvent
+  export_ReaderErrorEvent -.-&gt; export_ReaderDocumentFormat
+  export_ReaderErrorEvent -.-&gt; export_ReaderErrorCode
+  export_ReaderLocationChangeEvent[&quot;ReaderLocationChangeEvent&quot;]
+  module_src_types_reader_ts --&gt; export_ReaderLocationChangeEvent
+  export_ReaderLocationChangeEvent -.-&gt; export_ReaderDocumentFormat
+  export_ReaderLocationChangeEvent -.-&gt; export_ReaderNavigationTrigger
+  export_ReaderNavigationTrigger[&quot;ReaderNavigationTrigger&quot;]
+  module_src_types_reader_ts --&gt; export_ReaderNavigationTrigger
+  export_ReaderStatus[&quot;ReaderStatus&quot;]
+  module_src_types_reader_ts --&gt; export_ReaderStatus
+  export_ReaderView[&quot;ReaderView&quot;]
+  module_src_features_reader_adapters_ReaderView_tsx --&gt; export_ReaderView
+  export_ReaderView -.-&gt; export_ReaderViewProps
+  export_ReaderViewportState[&quot;ReaderViewportState&quot;]
+  module_src_types_reader_ts --&gt; export_ReaderViewportState
+  export_ReaderViewportState -.-&gt; export_ReaderLocationChangeEvent
+  export_ReaderViewProps[&quot;ReaderViewProps&quot;]
+  module_src_types_reader_ts --&gt; export_ReaderViewProps
+  export_ReaderViewProps -.-&gt; export_ReaderAppearance
+  export_ReaderViewProps -.-&gt; export_ReaderCommand
+  export_ReaderViewProps -.-&gt; export_ReaderDocumentFormat
+  export_ReaderViewProps -.-&gt; export_ReaderErrorEvent
+  export_ReaderViewProps -.-&gt; export_ReaderViewportState
+  export_ReaderViewProps -.-&gt; export_ReaderViewStyle
+  export_ReaderViewStyle[&quot;ReaderViewStyle&quot;]
+  module_src_types_reader_ts --&gt; export_ReaderViewStyle
+</pre>
+    </details>
+  </article><article class="item" data-search="ReaderView sequence diagrams/sequences/reader-view.mmd">
+    <h3>ReaderView sequence</h3>
+    <p class="muted"><code>diagrams/sequences/reader-view.mmd</code></p>
+    <div class="mermaid">sequenceDiagram
+  participant participant_ReaderView as ReaderView
+  participant participant_toReaderViewportProps as toReaderViewportProps
+  participant_ReaderView-&gt;&gt;participant_toReaderViewportProps: toReaderViewportProps()
+  participant_toReaderViewportProps--&gt;&gt;participant_ReaderView: return
+  participant_ReaderView-&gt;&gt;participant_toReaderViewportProps: toReaderViewportProps()
+  participant_toReaderViewportProps--&gt;&gt;participant_ReaderView: return
+</div>
+    <details>
+      <summary>View Mermaid source</summary>
+      <pre>sequenceDiagram
+  participant participant_ReaderView as ReaderView
+  participant participant_toReaderViewportProps as toReaderViewportProps
+  participant_ReaderView-&gt;&gt;participant_toReaderViewportProps: toReaderViewportProps()
+  participant_toReaderViewportProps--&gt;&gt;participant_ReaderView: return
+  participant_ReaderView-&gt;&gt;participant_toReaderViewportProps: toReaderViewportProps()
+  participant_toReaderViewportProps--&gt;&gt;participant_ReaderView: return
+</pre>
+    </details>
+  </article>
+    </section>
+        </section>
+        <section id="view-src-features-reader-adapters-readerview-native-tsx" class="view" data-view="src/features/reader/adapters/ReaderView.native.tsx" hidden>
+    <section class="panel">
+      <h2>src/features/reader/adapters/ReaderView.native.tsx</h2>
+      <article class="item" data-search="ReaderView src/features/reader/adapters/ReaderView.native.tsx Host the same EPUB/PDF DOM viewport in Expo&#39;s isolated native DOM WebView.">
+    <h3>ReaderView</h3>
+    <p class="muted"><code>src/features/reader/adapters/ReaderView.native.tsx:23:1</code></p>
+    <p>Host the same EPUB/PDF DOM viewport in Expo&#39;s isolated native DOM WebView.</p>
+    
+  </article>
+    </section>
+  </section><section id="view-src-features-reader-adapters-readerview-tsx" class="view" data-view="src/features/reader/adapters/ReaderView.tsx" hidden>
+    <section class="panel">
+      <h2>src/features/reader/adapters/ReaderView.tsx</h2>
+      <article class="item" data-search="ReaderView src/features/reader/adapters/ReaderView.tsx Fail clearly when an entrypoint without web/native platform resolution is used.">
+    <h3>ReaderView</h3>
+    <p class="muted"><code>src/features/reader/adapters/ReaderView.tsx:4:1</code></p>
+    <p>Fail clearly when an entrypoint without web/native platform resolution is used.</p>
+    
+  </article>
+    </section>
+  </section><section id="view-src-features-reader-adapters-readerview-web-tsx" class="view" data-view="src/features/reader/adapters/ReaderView.web.tsx" hidden>
+    <section class="panel">
+      <h2>src/features/reader/adapters/ReaderView.web.tsx</h2>
+      <article class="item" data-search="ReaderView src/features/reader/adapters/ReaderView.web.tsx Render the standalone EPUB/PDF viewport directly in a browser-owned DOM region.">
+    <h3>ReaderView</h3>
+    <p class="muted"><code>src/features/reader/adapters/ReaderView.web.tsx:15:1</code></p>
+    <p>Render the standalone EPUB/PDF viewport directly in a browser-owned DOM region.</p>
+    
+  </article>
+    </section>
+  </section><section id="view-src-features-reader-drivers-epubreaderdriver-ts" class="view" data-view="src/features/reader/drivers/EpubReaderDriver.ts" hidden>
+    <section class="panel">
+      <h2>src/features/reader/drivers/EpubReaderDriver.ts</h2>
+      <article class="item" data-search="createPublication src/features/reader/drivers/EpubReaderDriver.ts ">
+    <h3>createPublication</h3>
+    <p class="muted"><code>src/features/reader/drivers/EpubReaderDriver.ts:177:1</code></p>
+    <p class="empty">No description available.</p>
+    
+  </article><article class="item" data-search="toManifestLink src/features/reader/drivers/EpubReaderDriver.ts ">
+    <h3>toManifestLink</h3>
+    <p class="muted"><code>src/features/reader/drivers/EpubReaderDriver.ts:257:1</code></p>
+    <p class="empty">No description available.</p>
+    
+  </article><article class="item" data-search="resolvePreferences src/features/reader/drivers/EpubReaderDriver.ts ">
+    <h3>resolvePreferences</h3>
+    <p class="muted"><code>src/features/reader/drivers/EpubReaderDriver.ts:268:1</code></p>
+    <p class="empty">No description available.</p>
+    
+  </article><article class="item" data-search="parseInitialLocator src/features/reader/drivers/EpubReaderDriver.ts ">
+    <h3>parseInitialLocator</h3>
+    <p class="muted"><code>src/features/reader/drivers/EpubReaderDriver.ts:279:1</code></p>
+    <p class="empty">No description available.</p>
+    
+  </article><article class="item" data-search="attachFrameLinkPolicy src/features/reader/drivers/EpubReaderDriver.ts ">
+    <h3>attachFrameLinkPolicy</h3>
+    <p class="muted"><code>src/features/reader/drivers/EpubReaderDriver.ts:288:1</code></p>
+    <p class="empty">No description available.</p>
+    
+  </article><article class="item" data-search="navigate src/features/reader/drivers/EpubReaderDriver.ts ">
+    <h3>navigate</h3>
+    <p class="muted"><code>src/features/reader/drivers/EpubReaderDriver.ts:299:1</code></p>
+    <p class="empty">No description available.</p>
+    
+  </article><article class="item" data-search="shouldAnimateNavigation src/features/reader/drivers/EpubReaderDriver.ts ">
+    <h3>shouldAnimateNavigation</h3>
+    <p class="muted"><code>src/features/reader/drivers/EpubReaderDriver.ts:303:1</code></p>
+    <p class="empty">No description available.</p>
+    
+  </article><article class="item" data-search="noop src/features/reader/drivers/EpubReaderDriver.ts ">
+    <h3>noop</h3>
+    <p class="muted"><code>src/features/reader/drivers/EpubReaderDriver.ts:307:1</code></p>
+    <p class="empty">No description available.</p>
+    
+  </article>
+    </section>
+  </section><section id="view-src-features-reader-drivers-pdfreaderdriver-ts" class="view" data-view="src/features/reader/drivers/PdfReaderDriver.ts" hidden>
+    <section class="panel">
+      <h2>src/features/reader/drivers/PdfReaderDriver.ts</h2>
+      <article class="item" data-search="renderExternalLinks src/features/reader/drivers/PdfReaderDriver.ts ">
+    <h3>renderExternalLinks</h3>
+    <p class="muted"><code>src/features/reader/drivers/PdfReaderDriver.ts:179:1</code></p>
+    <p class="empty">No description available.</p>
+    
+  </article><article class="item" data-search="isExternalPdfLink src/features/reader/drivers/PdfReaderDriver.ts ">
+    <h3>isExternalPdfLink</h3>
+    <p class="muted"><code>src/features/reader/drivers/PdfReaderDriver.ts:215:1</code></p>
+    <p class="empty">No description available.</p>
+    
+  </article><article class="item" data-search="resolveInitialPage src/features/reader/drivers/PdfReaderDriver.ts ">
+    <h3>resolveInitialPage</h3>
+    <p class="muted"><code>src/features/reader/drivers/PdfReaderDriver.ts:233:1</code></p>
+    <p class="empty">No description available.</p>
+    
+  </article>
+    </section>
+  </section><section id="view-src-features-reader-epub-epubarchive-ts" class="view" data-view="src/features/reader/epub/EpubArchive.ts" hidden>
+    <section class="panel">
+      <h2>src/features/reader/epub/EpubArchive.ts</h2>
+      <article class="item" data-search="createEntryMap src/features/reader/epub/EpubArchive.ts ">
+    <h3>createEntryMap</h3>
+    <p class="muted"><code>src/features/reader/epub/EpubArchive.ts:69:1</code></p>
+    <p class="empty">No description available.</p>
+    
+  </article>
+    </section>
+  </section><section id="view-src-features-reader-epub-mediatypes-ts" class="view" data-view="src/features/reader/epub/mediaTypes.ts" hidden>
+    <section class="panel">
+      <h2>src/features/reader/epub/mediaTypes.ts</h2>
+      <article class="item" data-search="inferEpubMediaType src/features/reader/epub/mediaTypes.ts ">
+    <h3>inferEpubMediaType</h3>
+    <p class="muted"><code>src/features/reader/epub/mediaTypes.ts:3:1</code></p>
+    <p class="empty">No description available.</p>
+    
+  </article>
+    </section>
+  </section><section id="view-src-features-reader-epub-parseepubpackage-test-ts" class="view" data-view="src/features/reader/epub/parseEpubPackage.test.ts" hidden>
+    <section class="panel">
+      <h2>src/features/reader/epub/parseEpubPackage.test.ts</h2>
+      <article class="item" data-search="openFixture src/features/reader/epub/parseEpubPackage.test.ts ">
+    <h3>openFixture</h3>
+    <p class="muted"><code>src/features/reader/epub/parseEpubPackage.test.ts:73:1</code></p>
+    <p class="empty">No description available.</p>
+    
+  </article><article class="item" data-search="packageDocument src/features/reader/epub/parseEpubPackage.test.ts ">
+    <h3>packageDocument</h3>
+    <p class="muted"><code>src/features/reader/epub/parseEpubPackage.test.ts:96:1</code></p>
+    <p class="empty">No description available.</p>
+    
+  </article>
+    </section>
+  </section><section id="view-src-features-reader-epub-parseepubpackage-ts" class="view" data-view="src/features/reader/epub/parseEpubPackage.ts" hidden>
+    <section class="panel">
+      <h2>src/features/reader/epub/parseEpubPackage.ts</h2>
+      <article class="item" data-search="parseEpubPackage src/features/reader/epub/parseEpubPackage.ts ">
+    <h3>parseEpubPackage</h3>
+    <p class="muted"><code>src/features/reader/epub/parseEpubPackage.ts:23:1</code></p>
+    <p class="empty">No description available.</p>
+    
+  </article><article class="item" data-search="parseNavigationDocument src/features/reader/epub/parseEpubPackage.ts ">
+    <h3>parseNavigationDocument</h3>
+    <p class="muted"><code>src/features/reader/epub/parseEpubPackage.ts:111:1</code></p>
+    <p class="empty">No description available.</p>
+    
+  </article><article class="item" data-search="parseXml src/features/reader/epub/parseEpubPackage.ts ">
+    <h3>parseXml</h3>
+    <p class="muted"><code>src/features/reader/epub/parseEpubPackage.ts:134:1</code></p>
+    <p class="empty">No description available.</p>
+    
+  </article><article class="item" data-search="elementsByLocalName src/features/reader/epub/parseEpubPackage.ts ">
+    <h3>elementsByLocalName</h3>
+    <p class="muted"><code>src/features/reader/epub/parseEpubPackage.ts:142:1</code></p>
+    <p class="empty">No description available.</p>
+    
+  </article><article class="item" data-search="elementText src/features/reader/epub/parseEpubPackage.ts ">
+    <h3>elementText</h3>
+    <p class="muted"><code>src/features/reader/epub/parseEpubPackage.ts:148:1</code></p>
+    <p class="empty">No description available.</p>
+    
+  </article>
+    </section>
+  </section><section id="view-src-features-reader-epub-path-ts" class="view" data-view="src/features/reader/epub/path.ts" hidden>
+    <section class="panel">
+      <h2>src/features/reader/epub/path.ts</h2>
+      <article class="item" data-search="normalizeArchivePath src/features/reader/epub/path.ts ">
+    <h3>normalizeArchivePath</h3>
+    <p class="muted"><code>src/features/reader/epub/path.ts:1:1</code></p>
+    <p class="empty">No description available.</p>
+    
+  </article><article class="item" data-search="resolveArchivePath src/features/reader/epub/path.ts ">
+    <h3>resolveArchivePath</h3>
+    <p class="muted"><code>src/features/reader/epub/path.ts:15:1</code></p>
+    <p class="empty">No description available.</p>
+    
+  </article><article class="item" data-search="isExternalReference src/features/reader/epub/path.ts ">
+    <h3>isExternalReference</h3>
+    <p class="muted"><code>src/features/reader/epub/path.ts:24:1</code></p>
+    <p class="empty">No description available.</p>
+    
+  </article>
+    </section>
+  </section><section id="view-src-features-reader-epub-sanitizeepubdocument-ts" class="view" data-view="src/features/reader/epub/sanitizeEpubDocument.ts" hidden>
+    <section class="panel">
+      <h2>src/features/reader/epub/sanitizeEpubDocument.ts</h2>
+      <article class="item" data-search="sanitizeEpubDocument src/features/reader/epub/sanitizeEpubDocument.ts ">
+    <h3>sanitizeEpubDocument</h3>
+    <p class="muted"><code>src/features/reader/epub/sanitizeEpubDocument.ts:6:1</code></p>
+    <p class="empty">No description available.</p>
+    
+  </article><article class="item" data-search="sanitizeElementAttributes src/features/reader/epub/sanitizeEpubDocument.ts ">
+    <h3>sanitizeElementAttributes</h3>
+    <p class="muted"><code>src/features/reader/epub/sanitizeEpubDocument.ts:30:1</code></p>
+    <p class="empty">No description available.</p>
+    
+  </article><article class="item" data-search="rewriteDocumentResources src/features/reader/epub/sanitizeEpubDocument.ts ">
+    <h3>rewriteDocumentResources</h3>
+    <p class="muted"><code>src/features/reader/epub/sanitizeEpubDocument.ts:54:1</code></p>
+    <p class="empty">No description available.</p>
+    
+  </article><article class="item" data-search="rewriteDocumentLinks src/features/reader/epub/sanitizeEpubDocument.ts ">
+    <h3>rewriteDocumentLinks</h3>
+    <p class="muted"><code>src/features/reader/epub/sanitizeEpubDocument.ts:70:1</code></p>
+    <p class="empty">No description available.</p>
+    
+  </article><article class="item" data-search="sanitizeEpubStylesheet src/features/reader/epub/sanitizeEpubDocument.ts ">
+    <h3>sanitizeEpubStylesheet</h3>
+    <p class="muted"><code>src/features/reader/epub/sanitizeEpubDocument.ts:83:1</code></p>
+    <p class="empty">No description available.</p>
+    
+  </article><article class="item" data-search="rewriteResourceAttribute src/features/reader/epub/sanitizeEpubDocument.ts ">
+    <h3>rewriteResourceAttribute</h3>
+    <p class="muted"><code>src/features/reader/epub/sanitizeEpubDocument.ts:102:1</code></p>
+    <p class="empty">No description available.</p>
+    
+  </article>
+    </section>
+  </section><section id="view-src-features-reader-epub-validateepubarchiveentriesasync-ts" class="view" data-view="src/features/reader/epub/validateEpubArchiveEntriesAsync.ts" hidden>
+    <section class="panel">
+      <h2>src/features/reader/epub/validateEpubArchiveEntriesAsync.ts</h2>
+      <article class="item" data-search="validateEpubArchiveEntriesAsync src/features/reader/epub/validateEpubArchiveEntriesAsync.ts Validate ZIP entry budgets and structure before EPUB extraction.">
+    <h3>validateEpubArchiveEntriesAsync</h3>
+    <p class="muted"><code>src/features/reader/epub/validateEpubArchiveEntriesAsync.ts:10:1</code></p>
+    <p>Validate ZIP entry budgets and structure before EPUB extraction.</p>
+    
+  </article><article class="item" data-search="validateDeclaredSizes src/features/reader/epub/validateEpubArchiveEntriesAsync.ts Reject malformed ZIP size metadata before arithmetic or extraction.">
+    <h3>validateDeclaredSizes</h3>
+    <p class="muted"><code>src/features/reader/epub/validateEpubArchiveEntriesAsync.ts:66:1</code></p>
+    <p>Reject malformed ZIP size metadata before arithmetic or extraction.</p>
+    
+  </article>
+    </section>
+  </section><section id="view-src-features-reader-loadreadersourceasync-ts" class="view" data-view="src/features/reader/loadReaderSourceAsync.ts" hidden>
+    <section class="panel">
+      <h2>src/features/reader/loadReaderSourceAsync.ts</h2>
+      <article class="item" data-search="loadReaderSourceAsync src/features/reader/loadReaderSourceAsync.ts ">
+    <h3>loadReaderSourceAsync</h3>
+    <p class="muted"><code>src/features/reader/loadReaderSourceAsync.ts:3:1</code></p>
+    <p class="empty">No description available.</p>
+    
+  </article><article class="item" data-search="validateSourceSize src/features/reader/loadReaderSourceAsync.ts ">
+    <h3>validateSourceSize</h3>
+    <p class="muted"><code>src/features/reader/loadReaderSourceAsync.ts:54:1</code></p>
+    <p class="empty">No description available.</p>
+    
+  </article>
+    </section>
+  </section><section id="view-src-features-reader-navigation-resolvereaderkeyboardintent-ts" class="view" data-view="src/features/reader/navigation/resolveReaderKeyboardIntent.ts" hidden>
+    <section class="panel">
+      <h2>src/features/reader/navigation/resolveReaderKeyboardIntent.ts</h2>
+      <article class="item" data-search="resolveReaderKeyboardIntent src/features/reader/navigation/resolveReaderKeyboardIntent.ts ">
+    <h3>resolveReaderKeyboardIntent</h3>
+    <p class="muted"><code>src/features/reader/navigation/resolveReaderKeyboardIntent.ts:1:1</code></p>
+    <p class="empty">No description available.</p>
+    
+  </article>
+    </section>
+  </section><section id="view-src-features-reader-navigation-resolvereadernavigationintent-ts" class="view" data-view="src/features/reader/navigation/resolveReaderNavigationIntent.ts" hidden>
+    <section class="panel">
+      <h2>src/features/reader/navigation/resolveReaderNavigationIntent.ts</h2>
+      <article class="item" data-search="resolveReaderNavigationIntent src/features/reader/navigation/resolveReaderNavigationIntent.ts ">
+    <h3>resolveReaderNavigationIntent</h3>
+    <p class="muted"><code>src/features/reader/navigation/resolveReaderNavigationIntent.ts:1:1</code></p>
+    <p class="empty">No description available.</p>
+    
+  </article>
+    </section>
+  </section><section id="view-src-features-reader-readerviewport-tsx" class="view" data-view="src/features/reader/ReaderViewport.tsx" hidden>
+    <section class="panel">
+      <h2>src/features/reader/ReaderViewport.tsx</h2>
+      <article class="item" data-search="ReaderViewport src/features/reader/ReaderViewport.tsx ">
+    <h3>ReaderViewport</h3>
+    <p class="muted"><code>src/features/reader/ReaderViewport.tsx:23:1</code></p>
+    <p class="empty">No description available.</p>
+    
+  </article><article class="item" data-search="useReaderLifecycle src/features/reader/ReaderViewport.tsx ">
+    <h3>useReaderLifecycle</h3>
+    <p class="muted"><code>src/features/reader/ReaderViewport.tsx:45:1</code></p>
+    <p class="empty">No description available.</p>
+    
+  </article><article class="item" data-search="useEmitReaderState src/features/reader/ReaderViewport.tsx ">
+    <h3>useEmitReaderState</h3>
+    <p class="muted"><code>src/features/reader/ReaderViewport.tsx:56:1</code></p>
+    <p class="empty">No description available.</p>
+    
+  </article><article class="item" data-search="useReaderDriverEffect src/features/reader/ReaderViewport.tsx ">
+    <h3>useReaderDriverEffect</h3>
+    <p class="muted"><code>src/features/reader/ReaderViewport.tsx:70:1</code></p>
+    <p class="empty">No description available.</p>
+    
+  </article><article class="item" data-search="mountReaderDriver src/features/reader/ReaderViewport.tsx ">
+    <h3>mountReaderDriver</h3>
+    <p class="muted"><code>src/features/reader/ReaderViewport.tsx:117:1</code></p>
+    <p class="empty">No description available.</p>
+    
+  </article><article class="item" data-search="initializeReaderDriver src/features/reader/ReaderViewport.tsx ">
+    <h3>initializeReaderDriver</h3>
+    <p class="muted"><code>src/features/reader/ReaderViewport.tsx:143:1</code></p>
+    <p class="empty">No description available.</p>
+    
+  </article><article class="item" data-search="useReaderCommand src/features/reader/ReaderViewport.tsx ">
+    <h3>useReaderCommand</h3>
+    <p class="muted"><code>src/features/reader/ReaderViewport.tsx:186:1</code></p>
+    <p class="empty">No description available.</p>
+    
+  </article><article class="item" data-search="useReaderInput src/features/reader/ReaderViewport.tsx ">
+    <h3>useReaderInput</h3>
+    <p class="muted"><code>src/features/reader/ReaderViewport.tsx:201:1</code></p>
+    <p class="empty">No description available.</p>
+    
+  </article><article class="item" data-search="handleSwipe src/features/reader/ReaderViewport.tsx ">
+    <h3>handleSwipe</h3>
+    <p class="muted"><code>src/features/reader/ReaderViewport.tsx:232:1</code></p>
+    <p class="empty">No description available.</p>
+    
+  </article><article class="item" data-search="handleKeyboard src/features/reader/ReaderViewport.tsx ">
+    <h3>handleKeyboard</h3>
+    <p class="muted"><code>src/features/reader/ReaderViewport.tsx:254:1</code></p>
+    <p class="empty">No description available.</p>
+    
+  </article><article class="item" data-search="navigate src/features/reader/ReaderViewport.tsx ">
+    <h3>navigate</h3>
+    <p class="muted"><code>src/features/reader/ReaderViewport.tsx:274:1</code></p>
+    <p class="empty">No description available.</p>
+    
+  </article><article class="item" data-search="toViewportState src/features/reader/ReaderViewport.tsx ">
+    <h3>toViewportState</h3>
+    <p class="muted"><code>src/features/reader/ReaderViewport.tsx:286:1</code></p>
+    <p class="empty">No description available.</p>
+    
+  </article><article class="item" data-search="isInteractiveTarget src/features/reader/ReaderViewport.tsx ">
+    <h3>isInteractiveTarget</h3>
+    <p class="muted"><code>src/features/reader/ReaderViewport.tsx:302:1</code></p>
+    <p class="empty">No description available.</p>
+    
+  </article><article class="item" data-search="normalizeReaderError src/features/reader/ReaderViewport.tsx ">
+    <h3>normalizeReaderError</h3>
+    <p class="muted"><code>src/features/reader/ReaderViewport.tsx:311:1</code></p>
+    <p class="empty">No description available.</p>
+    
+  </article>
+    </section>
+  </section><section id="view-src-features-reader-toreaderviewportprops-ts" class="view" data-view="src/features/reader/toReaderViewportProps.ts" hidden>
+    <section class="panel">
+      <h2>src/features/reader/toReaderViewportProps.ts</h2>
+      <article class="item" data-search="toReaderViewportProps src/features/reader/toReaderViewportProps.ts Adapt the independent public ReaderView API to the serializable DOM viewport boundary.">
+    <h3>toReaderViewportProps</h3>
+    <p class="muted"><code>src/features/reader/toReaderViewportProps.ts:4:1</code></p>
+    <p>Adapt the independent public ReaderView API to the serializable DOM viewport boundary.</p>
+    
+  </article>
+    </section>
+  </section><section id="view-src-features-reader-validateepubarchiveentriesasync-test-ts" class="view" data-view="src/features/reader/validateEpubArchiveEntriesAsync.test.ts" hidden>
+    <section class="panel">
+      <h2>src/features/reader/validateEpubArchiveEntriesAsync.test.ts</h2>
+      <article class="item" data-search="createArchive src/features/reader/validateEpubArchiveEntriesAsync.test.ts ">
+    <h3>createArchive</h3>
+    <p class="muted"><code>src/features/reader/validateEpubArchiveEntriesAsync.test.ts:111:1</code></p>
+    <p class="empty">No description available.</p>
+    
+  </article><article class="item" data-search="createArchiveEntries src/features/reader/validateEpubArchiveEntriesAsync.test.ts ">
+    <h3>createArchiveEntries</h3>
+    <p class="muted"><code>src/features/reader/validateEpubArchiveEntriesAsync.test.ts:123:1</code></p>
+    <p class="empty">No description available.</p>
+    
+  </article><article class="item" data-search="findSignatureOffsets src/features/reader/validateEpubArchiveEntriesAsync.test.ts ">
+    <h3>findSignatureOffsets</h3>
+    <p class="muted"><code>src/features/reader/validateEpubArchiveEntriesAsync.test.ts:129:1</code></p>
+    <p class="empty">No description available.</p>
+    
+  </article><article class="item" data-search="readArchiveEntries src/features/reader/validateEpubArchiveEntriesAsync.test.ts ">
+    <h3>readArchiveEntries</h3>
+    <p class="muted"><code>src/features/reader/validateEpubArchiveEntriesAsync.test.ts:142:1</code></p>
+    <p class="empty">No description available.</p>
+    
+  </article>
+    </section>
+  </section>
+      </main>
+    </div>
+    <script>
+      const search = document.getElementById('search');
+      const navButtons = Array.from(document.querySelectorAll('[data-target]'));
+      const views = Array.from(document.querySelectorAll('[data-view]'));
+
+      function getActiveView() {
+        return document.querySelector('[data-view]:not([hidden])');
+      }
+
+      function applySearch() {
+        const value = search?.value.trim().toLowerCase() || '';
+        const activeView = getActiveView();
+        const items = Array.from(activeView?.querySelectorAll('[data-search]') || []);
+
+        for (const item of items) {
+          const haystack = (item.getAttribute('data-search') || '').toLowerCase();
+          item.style.display = value === '' || haystack.includes(value) ? '' : 'none';
+        }
+      }
+
+      for (const button of navButtons) {
+        button.addEventListener('click', () => {
+          const target = button.getAttribute('data-target');
+
+          for (const view of views) {
+            view.hidden = view.getAttribute('data-view') !== target;
+          }
+
+          for (const item of navButtons) {
+            item.setAttribute('aria-current', item === button ? 'page' : 'false');
+          }
+
+          if (search) search.value = '';
+          applySearch();
+        });
+      }
+
+      search?.addEventListener('input', applySearch);
+    </script>
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+  </body>
+</html>
