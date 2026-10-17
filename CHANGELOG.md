@@ -1,5 +1,11 @@
 # @ankhorage/reader
 
+## 0.1.1
+
+### Patch Changes
+
+- 0cecaad: Package the PDF.js worker through its worker-aware entrypoint for Expo web consumers.
+
 ## 0.1.0
 
 ### Minor Changes
