@@ -1,0 +1,3009 @@
+{
+  "packageName": "@ankhorage/reader",
+  "packageId": "@ankhorage/reader",
+  "description": "Standalone EPUB 3 and PDF reader engine for web and React Native.",
+  "collaborators": null,
+  "donation": null,
+  "badges": [
+    {
+      "id": "license",
+      "label": "license",
+      "value": "MIT",
+      "color": "2563eb"
+    },
+    {
+      "id": "npm",
+      "label": "npm",
+      "value": "v0.1.0",
+      "color": "cb3837"
+    },
+    {
+      "id": "runtime",
+      "label": "runtime",
+      "value": "bun",
+      "color": "f59e0b"
+    },
+    {
+      "id": "typescript",
+      "label": "typescript",
+      "value": "strict",
+      "color": "2563eb"
+    },
+    {
+      "id": "eslint",
+      "label": "eslint",
+      "value": "checked",
+      "color": "0a7f3f"
+    },
+    {
+      "id": "prettier",
+      "label": "prettier",
+      "value": "checked",
+      "color": "0a7f3f"
+    },
+    {
+      "id": "build",
+      "label": "build",
+      "value": "checked",
+      "color": "0a7f3f"
+    },
+    {
+      "id": "tests",
+      "label": "tests",
+      "value": "checked",
+      "color": "0a7f3f"
+    },
+    {
+      "id": "docs",
+      "label": "paradox",
+      "value": "canonical",
+      "color": "0a7f3f"
+    }
+  ],
+  "usage": {
+    "packageName": "@ankhorage/reader",
+    "command": "ankh reader --help"
+  },
+  "usageEntries": [],
+  "exampleCount": 0,
+  "findings": [],
+  "config": null,
+  "entrypoints": [
+    "src/index.ts"
+  ],
+  "modules": [
+    {
+      "path": "src/features/reader/adapters/ReaderView.native.tsx",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/reader/ReaderViewport.tsx",
+        "src/features/reader/toReaderViewportProps.ts",
+        "src/types/reader.ts"
+      ],
+      "exports": [
+        "ReaderView"
+      ]
+    },
+    {
+      "path": "src/features/reader/adapters/ReaderView.tsx",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/types/reader.ts"
+      ],
+      "exports": [
+        "ReaderView"
+      ]
+    },
+    {
+      "path": "src/features/reader/adapters/ReaderView.web.tsx",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/reader/ReaderViewport.tsx",
+        "src/features/reader/toReaderViewportProps.ts",
+        "src/types/reader.ts"
+      ],
+      "exports": [
+        "ReaderView"
+      ]
+    },
+    {
+      "path": "src/features/reader/drivers/EpubReaderDriver.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/reader/epub/EpubArchive.ts",
+        "src/features/reader/epub/EpubArchiveFetcher.ts",
+        "src/features/reader/epub/mediaTypes.ts",
+        "src/features/reader/epub/parseEpubPackage.ts",
+        "src/features/reader/epub/sanitizeEpubDocument.ts",
+        "src/types/reader.ts"
+      ],
+      "exports": [
+        "EpubReaderDriver"
+      ]
+    },
+    {
+      "path": "src/features/reader/drivers/PdfReaderDriver.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/reader/errors/ReaderDocumentError.ts",
+        "src/types/reader.ts"
+      ],
+      "exports": [
+        "PdfReaderDriver"
+      ]
+    },
+    {
+      "path": "src/features/reader/epub/EpubArchive.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/reader/epub/path.ts",
+        "src/features/reader/epub/validateEpubArchiveEntriesAsync.ts",
+        "src/features/reader/errors/ReaderDocumentError.ts"
+      ],
+      "exports": [
+        "EpubArchive"
+      ]
+    },
+    {
+      "path": "src/features/reader/epub/EpubArchiveFetcher.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/reader/epub/EpubArchive.ts"
+      ],
+      "exports": [
+        "EpubArchiveFetcher"
+      ]
+    },
+    {
+      "path": "src/features/reader/epub/mediaTypes.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": [
+        "HTML_MEDIA_TYPES",
+        "inferEpubMediaType"
+      ]
+    },
+    {
+      "path": "src/features/reader/epub/parseEpubPackage.test.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/reader/epub/EpubArchive.ts",
+        "src/features/reader/epub/parseEpubPackage.ts"
+      ],
+      "exports": []
+    },
+    {
+      "path": "src/features/reader/epub/parseEpubPackage.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/reader/epub/EpubArchive.ts",
+        "src/features/reader/epub/path.ts",
+        "src/features/reader/errors/ReaderDocumentError.ts"
+      ],
+      "exports": [
+        "ParsedEpubPackage",
+        "parseEpubPackage"
+      ]
+    },
+    {
+      "path": "src/features/reader/epub/path.test.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/reader/epub/path.ts"
+      ],
+      "exports": []
+    },
+    {
+      "path": "src/features/reader/epub/path.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": [
+        "isExternalReference",
+        "normalizeArchivePath",
+        "resolveArchivePath"
+      ]
+    },
+    {
+      "path": "src/features/reader/epub/sanitizeEpubDocument.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/reader/epub/path.ts"
+      ],
+      "exports": [
+        "sanitizeEpubDocument",
+        "sanitizeEpubStylesheet"
+      ]
+    },
+    {
+      "path": "src/features/reader/epub/validateEpubArchiveEntriesAsync.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": [
+        "validateEpubArchiveEntriesAsync"
+      ]
+    },
+    {
+      "path": "src/features/reader/errors/ReaderDocumentError.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/types/reader.ts"
+      ],
+      "exports": [
+        "ReaderDocumentError"
+      ]
+    },
+    {
+      "path": "src/features/reader/loadReaderSourceAsync.test.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/reader/loadReaderSourceAsync.ts"
+      ],
+      "exports": []
+    },
+    {
+      "path": "src/features/reader/loadReaderSourceAsync.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": [
+        "loadReaderSourceAsync"
+      ]
+    },
+    {
+      "path": "src/features/reader/navigation/resolveReaderKeyboardIntent.test.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/reader/navigation/resolveReaderKeyboardIntent.ts"
+      ],
+      "exports": []
+    },
+    {
+      "path": "src/features/reader/navigation/resolveReaderKeyboardIntent.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": [
+        "resolveReaderKeyboardIntent"
+      ]
+    },
+    {
+      "path": "src/features/reader/navigation/resolveReaderNavigationIntent.test.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/reader/navigation/resolveReaderNavigationIntent.ts"
+      ],
+      "exports": []
+    },
+    {
+      "path": "src/features/reader/navigation/resolveReaderNavigationIntent.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": [
+        "resolveReaderNavigationIntent"
+      ]
+    },
+    {
+      "path": "src/features/reader/ReaderViewport.tsx",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/reader/drivers/EpubReaderDriver.ts",
+        "src/features/reader/drivers/PdfReaderDriver.ts",
+        "src/features/reader/errors/ReaderDocumentError.ts",
+        "src/features/reader/loadReaderSourceAsync.ts",
+        "src/features/reader/navigation/resolveReaderKeyboardIntent.ts",
+        "src/features/reader/navigation/resolveReaderNavigationIntent.ts",
+        "src/features/reader/readerViewportPresentation.ts",
+        "src/types/reader.ts"
+      ],
+      "exports": [
+        "default"
+      ]
+    },
+    {
+      "path": "src/features/reader/readerViewportPresentation.test.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/reader/readerViewportPresentation.ts"
+      ],
+      "exports": []
+    },
+    {
+      "path": "src/features/reader/readerViewportPresentation.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/types/reader.ts"
+      ],
+      "exports": [
+        "LOADING_STATE",
+        "READER_STYLES"
+      ]
+    },
+    {
+      "path": "src/features/reader/rendererPackages.test.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": []
+    },
+    {
+      "path": "src/features/reader/toReaderViewportProps.test.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/reader/toReaderViewportProps.ts",
+        "src/types/reader.ts"
+      ],
+      "exports": []
+    },
+    {
+      "path": "src/features/reader/toReaderViewportProps.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/types/reader.ts"
+      ],
+      "exports": [
+        "toReaderViewportProps"
+      ]
+    },
+    {
+      "path": "src/features/reader/validateEpubArchiveEntriesAsync.test.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/reader/epub/validateEpubArchiveEntriesAsync.ts"
+      ],
+      "exports": []
+    },
+    {
+      "path": "src/index.native.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": [
+        "ReaderAppearance",
+        "ReaderCommand",
+        "ReaderDocumentFormat",
+        "ReaderErrorCode",
+        "ReaderErrorEvent",
+        "ReaderLocationChangeEvent",
+        "ReaderNavigationTrigger",
+        "ReaderStatus",
+        "ReaderView",
+        "ReaderViewportState",
+        "ReaderViewProps",
+        "ReaderViewStyle"
+      ]
+    },
+    {
+      "path": "src/index.test.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/index.ts"
+      ],
+      "exports": []
+    },
+    {
+      "path": "src/index.ts",
+      "isEntrypoint": true,
+      "dependencies": [],
+      "exports": [
+        "ReaderAppearance",
+        "ReaderCommand",
+        "ReaderDocumentFormat",
+        "ReaderErrorCode",
+        "ReaderErrorEvent",
+        "ReaderLocationChangeEvent",
+        "ReaderNavigationTrigger",
+        "ReaderStatus",
+        "ReaderView",
+        "ReaderViewportState",
+        "ReaderViewProps",
+        "ReaderViewStyle"
+      ]
+    },
+    {
+      "path": "src/index.web.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": [
+        "ReaderAppearance",
+        "ReaderCommand",
+        "ReaderDocumentFormat",
+        "ReaderErrorCode",
+        "ReaderErrorEvent",
+        "ReaderLocationChangeEvent",
+        "ReaderNavigationTrigger",
+        "ReaderStatus",
+        "ReaderView",
+        "ReaderViewportState",
+        "ReaderViewProps",
+        "ReaderViewStyle"
+      ]
+    },
+    {
+      "path": "src/types/reader.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": [
+        "ReaderAppearance",
+        "ReaderCommand",
+        "ReaderDocumentFormat",
+        "ReaderDriver",
+        "ReaderDriverState",
+        "ReaderErrorCode",
+        "ReaderErrorEvent",
+        "ReaderLocationChangeEvent",
+        "ReaderNavigationTrigger",
+        "ReaderStatus",
+        "ReaderTouchStart",
+        "ReaderViewportProps",
+        "ReaderViewportState",
+        "ReaderViewProps",
+        "ReaderViewStyle"
+      ]
+    }
+  ],
+  "exports": [
+    {
+      "name": "ReaderAppearance",
+      "title": null,
+      "description": null,
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "type",
+      "modulePath": "src/types/reader.ts",
+      "sourceLocation": {
+        "filePath": "src/types/reader.ts",
+        "line": 27,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/index.ts"
+      ],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [
+        {
+          "name": "colorScheme",
+          "kind": "property",
+          "type": "\"dark\" | \"light\" | \"sepia\" | \"system\"",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "fontScale",
+          "kind": "property",
+          "type": "number",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "lineHeight",
+          "kind": "property",
+          "type": "number",
+          "required": true,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "ReaderCommand",
+      "title": null,
+      "description": null,
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "type",
+      "modulePath": "src/types/reader.ts",
+      "sourceLocation": {
+        "filePath": "src/types/reader.ts",
+        "line": 33,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/index.ts"
+      ],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [
+        {
+          "name": "id",
+          "kind": "property",
+          "type": "number",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "sourceUri",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "type",
+          "kind": "property",
+          "type": "\"next\" | \"previous\"",
+          "required": true,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "ReaderDocumentFormat",
+      "title": null,
+      "description": null,
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "unknown",
+      "modulePath": "src/types/reader.ts",
+      "sourceLocation": {
+        "filePath": "src/types/reader.ts",
+        "line": 3,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/index.ts"
+      ],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "ReaderErrorCode",
+      "title": null,
+      "description": null,
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "unknown",
+      "modulePath": "src/types/reader.ts",
+      "sourceLocation": {
+        "filePath": "src/types/reader.ts",
+        "line": 7,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/index.ts"
+      ],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "ReaderErrorEvent",
+      "title": null,
+      "description": null,
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "type",
+      "modulePath": "src/types/reader.ts",
+      "sourceLocation": {
+        "filePath": "src/types/reader.ts",
+        "line": 21,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/index.ts"
+      ],
+      "relatedSymbols": [
+        "ReaderDocumentFormat",
+        "ReaderErrorCode"
+      ],
+      "signatures": [],
+      "members": [
+        {
+          "name": "code",
+          "kind": "property",
+          "type": "ReaderErrorCode",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "format",
+          "kind": "property",
+          "type": "ReaderDocumentFormat",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "message",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "ReaderLocationChangeEvent",
+      "title": null,
+      "description": null,
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "type",
+      "modulePath": "src/types/reader.ts",
+      "sourceLocation": {
+        "filePath": "src/types/reader.ts",
+        "line": 10,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/index.ts"
+      ],
+      "relatedSymbols": [
+        "ReaderDocumentFormat",
+        "ReaderNavigationTrigger"
+      ],
+      "signatures": [],
+      "members": [
+        {
+          "name": "chapterId",
+          "kind": "property",
+          "type": "string",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "chapterTitle",
+          "kind": "property",
+          "type": "string",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "format",
+          "kind": "property",
+          "type": "ReaderDocumentFormat",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "locator",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "page",
+          "kind": "property",
+          "type": "number",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "pageCount",
+          "kind": "property",
+          "type": "number",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "progression",
+          "kind": "property",
+          "type": "number",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "trigger",
+          "kind": "property",
+          "type": "ReaderNavigationTrigger",
+          "required": true,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "ReaderNavigationTrigger",
+      "title": null,
+      "description": null,
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "unknown",
+      "modulePath": "src/types/reader.ts",
+      "sourceLocation": {
+        "filePath": "src/types/reader.ts",
+        "line": 5,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/index.ts"
+      ],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "ReaderStatus",
+      "title": null,
+      "description": null,
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "unknown",
+      "modulePath": "src/types/reader.ts",
+      "sourceLocation": {
+        "filePath": "src/types/reader.ts",
+        "line": 4,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/index.ts"
+      ],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "ReaderView",
+      "title": null,
+      "description": "Fail clearly when an entrypoint without web/native platform resolution is used.",
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "function",
+      "modulePath": "src/features/reader/adapters/ReaderView.tsx",
+      "sourceLocation": {
+        "filePath": "src/features/reader/adapters/ReaderView.tsx",
+        "line": 4,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/index.ts"
+      ],
+      "relatedSymbols": [
+        "ReaderViewProps"
+      ],
+      "signatures": [
+        {
+          "label": "(_props: ReaderViewProps) => never",
+          "parameters": [
+            {
+              "name": "_props",
+              "type": "ReaderViewProps",
+              "required": true,
+              "description": null
+            }
+          ],
+          "returnType": "never",
+          "returnDescription": null
+        }
+      ],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "ReaderViewportState",
+      "title": null,
+      "description": null,
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "type",
+      "modulePath": "src/types/reader.ts",
+      "sourceLocation": {
+        "filePath": "src/types/reader.ts",
+        "line": 57,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/index.ts"
+      ],
+      "relatedSymbols": [
+        "ReaderLocationChangeEvent"
+      ],
+      "signatures": [],
+      "members": [
+        {
+          "name": "canGoNext",
+          "kind": "property",
+          "type": "boolean",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "canGoPrevious",
+          "kind": "property",
+          "type": "boolean",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "location",
+          "kind": "property",
+          "type": "ReaderLocationChangeEvent",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "page",
+          "kind": "property",
+          "type": "number",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "pageCount",
+          "kind": "property",
+          "type": "number",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "progress",
+          "kind": "property",
+          "type": "number",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "status",
+          "kind": "property",
+          "type": "\"loading\" | \"ready\"",
+          "required": true,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "ReaderViewProps",
+      "title": null,
+      "description": null,
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "type",
+      "modulePath": "src/types/reader.ts",
+      "sourceLocation": {
+        "filePath": "src/types/reader.ts",
+        "line": 45,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/index.ts"
+      ],
+      "relatedSymbols": [
+        "ReaderAppearance",
+        "ReaderCommand",
+        "ReaderDocumentFormat",
+        "ReaderErrorEvent",
+        "ReaderViewportState",
+        "ReaderViewStyle"
+      ],
+      "signatures": [],
+      "members": [
+        {
+          "name": "appearance",
+          "kind": "property",
+          "type": "Partial<ReaderAppearance>",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "command",
+          "kind": "property",
+          "type": "ReaderCommand",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "format",
+          "kind": "property",
+          "type": "ReaderDocumentFormat",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "initialLocation",
+          "kind": "property",
+          "type": "string",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "onError",
+          "kind": "property",
+          "type": "(event: ReaderErrorEvent) => void | Promise<void>",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "onOpenExternalLink",
+          "kind": "property",
+          "type": "(event: { readonly url: string; }) => void | Promise<void>",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "onStateChange",
+          "kind": "property",
+          "type": "(state: ReaderViewportState) => void | Promise<void>",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "sourceUri",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "style",
+          "kind": "property",
+          "type": "ReaderViewStyle",
+          "required": false,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "ReaderViewStyle",
+      "title": null,
+      "description": null,
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "type",
+      "modulePath": "src/types/reader.ts",
+      "sourceLocation": {
+        "filePath": "src/types/reader.ts",
+        "line": 39,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/index.ts"
+      ],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [
+        {
+          "name": "flex",
+          "kind": "property",
+          "type": "number",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "height",
+          "kind": "property",
+          "type": "number | `${number}%`",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "width",
+          "kind": "property",
+          "type": "number | `${number}%`",
+          "required": false,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    }
+  ],
+  "components": [],
+  "sourceFunctions": [
+    {
+      "name": "ReaderView",
+      "description": "Host the same EPUB/PDF DOM viewport in Expo's isolated native DOM WebView.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/reader/adapters/ReaderView.native.tsx",
+        "line": 23,
+        "column": 1
+      }
+    },
+    {
+      "name": "ReaderView",
+      "description": "Fail clearly when an entrypoint without web/native platform resolution is used.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/reader/adapters/ReaderView.tsx",
+        "line": 4,
+        "column": 1
+      }
+    },
+    {
+      "name": "ReaderView",
+      "description": "Render the standalone EPUB/PDF viewport directly in a browser-owned DOM region.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/reader/adapters/ReaderView.web.tsx",
+        "line": 15,
+        "column": 1
+      }
+    },
+    {
+      "name": "createPublication",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/reader/drivers/EpubReaderDriver.ts",
+        "line": 177,
+        "column": 1
+      }
+    },
+    {
+      "name": "toManifestLink",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/reader/drivers/EpubReaderDriver.ts",
+        "line": 257,
+        "column": 1
+      }
+    },
+    {
+      "name": "resolvePreferences",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/reader/drivers/EpubReaderDriver.ts",
+        "line": 268,
+        "column": 1
+      }
+    },
+    {
+      "name": "parseInitialLocator",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/reader/drivers/EpubReaderDriver.ts",
+        "line": 279,
+        "column": 1
+      }
+    },
+    {
+      "name": "attachFrameLinkPolicy",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/reader/drivers/EpubReaderDriver.ts",
+        "line": 288,
+        "column": 1
+      }
+    },
+    {
+      "name": "navigate",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/reader/drivers/EpubReaderDriver.ts",
+        "line": 299,
+        "column": 1
+      }
+    },
+    {
+      "name": "shouldAnimateNavigation",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/reader/drivers/EpubReaderDriver.ts",
+        "line": 303,
+        "column": 1
+      }
+    },
+    {
+      "name": "noop",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/reader/drivers/EpubReaderDriver.ts",
+        "line": 307,
+        "column": 1
+      }
+    },
+    {
+      "name": "renderExternalLinks",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/reader/drivers/PdfReaderDriver.ts",
+        "line": 179,
+        "column": 1
+      }
+    },
+    {
+      "name": "isExternalPdfLink",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/reader/drivers/PdfReaderDriver.ts",
+        "line": 215,
+        "column": 1
+      }
+    },
+    {
+      "name": "resolveInitialPage",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/reader/drivers/PdfReaderDriver.ts",
+        "line": 233,
+        "column": 1
+      }
+    },
+    {
+      "name": "createEntryMap",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/reader/epub/EpubArchive.ts",
+        "line": 69,
+        "column": 1
+      }
+    },
+    {
+      "name": "inferEpubMediaType",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/reader/epub/mediaTypes.ts",
+        "line": 3,
+        "column": 1
+      }
+    },
+    {
+      "name": "openFixture",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/reader/epub/parseEpubPackage.test.ts",
+        "line": 73,
+        "column": 1
+      }
+    },
+    {
+      "name": "packageDocument",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/reader/epub/parseEpubPackage.test.ts",
+        "line": 96,
+        "column": 1
+      }
+    },
+    {
+      "name": "parseEpubPackage",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/reader/epub/parseEpubPackage.ts",
+        "line": 23,
+        "column": 1
+      }
+    },
+    {
+      "name": "parseNavigationDocument",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/reader/epub/parseEpubPackage.ts",
+        "line": 111,
+        "column": 1
+      }
+    },
+    {
+      "name": "parseXml",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/reader/epub/parseEpubPackage.ts",
+        "line": 134,
+        "column": 1
+      }
+    },
+    {
+      "name": "elementsByLocalName",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/reader/epub/parseEpubPackage.ts",
+        "line": 142,
+        "column": 1
+      }
+    },
+    {
+      "name": "elementText",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/reader/epub/parseEpubPackage.ts",
+        "line": 148,
+        "column": 1
+      }
+    },
+    {
+      "name": "normalizeArchivePath",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/reader/epub/path.ts",
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
+      "name": "resolveArchivePath",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/reader/epub/path.ts",
+        "line": 15,
+        "column": 1
+      }
+    },
+    {
+      "name": "isExternalReference",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/reader/epub/path.ts",
+        "line": 24,
+        "column": 1
+      }
+    },
+    {
+      "name": "sanitizeEpubDocument",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/reader/epub/sanitizeEpubDocument.ts",
+        "line": 6,
+        "column": 1
+      }
+    },
+    {
+      "name": "sanitizeElementAttributes",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/reader/epub/sanitizeEpubDocument.ts",
+        "line": 30,
+        "column": 1
+      }
+    },
+    {
+      "name": "rewriteDocumentResources",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/reader/epub/sanitizeEpubDocument.ts",
+        "line": 54,
+        "column": 1
+      }
+    },
+    {
+      "name": "rewriteDocumentLinks",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/reader/epub/sanitizeEpubDocument.ts",
+        "line": 70,
+        "column": 1
+      }
+    },
+    {
+      "name": "sanitizeEpubStylesheet",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/reader/epub/sanitizeEpubDocument.ts",
+        "line": 83,
+        "column": 1
+      }
+    },
+    {
+      "name": "rewriteResourceAttribute",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/reader/epub/sanitizeEpubDocument.ts",
+        "line": 102,
+        "column": 1
+      }
+    },
+    {
+      "name": "validateEpubArchiveEntriesAsync",
+      "description": "Validate ZIP entry budgets and structure before EPUB extraction.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/reader/epub/validateEpubArchiveEntriesAsync.ts",
+        "line": 10,
+        "column": 1
+      }
+    },
+    {
+      "name": "validateDeclaredSizes",
+      "description": "Reject malformed ZIP size metadata before arithmetic or extraction.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/reader/epub/validateEpubArchiveEntriesAsync.ts",
+        "line": 66,
+        "column": 1
+      }
+    },
+    {
+      "name": "loadReaderSourceAsync",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/reader/loadReaderSourceAsync.ts",
+        "line": 3,
+        "column": 1
+      }
+    },
+    {
+      "name": "validateSourceSize",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/reader/loadReaderSourceAsync.ts",
+        "line": 54,
+        "column": 1
+      }
+    },
+    {
+      "name": "resolveReaderKeyboardIntent",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/reader/navigation/resolveReaderKeyboardIntent.ts",
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
+      "name": "resolveReaderNavigationIntent",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/reader/navigation/resolveReaderNavigationIntent.ts",
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
+      "name": "ReaderViewport",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/reader/ReaderViewport.tsx",
+        "line": 23,
+        "column": 1
+      }
+    },
+    {
+      "name": "useReaderLifecycle",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/reader/ReaderViewport.tsx",
+        "line": 45,
+        "column": 1
+      }
+    },
+    {
+      "name": "useEmitReaderState",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/reader/ReaderViewport.tsx",
+        "line": 56,
+        "column": 1
+      }
+    },
+    {
+      "name": "useReaderDriverEffect",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/reader/ReaderViewport.tsx",
+        "line": 70,
+        "column": 1
+      }
+    },
+    {
+      "name": "mountReaderDriver",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/reader/ReaderViewport.tsx",
+        "line": 117,
+        "column": 1
+      }
+    },
+    {
+      "name": "initializeReaderDriver",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/reader/ReaderViewport.tsx",
+        "line": 143,
+        "column": 1
+      }
+    },
+    {
+      "name": "useReaderCommand",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/reader/ReaderViewport.tsx",
+        "line": 186,
+        "column": 1
+      }
+    },
+    {
+      "name": "useReaderInput",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/reader/ReaderViewport.tsx",
+        "line": 201,
+        "column": 1
+      }
+    },
+    {
+      "name": "handleSwipe",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/reader/ReaderViewport.tsx",
+        "line": 232,
+        "column": 1
+      }
+    },
+    {
+      "name": "handleKeyboard",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/reader/ReaderViewport.tsx",
+        "line": 254,
+        "column": 1
+      }
+    },
+    {
+      "name": "navigate",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/reader/ReaderViewport.tsx",
+        "line": 274,
+        "column": 1
+      }
+    },
+    {
+      "name": "toViewportState",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/reader/ReaderViewport.tsx",
+        "line": 286,
+        "column": 1
+      }
+    },
+    {
+      "name": "isInteractiveTarget",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/reader/ReaderViewport.tsx",
+        "line": 302,
+        "column": 1
+      }
+    },
+    {
+      "name": "normalizeReaderError",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/reader/ReaderViewport.tsx",
+        "line": 311,
+        "column": 1
+      }
+    },
+    {
+      "name": "toReaderViewportProps",
+      "description": "Adapt the independent public ReaderView API to the serializable DOM viewport boundary.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/reader/toReaderViewportProps.ts",
+        "line": 4,
+        "column": 1
+      }
+    },
+    {
+      "name": "createArchive",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/reader/validateEpubArchiveEntriesAsync.test.ts",
+        "line": 111,
+        "column": 1
+      }
+    },
+    {
+      "name": "createArchiveEntries",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/reader/validateEpubArchiveEntriesAsync.test.ts",
+        "line": 123,
+        "column": 1
+      }
+    },
+    {
+      "name": "findSignatureOffsets",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/reader/validateEpubArchiveEntriesAsync.test.ts",
+        "line": 129,
+        "column": 1
+      }
+    },
+    {
+      "name": "readArchiveEntries",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/reader/validateEpubArchiveEntriesAsync.test.ts",
+        "line": 142,
+        "column": 1
+      }
+    }
+  ],
+  "sequenceScenarios": [
+    {
+      "kind": "export",
+      "name": "ReaderView",
+      "sourcePath": "src/features/reader/adapters/ReaderView.tsx",
+      "symbolName": "ReaderView",
+      "description": "Fail clearly when an entrypoint without web/native platform resolution is used.",
+      "isReadme": false
+    }
+  ],
+  "graphs": {
+    "imports": [
+      {
+        "fromPath": "src/index.native.ts",
+        "toPath": "src/features/reader/adapters/ReaderView.native.tsx",
+        "sourcePath": "src/index.native.ts"
+      },
+      {
+        "fromPath": "src/index.native.ts",
+        "toPath": "src/types/reader.ts",
+        "sourcePath": "src/index.native.ts"
+      },
+      {
+        "fromPath": "src/index.test.ts",
+        "toPath": "src/index.ts",
+        "sourcePath": "src/index.test.ts"
+      },
+      {
+        "fromPath": "src/index.ts",
+        "toPath": "src/features/reader/adapters/ReaderView.tsx",
+        "sourcePath": "src/index.ts"
+      },
+      {
+        "fromPath": "src/index.ts",
+        "toPath": "src/types/reader.ts",
+        "sourcePath": "src/index.ts"
+      },
+      {
+        "fromPath": "src/index.web.ts",
+        "toPath": "src/features/reader/adapters/ReaderView.web.tsx",
+        "sourcePath": "src/index.web.ts"
+      },
+      {
+        "fromPath": "src/index.web.ts",
+        "toPath": "src/types/reader.ts",
+        "sourcePath": "src/index.web.ts"
+      },
+      {
+        "fromPath": "src/features/reader/loadReaderSourceAsync.test.ts",
+        "toPath": "src/features/reader/loadReaderSourceAsync.ts",
+        "sourcePath": "src/features/reader/loadReaderSourceAsync.test.ts"
+      },
+      {
+        "fromPath": "src/features/reader/ReaderViewport.tsx",
+        "toPath": "src/types/reader.ts",
+        "sourcePath": "src/features/reader/ReaderViewport.tsx"
+      },
+      {
+        "fromPath": "src/features/reader/ReaderViewport.tsx",
+        "toPath": "src/features/reader/drivers/EpubReaderDriver.ts",
+        "sourcePath": "src/features/reader/ReaderViewport.tsx"
+      },
+      {
+        "fromPath": "src/features/reader/ReaderViewport.tsx",
+        "toPath": "src/features/reader/drivers/PdfReaderDriver.ts",
+        "sourcePath": "src/features/reader/ReaderViewport.tsx"
+      },
+      {
+        "fromPath": "src/features/reader/ReaderViewport.tsx",
+        "toPath": "src/features/reader/errors/ReaderDocumentError.ts",
+        "sourcePath": "src/features/reader/ReaderViewport.tsx"
+      },
+      {
+        "fromPath": "src/features/reader/ReaderViewport.tsx",
+        "toPath": "src/features/reader/loadReaderSourceAsync.ts",
+        "sourcePath": "src/features/reader/ReaderViewport.tsx"
+      },
+      {
+        "fromPath": "src/features/reader/ReaderViewport.tsx",
+        "toPath": "src/features/reader/navigation/resolveReaderKeyboardIntent.ts",
+        "sourcePath": "src/features/reader/ReaderViewport.tsx"
+      },
+      {
+        "fromPath": "src/features/reader/ReaderViewport.tsx",
+        "toPath": "src/features/reader/navigation/resolveReaderNavigationIntent.ts",
+        "sourcePath": "src/features/reader/ReaderViewport.tsx"
+      },
+      {
+        "fromPath": "src/features/reader/ReaderViewport.tsx",
+        "toPath": "src/features/reader/readerViewportPresentation.ts",
+        "sourcePath": "src/features/reader/ReaderViewport.tsx"
+      },
+      {
+        "fromPath": "src/features/reader/readerViewportPresentation.test.ts",
+        "toPath": "src/features/reader/readerViewportPresentation.ts",
+        "sourcePath": "src/features/reader/readerViewportPresentation.test.ts"
+      },
+      {
+        "fromPath": "src/features/reader/readerViewportPresentation.ts",
+        "toPath": "src/types/reader.ts",
+        "sourcePath": "src/features/reader/readerViewportPresentation.ts"
+      },
+      {
+        "fromPath": "src/features/reader/toReaderViewportProps.test.ts",
+        "toPath": "src/types/reader.ts",
+        "sourcePath": "src/features/reader/toReaderViewportProps.test.ts"
+      },
+      {
+        "fromPath": "src/features/reader/toReaderViewportProps.test.ts",
+        "toPath": "src/features/reader/toReaderViewportProps.ts",
+        "sourcePath": "src/features/reader/toReaderViewportProps.test.ts"
+      },
+      {
+        "fromPath": "src/features/reader/toReaderViewportProps.ts",
+        "toPath": "src/types/reader.ts",
+        "sourcePath": "src/features/reader/toReaderViewportProps.ts"
+      },
+      {
+        "fromPath": "src/features/reader/validateEpubArchiveEntriesAsync.test.ts",
+        "toPath": "src/features/reader/epub/validateEpubArchiveEntriesAsync.ts",
+        "sourcePath": "src/features/reader/validateEpubArchiveEntriesAsync.test.ts"
+      },
+      {
+        "fromPath": "src/features/reader/adapters/ReaderView.native.tsx",
+        "toPath": "src/types/reader.ts",
+        "sourcePath": "src/features/reader/adapters/ReaderView.native.tsx"
+      },
+      {
+        "fromPath": "src/features/reader/adapters/ReaderView.native.tsx",
+        "toPath": "src/features/reader/ReaderViewport.tsx",
+        "sourcePath": "src/features/reader/adapters/ReaderView.native.tsx"
+      },
+      {
+        "fromPath": "src/features/reader/adapters/ReaderView.native.tsx",
+        "toPath": "src/features/reader/toReaderViewportProps.ts",
+        "sourcePath": "src/features/reader/adapters/ReaderView.native.tsx"
+      },
+      {
+        "fromPath": "src/features/reader/adapters/ReaderView.tsx",
+        "toPath": "src/types/reader.ts",
+        "sourcePath": "src/features/reader/adapters/ReaderView.tsx"
+      },
+      {
+        "fromPath": "src/features/reader/adapters/ReaderView.web.tsx",
+        "toPath": "src/types/reader.ts",
+        "sourcePath": "src/features/reader/adapters/ReaderView.web.tsx"
+      },
+      {
+        "fromPath": "src/features/reader/adapters/ReaderView.web.tsx",
+        "toPath": "src/features/reader/ReaderViewport.tsx",
+        "sourcePath": "src/features/reader/adapters/ReaderView.web.tsx"
+      },
+      {
+        "fromPath": "src/features/reader/adapters/ReaderView.web.tsx",
+        "toPath": "src/features/reader/toReaderViewportProps.ts",
+        "sourcePath": "src/features/reader/adapters/ReaderView.web.tsx"
+      },
+      {
+        "fromPath": "src/features/reader/drivers/EpubReaderDriver.ts",
+        "toPath": "src/types/reader.ts",
+        "sourcePath": "src/features/reader/drivers/EpubReaderDriver.ts"
+      },
+      {
+        "fromPath": "src/features/reader/drivers/EpubReaderDriver.ts",
+        "toPath": "src/features/reader/epub/EpubArchive.ts",
+        "sourcePath": "src/features/reader/drivers/EpubReaderDriver.ts"
+      },
+      {
+        "fromPath": "src/features/reader/drivers/EpubReaderDriver.ts",
+        "toPath": "src/features/reader/epub/EpubArchiveFetcher.ts",
+        "sourcePath": "src/features/reader/drivers/EpubReaderDriver.ts"
+      },
+      {
+        "fromPath": "src/features/reader/drivers/EpubReaderDriver.ts",
+        "toPath": "src/features/reader/epub/mediaTypes.ts",
+        "sourcePath": "src/features/reader/drivers/EpubReaderDriver.ts"
+      },
+      {
+        "fromPath": "src/features/reader/drivers/EpubReaderDriver.ts",
+        "toPath": "src/features/reader/epub/parseEpubPackage.ts",
+        "sourcePath": "src/features/reader/drivers/EpubReaderDriver.ts"
+      },
+      {
+        "fromPath": "src/features/reader/drivers/EpubReaderDriver.ts",
+        "toPath": "src/features/reader/epub/sanitizeEpubDocument.ts",
+        "sourcePath": "src/features/reader/drivers/EpubReaderDriver.ts"
+      },
+      {
+        "fromPath": "src/features/reader/drivers/PdfReaderDriver.ts",
+        "toPath": "src/types/reader.ts",
+        "sourcePath": "src/features/reader/drivers/PdfReaderDriver.ts"
+      },
+      {
+        "fromPath": "src/features/reader/drivers/PdfReaderDriver.ts",
+        "toPath": "src/features/reader/errors/ReaderDocumentError.ts",
+        "sourcePath": "src/features/reader/drivers/PdfReaderDriver.ts"
+      },
+      {
+        "fromPath": "src/features/reader/epub/EpubArchive.ts",
+        "toPath": "src/features/reader/errors/ReaderDocumentError.ts",
+        "sourcePath": "src/features/reader/epub/EpubArchive.ts"
+      },
+      {
+        "fromPath": "src/features/reader/epub/EpubArchive.ts",
+        "toPath": "src/features/reader/epub/path.ts",
+        "sourcePath": "src/features/reader/epub/EpubArchive.ts"
+      },
+      {
+        "fromPath": "src/features/reader/epub/EpubArchive.ts",
+        "toPath": "src/features/reader/epub/validateEpubArchiveEntriesAsync.ts",
+        "sourcePath": "src/features/reader/epub/EpubArchive.ts"
+      },
+      {
+        "fromPath": "src/features/reader/epub/EpubArchiveFetcher.ts",
+        "toPath": "src/features/reader/epub/EpubArchive.ts",
+        "sourcePath": "src/features/reader/epub/EpubArchiveFetcher.ts"
+      },
+      {
+        "fromPath": "src/features/reader/epub/parseEpubPackage.test.ts",
+        "toPath": "src/features/reader/epub/EpubArchive.ts",
+        "sourcePath": "src/features/reader/epub/parseEpubPackage.test.ts"
+      },
+      {
+        "fromPath": "src/features/reader/epub/parseEpubPackage.test.ts",
+        "toPath": "src/features/reader/epub/parseEpubPackage.ts",
+        "sourcePath": "src/features/reader/epub/parseEpubPackage.test.ts"
+      },
+      {
+        "fromPath": "src/features/reader/epub/parseEpubPackage.ts",
+        "toPath": "src/features/reader/errors/ReaderDocumentError.ts",
+        "sourcePath": "src/features/reader/epub/parseEpubPackage.ts"
+      },
+      {
+        "fromPath": "src/features/reader/epub/parseEpubPackage.ts",
+        "toPath": "src/features/reader/epub/EpubArchive.ts",
+        "sourcePath": "src/features/reader/epub/parseEpubPackage.ts"
+      },
+      {
+        "fromPath": "src/features/reader/epub/parseEpubPackage.ts",
+        "toPath": "src/features/reader/epub/path.ts",
+        "sourcePath": "src/features/reader/epub/parseEpubPackage.ts"
+      },
+      {
+        "fromPath": "src/features/reader/epub/path.test.ts",
+        "toPath": "src/features/reader/epub/path.ts",
+        "sourcePath": "src/features/reader/epub/path.test.ts"
+      },
+      {
+        "fromPath": "src/features/reader/epub/sanitizeEpubDocument.ts",
+        "toPath": "src/features/reader/epub/path.ts",
+        "sourcePath": "src/features/reader/epub/sanitizeEpubDocument.ts"
+      },
+      {
+        "fromPath": "src/features/reader/errors/ReaderDocumentError.ts",
+        "toPath": "src/types/reader.ts",
+        "sourcePath": "src/features/reader/errors/ReaderDocumentError.ts"
+      },
+      {
+        "fromPath": "src/features/reader/navigation/resolveReaderKeyboardIntent.test.ts",
+        "toPath": "src/features/reader/navigation/resolveReaderKeyboardIntent.ts",
+        "sourcePath": "src/features/reader/navigation/resolveReaderKeyboardIntent.test.ts"
+      },
+      {
+        "fromPath": "src/features/reader/navigation/resolveReaderNavigationIntent.test.ts",
+        "toPath": "src/features/reader/navigation/resolveReaderNavigationIntent.ts",
+        "sourcePath": "src/features/reader/navigation/resolveReaderNavigationIntent.test.ts"
+      }
+    ],
+    "calls": [
+      {
+        "fromSymbol": "src/index.test.ts",
+        "toSymbol": "describe",
+        "callExpression": "describe",
+        "sourcePath": "src/index.test.ts"
+      },
+      {
+        "fromSymbol": "src/index.test.ts",
+        "toSymbol": "test",
+        "callExpression": "test",
+        "sourcePath": "src/index.test.ts"
+      },
+      {
+        "fromSymbol": "src/index.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/index.test.ts"
+      },
+      {
+        "fromSymbol": "src/index.test.ts",
+        "toSymbol": "ReaderView",
+        "callExpression": "ReaderView",
+        "sourcePath": "src/index.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/reader/loadReaderSourceAsync.test.ts",
+        "toSymbol": "describe",
+        "callExpression": "describe",
+        "sourcePath": "src/features/reader/loadReaderSourceAsync.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/reader/loadReaderSourceAsync.test.ts",
+        "toSymbol": "afterEach",
+        "callExpression": "afterEach",
+        "sourcePath": "src/features/reader/loadReaderSourceAsync.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/reader/loadReaderSourceAsync.test.ts",
+        "toSymbol": "test",
+        "callExpression": "test",
+        "sourcePath": "src/features/reader/loadReaderSourceAsync.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/reader/loadReaderSourceAsync.test.ts",
+        "toSymbol": "mock",
+        "callExpression": "mock",
+        "sourcePath": "src/features/reader/loadReaderSourceAsync.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/reader/loadReaderSourceAsync.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/features/reader/loadReaderSourceAsync.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/reader/loadReaderSourceAsync.test.ts",
+        "toSymbol": "loadReaderSourceAsync",
+        "callExpression": "loadReaderSourceAsync",
+        "sourcePath": "src/features/reader/loadReaderSourceAsync.test.ts"
+      },
+      {
+        "fromSymbol": "loadReaderSourceAsync",
+        "toSymbol": "validateSourceSize",
+        "callExpression": "validateSourceSize",
+        "sourcePath": "src/features/reader/loadReaderSourceAsync.ts"
+      },
+      {
+        "fromSymbol": "ReaderViewport",
+        "toSymbol": "useReaderLifecycle",
+        "callExpression": "useReaderLifecycle",
+        "sourcePath": "src/features/reader/ReaderViewport.tsx"
+      },
+      {
+        "fromSymbol": "ReaderViewport",
+        "toSymbol": "useReaderCommand",
+        "callExpression": "useReaderCommand",
+        "sourcePath": "src/features/reader/ReaderViewport.tsx"
+      },
+      {
+        "fromSymbol": "ReaderViewport",
+        "toSymbol": "useReaderInput",
+        "callExpression": "useReaderInput",
+        "sourcePath": "src/features/reader/ReaderViewport.tsx"
+      },
+      {
+        "fromSymbol": "useReaderLifecycle",
+        "toSymbol": "useEmitReaderState",
+        "callExpression": "useEmitReaderState",
+        "sourcePath": "src/features/reader/ReaderViewport.tsx"
+      },
+      {
+        "fromSymbol": "useReaderLifecycle",
+        "toSymbol": "useReaderDriverEffect",
+        "callExpression": "useReaderDriverEffect",
+        "sourcePath": "src/features/reader/ReaderViewport.tsx"
+      },
+      {
+        "fromSymbol": "src/features/reader/ReaderViewport.tsx",
+        "toSymbol": "onStateChange",
+        "callExpression": "onStateChange",
+        "sourcePath": "src/features/reader/ReaderViewport.tsx"
+      },
+      {
+        "fromSymbol": "src/features/reader/ReaderViewport.tsx",
+        "toSymbol": "toViewportState",
+        "callExpression": "toViewportState",
+        "sourcePath": "src/features/reader/ReaderViewport.tsx"
+      },
+      {
+        "fromSymbol": "src/features/reader/ReaderViewport.tsx",
+        "toSymbol": "mountReaderDriver",
+        "callExpression": "mountReaderDriver",
+        "sourcePath": "src/features/reader/ReaderViewport.tsx"
+      },
+      {
+        "fromSymbol": "mountReaderDriver",
+        "toSymbol": "onStateChange",
+        "callExpression": "args.onStateChange",
+        "sourcePath": "src/features/reader/ReaderViewport.tsx"
+      },
+      {
+        "fromSymbol": "mountReaderDriver",
+        "toSymbol": "initializeReaderDriver",
+        "callExpression": "initializeReaderDriver",
+        "sourcePath": "src/features/reader/ReaderViewport.tsx"
+      },
+      {
+        "fromSymbol": "src/features/reader/ReaderViewport.tsx",
+        "toSymbol": "destroy",
+        "callExpression": "driver.destroy",
+        "sourcePath": "src/features/reader/ReaderViewport.tsx"
+      },
+      {
+        "fromSymbol": "src/features/reader/ReaderViewport.tsx",
+        "toSymbol": "emitState",
+        "callExpression": "args.emitState",
+        "sourcePath": "src/features/reader/ReaderViewport.tsx"
+      },
+      {
+        "fromSymbol": "src/features/reader/ReaderViewport.tsx",
+        "toSymbol": "getState",
+        "callExpression": "driver.getState",
+        "sourcePath": "src/features/reader/ReaderViewport.tsx"
+      },
+      {
+        "fromSymbol": "src/features/reader/ReaderViewport.tsx",
+        "toSymbol": "onError",
+        "callExpression": "args.onError",
+        "sourcePath": "src/features/reader/ReaderViewport.tsx"
+      },
+      {
+        "fromSymbol": "src/features/reader/ReaderViewport.tsx",
+        "toSymbol": "normalizeReaderError",
+        "callExpression": "normalizeReaderError",
+        "sourcePath": "src/features/reader/ReaderViewport.tsx"
+      },
+      {
+        "fromSymbol": "src/features/reader/ReaderViewport.tsx",
+        "toSymbol": "destroy",
+        "callExpression": "holder.driver.destroy",
+        "sourcePath": "src/features/reader/ReaderViewport.tsx"
+      },
+      {
+        "fromSymbol": "initializeReaderDriver",
+        "toSymbol": "loadReaderSourceAsync",
+        "callExpression": "loadReaderSourceAsync",
+        "sourcePath": "src/features/reader/ReaderViewport.tsx"
+      },
+      {
+        "fromSymbol": "initializeReaderDriver",
+        "toSymbol": "create",
+        "callExpression": "PdfReaderDriver.create",
+        "sourcePath": "src/features/reader/ReaderViewport.tsx"
+      },
+      {
+        "fromSymbol": "onExternalLink",
+        "toSymbol": "onOpenExternalLink",
+        "callExpression": "props.onOpenExternalLink",
+        "sourcePath": "src/features/reader/ReaderViewport.tsx"
+      },
+      {
+        "fromSymbol": "onRenderError",
+        "toSymbol": "onError",
+        "callExpression": "props.onError",
+        "sourcePath": "src/features/reader/ReaderViewport.tsx"
+      },
+      {
+        "fromSymbol": "onRenderError",
+        "toSymbol": "normalizeReaderError",
+        "callExpression": "normalizeReaderError",
+        "sourcePath": "src/features/reader/ReaderViewport.tsx"
+      },
+      {
+        "fromSymbol": "initializeReaderDriver",
+        "toSymbol": "create",
+        "callExpression": "EpubReaderDriver.create",
+        "sourcePath": "src/features/reader/ReaderViewport.tsx"
+      },
+      {
+        "fromSymbol": "onStateChange",
+        "toSymbol": "emitState",
+        "callExpression": "emitState",
+        "sourcePath": "src/features/reader/ReaderViewport.tsx"
+      },
+      {
+        "fromSymbol": "src/features/reader/ReaderViewport.tsx",
+        "toSymbol": "navigate",
+        "callExpression": "navigate",
+        "sourcePath": "src/features/reader/ReaderViewport.tsx"
+      },
+      {
+        "fromSymbol": "src/features/reader/ReaderViewport.tsx",
+        "toSymbol": "isInteractiveTarget",
+        "callExpression": "isInteractiveTarget",
+        "sourcePath": "src/features/reader/ReaderViewport.tsx"
+      },
+      {
+        "fromSymbol": "src/features/reader/ReaderViewport.tsx",
+        "toSymbol": "handleSwipe",
+        "callExpression": "handleSwipe",
+        "sourcePath": "src/features/reader/ReaderViewport.tsx"
+      },
+      {
+        "fromSymbol": "src/features/reader/ReaderViewport.tsx",
+        "toSymbol": "handleKeyboard",
+        "callExpression": "handleKeyboard",
+        "sourcePath": "src/features/reader/ReaderViewport.tsx"
+      },
+      {
+        "fromSymbol": "handleSwipe",
+        "toSymbol": "resolveReaderNavigationIntent",
+        "callExpression": "resolveReaderNavigationIntent",
+        "sourcePath": "src/features/reader/ReaderViewport.tsx"
+      },
+      {
+        "fromSymbol": "handleSwipe",
+        "toSymbol": "navigate",
+        "callExpression": "navigate",
+        "sourcePath": "src/features/reader/ReaderViewport.tsx"
+      },
+      {
+        "fromSymbol": "handleKeyboard",
+        "toSymbol": "resolveReaderKeyboardIntent",
+        "callExpression": "resolveReaderKeyboardIntent",
+        "sourcePath": "src/features/reader/ReaderViewport.tsx"
+      },
+      {
+        "fromSymbol": "handleKeyboard",
+        "toSymbol": "isInteractiveTarget",
+        "callExpression": "isInteractiveTarget",
+        "sourcePath": "src/features/reader/ReaderViewport.tsx"
+      },
+      {
+        "fromSymbol": "handleKeyboard",
+        "toSymbol": "navigate",
+        "callExpression": "navigate",
+        "sourcePath": "src/features/reader/ReaderViewport.tsx"
+      },
+      {
+        "fromSymbol": "navigate",
+        "toSymbol": "goNext",
+        "callExpression": "driver.goNext",
+        "sourcePath": "src/features/reader/ReaderViewport.tsx"
+      },
+      {
+        "fromSymbol": "navigate",
+        "toSymbol": "goPrevious",
+        "callExpression": "driver.goPrevious",
+        "sourcePath": "src/features/reader/ReaderViewport.tsx"
+      },
+      {
+        "fromSymbol": "navigate",
+        "toSymbol": "emitState",
+        "callExpression": "emitState",
+        "sourcePath": "src/features/reader/ReaderViewport.tsx"
+      },
+      {
+        "fromSymbol": "navigate",
+        "toSymbol": "getState",
+        "callExpression": "driver.getState",
+        "sourcePath": "src/features/reader/ReaderViewport.tsx"
+      },
+      {
+        "fromSymbol": "src/features/reader/readerViewportPresentation.test.ts",
+        "toSymbol": "describe",
+        "callExpression": "describe",
+        "sourcePath": "src/features/reader/readerViewportPresentation.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/reader/readerViewportPresentation.test.ts",
+        "toSymbol": "test",
+        "callExpression": "test",
+        "sourcePath": "src/features/reader/readerViewportPresentation.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/reader/readerViewportPresentation.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/features/reader/readerViewportPresentation.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/reader/rendererPackages.test.ts",
+        "toSymbol": "describe",
+        "callExpression": "describe",
+        "sourcePath": "src/features/reader/rendererPackages.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/reader/rendererPackages.test.ts",
+        "toSymbol": "test",
+        "callExpression": "test",
+        "sourcePath": "src/features/reader/rendererPackages.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/reader/rendererPackages.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/features/reader/rendererPackages.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/reader/rendererPackages.test.ts",
+        "toSymbol": "getDocument",
+        "callExpression": "getDocument",
+        "sourcePath": "src/features/reader/rendererPackages.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/reader/toReaderViewportProps.test.ts",
+        "toSymbol": "describe",
+        "callExpression": "describe",
+        "sourcePath": "src/features/reader/toReaderViewportProps.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/reader/toReaderViewportProps.test.ts",
+        "toSymbol": "test",
+        "callExpression": "test",
+        "sourcePath": "src/features/reader/toReaderViewportProps.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/reader/toReaderViewportProps.test.ts",
+        "toSymbol": "toReaderViewportProps",
+        "callExpression": "toReaderViewportProps",
+        "sourcePath": "src/features/reader/toReaderViewportProps.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/reader/toReaderViewportProps.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/features/reader/toReaderViewportProps.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/reader/toReaderViewportProps.test.ts",
+        "toSymbol": "onStateChange",
+        "callExpression": "props.onStateChange",
+        "sourcePath": "src/features/reader/toReaderViewportProps.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/reader/toReaderViewportProps.test.ts",
+        "toSymbol": "onError",
+        "callExpression": "props.onError",
+        "sourcePath": "src/features/reader/toReaderViewportProps.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/reader/toReaderViewportProps.test.ts",
+        "toSymbol": "onOpenExternalLink",
+        "callExpression": "props.onOpenExternalLink",
+        "sourcePath": "src/features/reader/toReaderViewportProps.test.ts"
+      },
+      {
+        "fromSymbol": "onError",
+        "toSymbol": "onError",
+        "callExpression": "props.onError",
+        "sourcePath": "src/features/reader/toReaderViewportProps.ts"
+      },
+      {
+        "fromSymbol": "onOpenExternalLink",
+        "toSymbol": "onOpenExternalLink",
+        "callExpression": "props.onOpenExternalLink",
+        "sourcePath": "src/features/reader/toReaderViewportProps.ts"
+      },
+      {
+        "fromSymbol": "onStateChange",
+        "toSymbol": "onStateChange",
+        "callExpression": "props.onStateChange",
+        "sourcePath": "src/features/reader/toReaderViewportProps.ts"
+      },
+      {
+        "fromSymbol": "src/features/reader/validateEpubArchiveEntriesAsync.test.ts",
+        "toSymbol": "describe",
+        "callExpression": "describe",
+        "sourcePath": "src/features/reader/validateEpubArchiveEntriesAsync.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/reader/validateEpubArchiveEntriesAsync.test.ts",
+        "toSymbol": "test",
+        "callExpression": "test",
+        "sourcePath": "src/features/reader/validateEpubArchiveEntriesAsync.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/reader/validateEpubArchiveEntriesAsync.test.ts",
+        "toSymbol": "createArchiveEntries",
+        "callExpression": "createArchiveEntries",
+        "sourcePath": "src/features/reader/validateEpubArchiveEntriesAsync.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/reader/validateEpubArchiveEntriesAsync.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/features/reader/validateEpubArchiveEntriesAsync.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/reader/validateEpubArchiveEntriesAsync.test.ts",
+        "toSymbol": "validateEpubArchiveEntriesAsync",
+        "callExpression": "validateEpubArchiveEntriesAsync",
+        "sourcePath": "src/features/reader/validateEpubArchiveEntriesAsync.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/reader/validateEpubArchiveEntriesAsync.test.ts",
+        "toSymbol": "createArchive",
+        "callExpression": "createArchive",
+        "sourcePath": "src/features/reader/validateEpubArchiveEntriesAsync.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/reader/validateEpubArchiveEntriesAsync.test.ts",
+        "toSymbol": "findSignatureOffsets",
+        "callExpression": "findSignatureOffsets",
+        "sourcePath": "src/features/reader/validateEpubArchiveEntriesAsync.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/reader/validateEpubArchiveEntriesAsync.test.ts",
+        "toSymbol": "readArchiveEntries",
+        "callExpression": "readArchiveEntries",
+        "sourcePath": "src/features/reader/validateEpubArchiveEntriesAsync.test.ts"
+      },
+      {
+        "fromSymbol": "createArchiveEntries",
+        "toSymbol": "readArchiveEntries",
+        "callExpression": "readArchiveEntries",
+        "sourcePath": "src/features/reader/validateEpubArchiveEntriesAsync.test.ts"
+      },
+      {
+        "fromSymbol": "createArchiveEntries",
+        "toSymbol": "createArchive",
+        "callExpression": "createArchive",
+        "sourcePath": "src/features/reader/validateEpubArchiveEntriesAsync.test.ts"
+      },
+      {
+        "fromSymbol": "ReaderView",
+        "toSymbol": "toReaderViewportProps",
+        "callExpression": "toReaderViewportProps",
+        "sourcePath": "src/features/reader/adapters/ReaderView.native.tsx"
+      },
+      {
+        "fromSymbol": "ReaderView",
+        "toSymbol": "toReaderViewportProps",
+        "callExpression": "toReaderViewportProps",
+        "sourcePath": "src/features/reader/adapters/ReaderView.web.tsx"
+      },
+      {
+        "fromSymbol": "create",
+        "toSymbol": "open",
+        "callExpression": "EpubArchive.open",
+        "sourcePath": "src/features/reader/drivers/EpubReaderDriver.ts"
+      },
+      {
+        "fromSymbol": "create",
+        "toSymbol": "parseEpubPackage",
+        "callExpression": "parseEpubPackage",
+        "sourcePath": "src/features/reader/drivers/EpubReaderDriver.ts"
+      },
+      {
+        "fromSymbol": "create",
+        "toSymbol": "createPublication",
+        "callExpression": "createPublication",
+        "sourcePath": "src/features/reader/drivers/EpubReaderDriver.ts"
+      },
+      {
+        "fromSymbol": "frameLoaded",
+        "toSymbol": "attachFrameLinkPolicy",
+        "callExpression": "attachFrameLinkPolicy",
+        "sourcePath": "src/features/reader/drivers/EpubReaderDriver.ts"
+      },
+      {
+        "fromSymbol": "src/features/reader/drivers/EpubReaderDriver.ts",
+        "toSymbol": "#onExternalLink",
+        "callExpression": "holder.driver.#onExternalLink",
+        "sourcePath": "src/features/reader/drivers/EpubReaderDriver.ts"
+      },
+      {
+        "fromSymbol": "positionChanged",
+        "toSymbol": "#notifyState",
+        "callExpression": "holder.driver.#notifyState",
+        "sourcePath": "src/features/reader/drivers/EpubReaderDriver.ts"
+      },
+      {
+        "fromSymbol": "timelineItemChanged",
+        "toSymbol": "#notifyState",
+        "callExpression": "holder.driver.#notifyState",
+        "sourcePath": "src/features/reader/drivers/EpubReaderDriver.ts"
+      },
+      {
+        "fromSymbol": "create",
+        "toSymbol": "parseInitialLocator",
+        "callExpression": "parseInitialLocator",
+        "sourcePath": "src/features/reader/drivers/EpubReaderDriver.ts"
+      },
+      {
+        "fromSymbol": "create",
+        "toSymbol": "resolvePreferences",
+        "callExpression": "resolvePreferences",
+        "sourcePath": "src/features/reader/drivers/EpubReaderDriver.ts"
+      },
+      {
+        "fromSymbol": "create",
+        "toSymbol": "#notifyState",
+        "callExpression": "driver.#notifyState",
+        "sourcePath": "src/features/reader/drivers/EpubReaderDriver.ts"
+      },
+      {
+        "fromSymbol": "create",
+        "toSymbol": "close",
+        "callExpression": "archive.close",
+        "sourcePath": "src/features/reader/drivers/EpubReaderDriver.ts"
+      },
+      {
+        "fromSymbol": "goNext",
+        "toSymbol": "navigate",
+        "callExpression": "navigate",
+        "sourcePath": "src/features/reader/drivers/EpubReaderDriver.ts"
+      },
+      {
+        "fromSymbol": "src/features/reader/drivers/EpubReaderDriver.ts",
+        "toSymbol": "shouldAnimateNavigation",
+        "callExpression": "shouldAnimateNavigation",
+        "sourcePath": "src/features/reader/drivers/EpubReaderDriver.ts"
+      },
+      {
+        "fromSymbol": "goPrevious",
+        "toSymbol": "navigate",
+        "callExpression": "navigate",
+        "sourcePath": "src/features/reader/drivers/EpubReaderDriver.ts"
+      },
+      {
+        "fromSymbol": "destroy",
+        "toSymbol": "close",
+        "callExpression": "this.#archive.close",
+        "sourcePath": "src/features/reader/drivers/EpubReaderDriver.ts"
+      },
+      {
+        "fromSymbol": "#notifyState",
+        "toSymbol": "#onStateChange",
+        "callExpression": "this.#onStateChange",
+        "sourcePath": "src/features/reader/drivers/EpubReaderDriver.ts"
+      },
+      {
+        "fromSymbol": "#notifyState",
+        "toSymbol": "getState",
+        "callExpression": "this.getState",
+        "sourcePath": "src/features/reader/drivers/EpubReaderDriver.ts"
+      },
+      {
+        "fromSymbol": "createPublication",
+        "toSymbol": "paths",
+        "callExpression": "archive.paths",
+        "sourcePath": "src/features/reader/drivers/EpubReaderDriver.ts"
+      },
+      {
+        "fromSymbol": "createPublication",
+        "toSymbol": "inferEpubMediaType",
+        "callExpression": "inferEpubMediaType",
+        "sourcePath": "src/features/reader/drivers/EpubReaderDriver.ts"
+      },
+      {
+        "fromSymbol": "createPublication",
+        "toSymbol": "read",
+        "callExpression": "archive.read",
+        "sourcePath": "src/features/reader/drivers/EpubReaderDriver.ts"
+      },
+      {
+        "fromSymbol": "createPublication",
+        "toSymbol": "sanitizeEpubStylesheet",
+        "callExpression": "sanitizeEpubStylesheet",
+        "sourcePath": "src/features/reader/drivers/EpubReaderDriver.ts"
+      },
+      {
+        "fromSymbol": "createPublication",
+        "toSymbol": "readText",
+        "callExpression": "archive.readText",
+        "sourcePath": "src/features/reader/drivers/EpubReaderDriver.ts"
+      },
+      {
+        "fromSymbol": "createPublication",
+        "toSymbol": "sanitizeEpubDocument",
+        "callExpression": "sanitizeEpubDocument",
+        "sourcePath": "src/features/reader/drivers/EpubReaderDriver.ts"
+      },
+      {
+        "fromSymbol": "src/features/reader/drivers/EpubReaderDriver.ts",
+        "toSymbol": "onExternalLink",
+        "callExpression": "onExternalLink",
+        "sourcePath": "src/features/reader/drivers/EpubReaderDriver.ts"
+      },
+      {
+        "fromSymbol": "src/features/reader/drivers/EpubReaderDriver.ts",
+        "toSymbol": "start",
+        "callExpression": "start",
+        "sourcePath": "src/features/reader/drivers/EpubReaderDriver.ts"
+      },
+      {
+        "fromSymbol": "src/features/reader/drivers/EpubReaderDriver.ts",
+        "toSymbol": "resolve",
+        "callExpression": "resolve",
+        "sourcePath": "src/features/reader/drivers/EpubReaderDriver.ts"
+      },
+      {
+        "fromSymbol": "create",
+        "toSymbol": "getDocument",
+        "callExpression": "getDocument",
+        "sourcePath": "src/features/reader/drivers/PdfReaderDriver.ts"
+      },
+      {
+        "fromSymbol": "create",
+        "toSymbol": "resolveInitialPage",
+        "callExpression": "resolveInitialPage",
+        "sourcePath": "src/features/reader/drivers/PdfReaderDriver.ts"
+      },
+      {
+        "fromSymbol": "create",
+        "toSymbol": "#renderPage",
+        "callExpression": "driver.#renderPage",
+        "sourcePath": "src/features/reader/drivers/PdfReaderDriver.ts"
+      },
+      {
+        "fromSymbol": "create",
+        "toSymbol": "#observeResize",
+        "callExpression": "driver.#observeResize",
+        "sourcePath": "src/features/reader/drivers/PdfReaderDriver.ts"
+      },
+      {
+        "fromSymbol": "goNext",
+        "toSymbol": "#renderPage",
+        "callExpression": "this.#renderPage",
+        "sourcePath": "src/features/reader/drivers/PdfReaderDriver.ts"
+      },
+      {
+        "fromSymbol": "goPrevious",
+        "toSymbol": "#renderPage",
+        "callExpression": "this.#renderPage",
+        "sourcePath": "src/features/reader/drivers/PdfReaderDriver.ts"
+      },
+      {
+        "fromSymbol": "#renderPage",
+        "toSymbol": "renderExternalLinks",
+        "callExpression": "renderExternalLinks",
+        "sourcePath": "src/features/reader/drivers/PdfReaderDriver.ts"
+      },
+      {
+        "fromSymbol": "src/features/reader/drivers/PdfReaderDriver.ts",
+        "toSymbol": "#renderPage",
+        "callExpression": "this.#renderPage",
+        "sourcePath": "src/features/reader/drivers/PdfReaderDriver.ts"
+      },
+      {
+        "fromSymbol": "src/features/reader/drivers/PdfReaderDriver.ts",
+        "toSymbol": "#onRenderError",
+        "callExpression": "this.#onRenderError",
+        "sourcePath": "src/features/reader/drivers/PdfReaderDriver.ts"
+      },
+      {
+        "fromSymbol": "renderExternalLinks",
+        "toSymbol": "isExternalPdfLink",
+        "callExpression": "isExternalPdfLink",
+        "sourcePath": "src/features/reader/drivers/PdfReaderDriver.ts"
+      },
+      {
+        "fromSymbol": "renderExternalLinks",
+        "toSymbol": "convertToViewportPoint",
+        "callExpression": "viewport.convertToViewportPoint",
+        "sourcePath": "src/features/reader/drivers/PdfReaderDriver.ts"
+      },
+      {
+        "fromSymbol": "src/features/reader/drivers/PdfReaderDriver.ts",
+        "toSymbol": "onExternalLink",
+        "callExpression": "onExternalLink",
+        "sourcePath": "src/features/reader/drivers/PdfReaderDriver.ts"
+      },
+      {
+        "fromSymbol": "EpubArchive",
+        "toSymbol": "createEntryMap",
+        "callExpression": "createEntryMap",
+        "sourcePath": "src/features/reader/epub/EpubArchive.ts"
+      },
+      {
+        "fromSymbol": "open",
+        "toSymbol": "validateEpubArchiveEntriesAsync",
+        "callExpression": "validateEpubArchiveEntriesAsync",
+        "sourcePath": "src/features/reader/epub/EpubArchive.ts"
+      },
+      {
+        "fromSymbol": "has",
+        "toSymbol": "normalizeArchivePath",
+        "callExpression": "normalizeArchivePath",
+        "sourcePath": "src/features/reader/epub/EpubArchive.ts"
+      },
+      {
+        "fromSymbol": "read",
+        "toSymbol": "normalizeArchivePath",
+        "callExpression": "normalizeArchivePath",
+        "sourcePath": "src/features/reader/epub/EpubArchive.ts"
+      },
+      {
+        "fromSymbol": "readText",
+        "toSymbol": "read",
+        "callExpression": "this.read",
+        "sourcePath": "src/features/reader/epub/EpubArchive.ts"
+      },
+      {
+        "fromSymbol": "createEntryMap",
+        "toSymbol": "normalizeArchivePath",
+        "callExpression": "normalizeArchivePath",
+        "sourcePath": "src/features/reader/epub/EpubArchive.ts"
+      },
+      {
+        "fromSymbol": "close",
+        "toSymbol": "close",
+        "callExpression": "this.#archive.close",
+        "sourcePath": "src/features/reader/epub/EpubArchiveFetcher.ts"
+      },
+      {
+        "fromSymbol": "length",
+        "toSymbol": "read",
+        "callExpression": "this.archive.read",
+        "sourcePath": "src/features/reader/epub/EpubArchiveFetcher.ts"
+      },
+      {
+        "fromSymbol": "read",
+        "toSymbol": "read",
+        "callExpression": "this.archive.read",
+        "sourcePath": "src/features/reader/epub/EpubArchiveFetcher.ts"
+      },
+      {
+        "fromSymbol": "src/features/reader/epub/parseEpubPackage.test.ts",
+        "toSymbol": "beforeEach",
+        "callExpression": "beforeEach",
+        "sourcePath": "src/features/reader/epub/parseEpubPackage.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/reader/epub/parseEpubPackage.test.ts",
+        "toSymbol": "afterEach",
+        "callExpression": "afterEach",
+        "sourcePath": "src/features/reader/epub/parseEpubPackage.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/reader/epub/parseEpubPackage.test.ts",
+        "toSymbol": "describe",
+        "callExpression": "describe",
+        "sourcePath": "src/features/reader/epub/parseEpubPackage.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/reader/epub/parseEpubPackage.test.ts",
+        "toSymbol": "test",
+        "callExpression": "test",
+        "sourcePath": "src/features/reader/epub/parseEpubPackage.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/reader/epub/parseEpubPackage.test.ts",
+        "toSymbol": "openFixture",
+        "callExpression": "openFixture",
+        "sourcePath": "src/features/reader/epub/parseEpubPackage.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/reader/epub/parseEpubPackage.test.ts",
+        "toSymbol": "packageDocument",
+        "callExpression": "packageDocument",
+        "sourcePath": "src/features/reader/epub/parseEpubPackage.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/reader/epub/parseEpubPackage.test.ts",
+        "toSymbol": "parseEpubPackage",
+        "callExpression": "parseEpubPackage",
+        "sourcePath": "src/features/reader/epub/parseEpubPackage.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/reader/epub/parseEpubPackage.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/features/reader/epub/parseEpubPackage.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/reader/epub/parseEpubPackage.test.ts",
+        "toSymbol": "close",
+        "callExpression": "archive.close",
+        "sourcePath": "src/features/reader/epub/parseEpubPackage.test.ts"
+      },
+      {
+        "fromSymbol": "openFixture",
+        "toSymbol": "open",
+        "callExpression": "EpubArchive.open",
+        "sourcePath": "src/features/reader/epub/parseEpubPackage.test.ts"
+      },
+      {
+        "fromSymbol": "parseEpubPackage",
+        "toSymbol": "readText",
+        "callExpression": "archive.readText",
+        "sourcePath": "src/features/reader/epub/parseEpubPackage.ts"
+      },
+      {
+        "fromSymbol": "parseEpubPackage",
+        "toSymbol": "has",
+        "callExpression": "archive.has",
+        "sourcePath": "src/features/reader/epub/parseEpubPackage.ts"
+      },
+      {
+        "fromSymbol": "parseEpubPackage",
+        "toSymbol": "elementsByLocalName",
+        "callExpression": "elementsByLocalName",
+        "sourcePath": "src/features/reader/epub/parseEpubPackage.ts"
+      },
+      {
+        "fromSymbol": "parseEpubPackage",
+        "toSymbol": "parseXml",
+        "callExpression": "parseXml",
+        "sourcePath": "src/features/reader/epub/parseEpubPackage.ts"
+      },
+      {
+        "fromSymbol": "parseEpubPackage",
+        "toSymbol": "resolveArchivePath",
+        "callExpression": "resolveArchivePath",
+        "sourcePath": "src/features/reader/epub/parseEpubPackage.ts"
+      },
+      {
+        "fromSymbol": "parseEpubPackage",
+        "toSymbol": "elementText",
+        "callExpression": "elementText",
+        "sourcePath": "src/features/reader/epub/parseEpubPackage.ts"
+      },
+      {
+        "fromSymbol": "parseEpubPackage",
+        "toSymbol": "parseNavigationDocument",
+        "callExpression": "parseNavigationDocument",
+        "sourcePath": "src/features/reader/epub/parseEpubPackage.ts"
+      },
+      {
+        "fromSymbol": "parseNavigationDocument",
+        "toSymbol": "parseXml",
+        "callExpression": "parseXml",
+        "sourcePath": "src/features/reader/epub/parseEpubPackage.ts"
+      },
+      {
+        "fromSymbol": "parseNavigationDocument",
+        "toSymbol": "readText",
+        "callExpression": "archive.readText",
+        "sourcePath": "src/features/reader/epub/parseEpubPackage.ts"
+      },
+      {
+        "fromSymbol": "parseNavigationDocument",
+        "toSymbol": "elementsByLocalName",
+        "callExpression": "elementsByLocalName",
+        "sourcePath": "src/features/reader/epub/parseEpubPackage.ts"
+      },
+      {
+        "fromSymbol": "src/features/reader/epub/parseEpubPackage.ts",
+        "toSymbol": "resolveArchivePath",
+        "callExpression": "resolveArchivePath",
+        "sourcePath": "src/features/reader/epub/parseEpubPackage.ts"
+      },
+      {
+        "fromSymbol": "parseXml",
+        "toSymbol": "elementsByLocalName",
+        "callExpression": "elementsByLocalName",
+        "sourcePath": "src/features/reader/epub/parseEpubPackage.ts"
+      },
+      {
+        "fromSymbol": "elementText",
+        "toSymbol": "elementsByLocalName",
+        "callExpression": "elementsByLocalName",
+        "sourcePath": "src/features/reader/epub/parseEpubPackage.ts"
+      },
+      {
+        "fromSymbol": "src/features/reader/epub/path.test.ts",
+        "toSymbol": "describe",
+        "callExpression": "describe",
+        "sourcePath": "src/features/reader/epub/path.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/reader/epub/path.test.ts",
+        "toSymbol": "test",
+        "callExpression": "test",
+        "sourcePath": "src/features/reader/epub/path.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/reader/epub/path.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/features/reader/epub/path.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/reader/epub/path.test.ts",
+        "toSymbol": "resolveArchivePath",
+        "callExpression": "resolveArchivePath",
+        "sourcePath": "src/features/reader/epub/path.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/reader/epub/path.test.ts",
+        "toSymbol": "normalizeArchivePath",
+        "callExpression": "normalizeArchivePath",
+        "sourcePath": "src/features/reader/epub/path.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/reader/epub/path.test.ts",
+        "toSymbol": "isExternalReference",
+        "callExpression": "isExternalReference",
+        "sourcePath": "src/features/reader/epub/path.test.ts"
+      },
+      {
+        "fromSymbol": "resolveArchivePath",
+        "toSymbol": "normalizeArchivePath",
+        "callExpression": "normalizeArchivePath",
+        "sourcePath": "src/features/reader/epub/path.ts"
+      },
+      {
+        "fromSymbol": "sanitizeEpubDocument",
+        "toSymbol": "sanitizeElementAttributes",
+        "callExpression": "sanitizeElementAttributes",
+        "sourcePath": "src/features/reader/epub/sanitizeEpubDocument.ts"
+      },
+      {
+        "fromSymbol": "sanitizeEpubDocument",
+        "toSymbol": "rewriteDocumentResources",
+        "callExpression": "rewriteDocumentResources",
+        "sourcePath": "src/features/reader/epub/sanitizeEpubDocument.ts"
+      },
+      {
+        "fromSymbol": "sanitizeEpubDocument",
+        "toSymbol": "rewriteDocumentLinks",
+        "callExpression": "rewriteDocumentLinks",
+        "sourcePath": "src/features/reader/epub/sanitizeEpubDocument.ts"
+      },
+      {
+        "fromSymbol": "sanitizeElementAttributes",
+        "toSymbol": "sanitizeEpubStylesheet",
+        "callExpression": "sanitizeEpubStylesheet",
+        "sourcePath": "src/features/reader/epub/sanitizeEpubDocument.ts"
+      },
+      {
+        "fromSymbol": "rewriteDocumentResources",
+        "toSymbol": "rewriteResourceAttribute",
+        "callExpression": "rewriteResourceAttribute",
+        "sourcePath": "src/features/reader/epub/sanitizeEpubDocument.ts"
+      },
+      {
+        "fromSymbol": "rewriteDocumentLinks",
+        "toSymbol": "isExternalReference",
+        "callExpression": "isExternalReference",
+        "sourcePath": "src/features/reader/epub/sanitizeEpubDocument.ts"
+      },
+      {
+        "fromSymbol": "src/features/reader/epub/sanitizeEpubDocument.ts",
+        "toSymbol": "isExternalReference",
+        "callExpression": "isExternalReference",
+        "sourcePath": "src/features/reader/epub/sanitizeEpubDocument.ts"
+      },
+      {
+        "fromSymbol": "src/features/reader/epub/sanitizeEpubDocument.ts",
+        "toSymbol": "resolveResourceUrl",
+        "callExpression": "resolveResourceUrl",
+        "sourcePath": "src/features/reader/epub/sanitizeEpubDocument.ts"
+      },
+      {
+        "fromSymbol": "src/features/reader/epub/sanitizeEpubDocument.ts",
+        "toSymbol": "resolveArchivePath",
+        "callExpression": "resolveArchivePath",
+        "sourcePath": "src/features/reader/epub/sanitizeEpubDocument.ts"
+      },
+      {
+        "fromSymbol": "rewriteResourceAttribute",
+        "toSymbol": "isExternalReference",
+        "callExpression": "isExternalReference",
+        "sourcePath": "src/features/reader/epub/sanitizeEpubDocument.ts"
+      },
+      {
+        "fromSymbol": "rewriteResourceAttribute",
+        "toSymbol": "resolveResourceUrl",
+        "callExpression": "resolveResourceUrl",
+        "sourcePath": "src/features/reader/epub/sanitizeEpubDocument.ts"
+      },
+      {
+        "fromSymbol": "rewriteResourceAttribute",
+        "toSymbol": "resolveArchivePath",
+        "callExpression": "resolveArchivePath",
+        "sourcePath": "src/features/reader/epub/sanitizeEpubDocument.ts"
+      },
+      {
+        "fromSymbol": "validateEpubArchiveEntriesAsync",
+        "toSymbol": "validateDeclaredSizes",
+        "callExpression": "validateDeclaredSizes",
+        "sourcePath": "src/features/reader/epub/validateEpubArchiveEntriesAsync.ts"
+      },
+      {
+        "fromSymbol": "src/features/reader/navigation/resolveReaderKeyboardIntent.test.ts",
+        "toSymbol": "describe",
+        "callExpression": "describe",
+        "sourcePath": "src/features/reader/navigation/resolveReaderKeyboardIntent.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/reader/navigation/resolveReaderKeyboardIntent.test.ts",
+        "toSymbol": "test",
+        "callExpression": "test",
+        "sourcePath": "src/features/reader/navigation/resolveReaderKeyboardIntent.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/reader/navigation/resolveReaderKeyboardIntent.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/features/reader/navigation/resolveReaderKeyboardIntent.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/reader/navigation/resolveReaderKeyboardIntent.test.ts",
+        "toSymbol": "resolveReaderKeyboardIntent",
+        "callExpression": "resolveReaderKeyboardIntent",
+        "sourcePath": "src/features/reader/navigation/resolveReaderKeyboardIntent.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/reader/navigation/resolveReaderNavigationIntent.test.ts",
+        "toSymbol": "describe",
+        "callExpression": "describe",
+        "sourcePath": "src/features/reader/navigation/resolveReaderNavigationIntent.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/reader/navigation/resolveReaderNavigationIntent.test.ts",
+        "toSymbol": "test",
+        "callExpression": "test",
+        "sourcePath": "src/features/reader/navigation/resolveReaderNavigationIntent.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/reader/navigation/resolveReaderNavigationIntent.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/features/reader/navigation/resolveReaderNavigationIntent.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/reader/navigation/resolveReaderNavigationIntent.test.ts",
+        "toSymbol": "resolveReaderNavigationIntent",
+        "callExpression": "resolveReaderNavigationIntent",
+        "sourcePath": "src/features/reader/navigation/resolveReaderNavigationIntent.test.ts"
+      }
+    ],
+    "typeReferences": [
+      {
+        "fromSymbol": "ReaderView",
+        "toType": "ReaderViewProps",
+        "sourcePath": "src/features/reader/adapters/ReaderView.tsx"
+      },
+      {
+        "fromSymbol": "ReaderErrorEvent",
+        "toType": "ReaderDocumentFormat",
+        "sourcePath": "src/types/reader.ts"
+      },
+      {
+        "fromSymbol": "ReaderErrorEvent",
+        "toType": "ReaderErrorCode",
+        "sourcePath": "src/types/reader.ts"
+      },
+      {
+        "fromSymbol": "ReaderLocationChangeEvent",
+        "toType": "ReaderDocumentFormat",
+        "sourcePath": "src/types/reader.ts"
+      },
+      {
+        "fromSymbol": "ReaderLocationChangeEvent",
+        "toType": "ReaderNavigationTrigger",
+        "sourcePath": "src/types/reader.ts"
+      },
+      {
+        "fromSymbol": "ReaderViewportState",
+        "toType": "ReaderLocationChangeEvent",
+        "sourcePath": "src/types/reader.ts"
+      },
+      {
+        "fromSymbol": "ReaderViewProps",
+        "toType": "Partial",
+        "sourcePath": "src/types/reader.ts"
+      },
+      {
+        "fromSymbol": "ReaderViewProps",
+        "toType": "ReaderAppearance",
+        "sourcePath": "src/types/reader.ts"
+      },
+      {
+        "fromSymbol": "ReaderViewProps",
+        "toType": "ReaderCommand",
+        "sourcePath": "src/types/reader.ts"
+      },
+      {
+        "fromSymbol": "ReaderViewProps",
+        "toType": "ReaderDocumentFormat",
+        "sourcePath": "src/types/reader.ts"
+      },
+      {
+        "fromSymbol": "ReaderViewProps",
+        "toType": "ReaderErrorEvent",
+        "sourcePath": "src/types/reader.ts"
+      },
+      {
+        "fromSymbol": "ReaderViewProps",
+        "toType": "ReaderViewportState",
+        "sourcePath": "src/types/reader.ts"
+      },
+      {
+        "fromSymbol": "ReaderViewProps",
+        "toType": "ReaderViewStyle",
+        "sourcePath": "src/types/reader.ts"
+      }
+    ],
+    "componentComposition": []
+  }
+}
