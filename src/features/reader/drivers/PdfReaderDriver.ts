@@ -4,11 +4,10 @@ import {
   PasswordException,
   type PDFDocumentLoadingTask,
   type PDFDocumentProxy,
-  PDFWorker,
   RenderingCancelledException,
   type RenderTask,
   TextLayer,
-} from 'pdfjs-dist';
+} from 'pdfjs-dist/webpack.mjs';
 
 import type { ReaderDriver, ReaderDriverState } from '../../../types/reader.js';
 import { ReaderDocumentError } from '../errors/ReaderDocumentError.js';
@@ -20,7 +19,6 @@ export class PdfReaderDriver implements ReaderDriver {
   readonly #loadingTask: PDFDocumentLoadingTask;
   readonly #onExternalLink: (url: string) => void;
   readonly #onRenderError: (error: unknown) => void;
-  readonly #worker: PDFWorker;
   #page: number;
   #renderTask?: RenderTask;
   #resizeFrame?: number;
@@ -34,14 +32,12 @@ export class PdfReaderDriver implements ReaderDriver {
     loadingTask: PDFDocumentLoadingTask;
     onExternalLink: (url: string) => void;
     onRenderError: (error: unknown) => void;
-    worker: PDFWorker;
   }) {
     this.#container = args.container;
     this.#document = args.document;
     this.#loadingTask = args.loadingTask;
     this.#onExternalLink = args.onExternalLink;
     this.#onRenderError = args.onRenderError;
-    this.#worker = args.worker;
     this.#page = args.initialPage;
   }
 
@@ -52,11 +48,9 @@ export class PdfReaderDriver implements ReaderDriver {
     onExternalLink: (url: string) => void;
     onRenderError: (error: unknown) => void;
   }): Promise<PdfReaderDriver> {
-    const worker = createPdfWorker();
     const loadingTask = getDocument({
       data: args.bytes,
       stopAtErrors: true,
-      worker,
     });
     try {
       const document = await loadingTask.promise;
@@ -67,14 +61,12 @@ export class PdfReaderDriver implements ReaderDriver {
         loadingTask,
         onExternalLink: args.onExternalLink,
         onRenderError: args.onRenderError,
-        worker,
       });
       await driver.#renderPage();
       driver.#observeResize();
       return driver;
     } catch (error) {
       await loadingTask.destroy();
-      worker.destroy();
       if (error instanceof PasswordException) {
         throw new ReaderDocumentError(
           'protected-document',
@@ -119,7 +111,6 @@ export class PdfReaderDriver implements ReaderDriver {
     this.#textLayer?.cancel();
     TextLayer.cleanup();
     await this.#loadingTask.destroy();
-    this.#worker.destroy();
     this.#container.replaceChildren();
   }
 
@@ -183,13 +174,6 @@ export class PdfReaderDriver implements ReaderDriver {
     });
     this.#resizeObserver.observe(this.#container);
   }
-}
-
-function createPdfWorker(): PDFWorker {
-  const port = new Worker(new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url), {
-    type: 'module',
-  });
-  return PDFWorker.create({ port });
 }
 
 async function renderExternalLinks(
