@@ -108,9 +108,9 @@ export class EpubReaderDriver implements ReaderDriver {
         onStateChange: args.onStateChange,
         publication,
       });
-      holder.driver = driver;
       await navigator.load();
-      driver.#notifyState();
+      // Readium emits transient locations while its first iframe is still initializing.
+      holder.driver = driver;
       return driver;
     } catch (error) {
       objectUrls.forEach((url) => URL.revokeObjectURL(url));

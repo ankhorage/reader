@@ -3,7 +3,7 @@ import { StyleSheet, View } from 'react-native';
 
 import type { ReaderViewProps } from '../../../types/reader.js';
 import ReaderViewport from '../ReaderViewport.js';
-import { useReaderViewportProps } from '../toReaderViewportProps.js';
+import { useReaderViewportProps } from '../useReaderViewportProps.js';
 
 const styles = StyleSheet.create({
   container: { flex: 1, minHeight: 360 },

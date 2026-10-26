@@ -2,7 +2,7 @@ import React from 'react';
 
 import type { ReaderViewProps } from '../../../types/reader.js';
 import ReaderViewport from '../ReaderViewport.js';
-import { useReaderViewportProps } from '../toReaderViewportProps.js';
+import { useReaderViewportProps } from '../useReaderViewportProps.js';
 
 const DEFAULT_WEB_STYLE: React.CSSProperties = {
   height: '100%',
