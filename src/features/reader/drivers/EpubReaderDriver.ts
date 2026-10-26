@@ -8,6 +8,7 @@ import { EpubArchiveFetcher } from '../epub/EpubArchiveFetcher.js';
 import { HTML_MEDIA_TYPES, inferEpubMediaType } from '../epub/mediaTypes.js';
 import { type ParsedEpubPackage, parseEpubPackage } from '../epub/parseEpubPackage.js';
 import { sanitizeEpubDocument, sanitizeEpubStylesheet } from '../epub/sanitizeEpubDocument.js';
+import { createEpubPositions } from './createEpubPositions.js';
 
 export class EpubReaderDriver implements ReaderDriver {
   readonly direction: 'ltr' | 'rtl';
@@ -89,7 +90,7 @@ export class EpubReaderDriver implements ReaderDriver {
         args.container,
         publication,
         listeners,
-        [],
+        createEpubPositions(publication),
         initialPosition,
         {
           defaults: {},
