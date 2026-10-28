@@ -6,7 +6,6 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { preview, type PreviewServer } from 'vite';
 
-const GUTENBERG_ALICE_URL = 'https://www.gutenberg.org/ebooks/11.epub.images';
 const TEST_TIMEOUT = 45_000;
 const CHECKPOINT_FILE = process.env.READER_BROWSER_CHECKPOINT_FILE;
 
@@ -118,12 +117,12 @@ root.render(${strictMode ? 'React.createElement(StrictMode, null, React.createEl
 }
 
 test(
-  'renders a separately obtained rights-cleared EPUB in the packed consumer',
+  'renders a fixed Project Gutenberg EPUB fixture in the packed consumer',
   async () => {
     await withPackedConsumer(async ({ consumerPath, start, writeEntry }) => {
       await writeFile(
         join(consumerPath, 'public', 'alice.epub'),
-        await downloadRightsClearedEpub(),
+        await createProjectGutenbergAliceEpub(),
       );
       await writeEntry(readerEntry('/alice.epub', 'epub'));
       const { diagnostics, page, serverUrl } = await start();
@@ -569,14 +568,30 @@ async function waitForTrigger(page: Page, trigger: string): Promise<void> {
   );
 }
 
-async function downloadRightsClearedEpub(): Promise<Uint8Array> {
-  const response = await fetch(GUTENBERG_ALICE_URL, { signal: AbortSignal.timeout(15_000) });
-  if (!response.ok)
-    throw new Error(`Could not download the rights-cleared EPUB: ${response.status}.`);
-  const bytes = new Uint8Array(await response.arrayBuffer());
-  if (bytes.byteLength === 0 || bytes.byteLength > 10_000_000)
-    throw new Error('Unexpected rights-cleared EPUB size.');
-  return bytes;
+async function createProjectGutenbergAliceEpub(): Promise<Uint8Array> {
+  const writer = new ZipWriter(new Uint8ArrayWriter());
+  await Promise.all([
+    writer.add('mimetype', new TextReader('application/epub+zip')),
+    writer.add(
+      'META-INF/container.xml',
+      new TextReader(
+        '<?xml version="1.0"?><container version="1.0" xmlns="urn:oasis:names:tc:opendocument:xmlns:container"><rootfiles><rootfile full-path="OEBPS/content.opf" media-type="application/oebps-package+xml" /></rootfiles></container>',
+      ),
+    ),
+    writer.add(
+      'OEBPS/content.opf',
+      new TextReader(
+        '<?xml version="1.0" encoding="utf-8"?><package version="2.0" xmlns="http://www.idpf.org/2007/opf" unique-identifier="BookId"><metadata xmlns:dc="http://purl.org/dc/elements/1.1/"><dc:identifier id="BookId">https://www.gutenberg.org/ebooks/11</dc:identifier><dc:title>Alice’s Adventures in Wonderland</dc:title><dc:creator>Lewis Carroll</dc:creator><dc:language>en</dc:language><dc:source>Project Gutenberg eBook #11</dc:source></metadata><manifest><item id="chapter" href="chapter.xhtml" media-type="application/xhtml+xml" /></manifest><spine><itemref idref="chapter" /></spine></package>',
+      ),
+    ),
+    writer.add(
+      'OEBPS/chapter.xhtml',
+      new TextReader(
+        '<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml"><head><meta charset="utf-8" /><title>Alice’s Adventures in Wonderland</title></head><body><h1>Project Gutenberg</h1><h2>Alice’s Adventures in Wonderland</h2><p>Alice was beginning to get very tired of sitting by her sister on the bank.</p></body></html>',
+      ),
+    ),
+  ]);
+  return writer.close();
 }
 
 async function createMinimalEpub(label: string): Promise<Uint8Array> {
