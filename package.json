@@ -1,6 +1,6 @@
 {
   "name": "@ankhorage/reader",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Standalone EPUB 3 and PDF reader engine for web and React Native.",
   "license": "MIT",
   "type": "module",

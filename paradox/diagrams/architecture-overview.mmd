@@ -5,7 +5,7 @@ graph TD
   module_src_features_reader_adapters_ReaderView_native_tsx["src/features/reader/adapters/ReaderView.native.tsx"]
   package__ankhorage_reader -.-> module_src_features_reader_adapters_ReaderView_native_tsx
   module_src_features_reader_adapters_ReaderView_native_tsx --> module_src_features_reader_ReaderViewport_tsx
-  module_src_features_reader_adapters_ReaderView_native_tsx --> module_src_features_reader_toReaderViewportProps_ts
+  module_src_features_reader_adapters_ReaderView_native_tsx --> module_src_features_reader_useReaderViewportProps_ts
   module_src_features_reader_adapters_ReaderView_native_tsx --> module_src_types_reader_ts
   module_src_features_reader_adapters_ReaderView_tsx["src/features/reader/adapters/ReaderView.tsx"]
   package__ankhorage_reader -.-> module_src_features_reader_adapters_ReaderView_tsx
@@ -13,10 +13,16 @@ graph TD
   module_src_features_reader_adapters_ReaderView_web_tsx["src/features/reader/adapters/ReaderView.web.tsx"]
   package__ankhorage_reader -.-> module_src_features_reader_adapters_ReaderView_web_tsx
   module_src_features_reader_adapters_ReaderView_web_tsx --> module_src_features_reader_ReaderViewport_tsx
-  module_src_features_reader_adapters_ReaderView_web_tsx --> module_src_features_reader_toReaderViewportProps_ts
+  module_src_features_reader_adapters_ReaderView_web_tsx --> module_src_features_reader_useReaderViewportProps_ts
   module_src_features_reader_adapters_ReaderView_web_tsx --> module_src_types_reader_ts
+  module_src_features_reader_drivers_createEpubPositions_test_ts["src/features/reader/drivers/createEpubPositions.test.ts"]
+  package__ankhorage_reader -.-> module_src_features_reader_drivers_createEpubPositions_test_ts
+  module_src_features_reader_drivers_createEpubPositions_test_ts --> module_src_features_reader_drivers_createEpubPositions_ts
+  module_src_features_reader_drivers_createEpubPositions_ts["src/features/reader/drivers/createEpubPositions.ts"]
+  package__ankhorage_reader -.-> module_src_features_reader_drivers_createEpubPositions_ts
   module_src_features_reader_drivers_EpubReaderDriver_ts["src/features/reader/drivers/EpubReaderDriver.ts"]
   package__ankhorage_reader -.-> module_src_features_reader_drivers_EpubReaderDriver_ts
+  module_src_features_reader_drivers_EpubReaderDriver_ts --> module_src_features_reader_drivers_createEpubPositions_ts
   module_src_features_reader_drivers_EpubReaderDriver_ts --> module_src_features_reader_epub_EpubArchive_ts
   module_src_features_reader_drivers_EpubReaderDriver_ts --> module_src_features_reader_epub_EpubArchiveFetcher_ts
   module_src_features_reader_drivers_EpubReaderDriver_ts --> module_src_features_reader_epub_mediaTypes_ts
@@ -99,6 +105,9 @@ graph TD
   module_src_features_reader_toReaderViewportProps_ts["src/features/reader/toReaderViewportProps.ts"]
   package__ankhorage_reader -.-> module_src_features_reader_toReaderViewportProps_ts
   module_src_features_reader_toReaderViewportProps_ts --> module_src_types_reader_ts
+  module_src_features_reader_useReaderViewportProps_ts["src/features/reader/useReaderViewportProps.ts"]
+  package__ankhorage_reader -.-> module_src_features_reader_useReaderViewportProps_ts
+  module_src_features_reader_useReaderViewportProps_ts --> module_src_types_reader_ts
   module_src_features_reader_validateEpubArchiveEntriesAsync_test_ts["src/features/reader/validateEpubArchiveEntriesAsync.test.ts"]
   package__ankhorage_reader -.-> module_src_features_reader_validateEpubArchiveEntriesAsync_test_ts
   module_src_features_reader_validateEpubArchiveEntriesAsync_test_ts --> module_src_features_reader_epub_validateEpubArchiveEntriesAsync_ts

@@ -1,7 +1,10 @@
 sequenceDiagram
   participant participant_ReaderView as ReaderView
-  participant participant_toReaderViewportProps as toReaderViewportProps
-  participant_ReaderView->>participant_toReaderViewportProps: toReaderViewportProps()
-  participant_toReaderViewportProps-->>participant_ReaderView: return
-  participant_ReaderView->>participant_toReaderViewportProps: toReaderViewportProps()
-  participant_toReaderViewportProps-->>participant_ReaderView: return
+  participant participant_useReaderCallbacks as useReaderCallbacks
+  participant participant_useReaderViewportProps as useReaderViewportProps
+  participant_ReaderView->>participant_useReaderViewportProps: useReaderViewportProps()
+  participant_useReaderViewportProps->>participant_useReaderCallbacks: useReaderCallbacks()
+  participant_useReaderCallbacks-->>participant_useReaderViewportProps: return
+  participant_useReaderViewportProps-->>participant_ReaderView: return
+  participant_ReaderView->>participant_useReaderViewportProps: useReaderViewportProps()
+  participant_useReaderViewportProps-->>participant_ReaderView: return

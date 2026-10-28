@@ -1,5 +1,11 @@
 # @ankhorage/reader
 
+## 0.1.2
+
+### Patch Changes
+
+- 0e887b4: Fix browser EPUB ReaderView initialization and supply Readium positions for EPUB publications.
+
 ## 0.1.1
 
 ### Patch Changes
