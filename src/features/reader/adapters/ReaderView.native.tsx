@@ -3,7 +3,7 @@ import { StyleSheet, View } from 'react-native';
 
 import type { ReaderViewProps } from '../../../types/reader.js';
 import ReaderViewport from '../ReaderViewport.js';
-import { toReaderViewportProps } from '../toReaderViewportProps.js';
+import { useReaderViewportProps } from '../useReaderViewportProps.js';
 
 const styles = StyleSheet.create({
   container: { flex: 1, minHeight: 360 },
@@ -21,9 +21,10 @@ const DOM_CONFIGURATION = {
 
 /*** Host the same EPUB/PDF DOM viewport in Expo's isolated native DOM WebView. */
 export function ReaderView(props: ReaderViewProps): React.ReactElement {
+  const viewportProps = useReaderViewportProps(props);
   return (
     <View style={props.style ?? styles.container}>
-      <ReaderViewport {...toReaderViewportProps(props)} dom={DOM_CONFIGURATION} />
+      <ReaderViewport {...viewportProps} dom={DOM_CONFIGURATION} />
     </View>
   );
 }

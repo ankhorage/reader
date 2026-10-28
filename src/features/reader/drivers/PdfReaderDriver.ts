@@ -7,7 +7,7 @@ import {
   RenderingCancelledException,
   type RenderTask,
   TextLayer,
-} from 'pdfjs-dist/webpack.mjs';
+} from 'pdfjs-dist/legacy/webpack.mjs';
 
 import type { ReaderDriver, ReaderDriverState } from '../../../types/reader.js';
 import { ReaderDocumentError } from '../errors/ReaderDocumentError.js';

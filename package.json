@@ -50,6 +50,7 @@
     "check-types": "bun x tsc --noEmit -p tsconfig.json",
     "typecheck": "bun run check-types",
     "test": "bun test src",
+    "test:browser": "bun test/browser/runBrowserAcceptance.ts",
     "prepack": "bun run build",
     "lint": "ankhorage-eslint . --max-warnings=0",
     "lint:fix": "ankhorage-eslint . --fix --max-warnings=0",
@@ -92,6 +93,7 @@
   "devDependencies": {
     "@ankhorage/devtools": "^2.3.18",
     "@ankhorage/paradox": "^0.3.1",
+    "@playwright/test": "1.57.0",
     "@types/bun": "^1.4.2",
     "@types/node": "^26.6.4",
     "@types/react": "^19.3.0",
@@ -102,6 +104,7 @@
     "react-dom": "19.2.3",
     "react-native": "0.86.3",
     "react-native-web": "~0.21.3",
-    "typescript": "~6.0.3"
+    "typescript": "~6.0.3",
+    "vite": "7.2.2"
   }
 }
