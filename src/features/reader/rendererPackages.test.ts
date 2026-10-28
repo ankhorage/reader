@@ -37,7 +37,8 @@ describe('reader renderer package boundary', () => {
   });
 
   test('provides the PDF loading, worker, and protected-document APIs through the worker-aware entrypoint', async () => {
-    const { getDocument, PasswordException, PDFWorker } = await import('pdfjs-dist/webpack.mjs');
+    const { getDocument, PasswordException, PDFWorker } =
+      await import('pdfjs-dist/legacy/webpack.mjs');
 
     expect(getDocument).toBeFunction();
     expect(PasswordException).toBeFunction();
@@ -45,7 +46,7 @@ describe('reader renderer package boundary', () => {
   });
 
   test('loads and releases a PDF through the worker-aware entrypoint', async () => {
-    const { getDocument } = await import('pdfjs-dist/webpack.mjs');
+    const { getDocument } = await import('pdfjs-dist/legacy/webpack.mjs');
     const loadingTask = getDocument({ data: PDF_FIXTURE, stopAtErrors: true });
     const document = await loadingTask.promise;
 

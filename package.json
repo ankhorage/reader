@@ -50,7 +50,7 @@
     "check-types": "bun x tsc --noEmit -p tsconfig.json",
     "typecheck": "bun run check-types",
     "test": "bun test src",
-    "test:browser": "bun test test/browser",
+    "test:browser": "bun test/browser/runBrowserAcceptance.ts",
     "prepack": "bun run build",
     "lint": "ankhorage-eslint . --max-warnings=0",
     "lint:fix": "ankhorage-eslint . --fix --max-warnings=0",
