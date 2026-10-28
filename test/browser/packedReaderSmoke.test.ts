@@ -44,11 +44,16 @@ import { ReaderView } from '@ankhorage/reader';
 ${navigatorMetricsInstrumentation()}
 const root = createRoot(document.querySelector('#root'));
 function Consumer() {
+  const [callbackGeneration, setCallbackGeneration] = useState('initial');
   const [command, setCommand] = useState();
   const [sourceUri, setSourceUri] = useState('/first.epub');
   const [rerenders, setRerenders] = useState(0);
   window.readerNext = () => setCommand({ id: 1, sourceUri, type: 'next' });
   window.readerPrevious = () => setCommand({ id: 2, sourceUri, type: 'previous' });
+  window.readerNextWithCurrentCallback = () => {
+    setCallbackGeneration('updated');
+    setCommand({ id: 3, sourceUri, type: 'next' });
+  };
   window.readerRerender = () => setRerenders((value) => value + 1);
   window.readerSwitch = () => setSourceUri('/second.epub');
   window.readerUnmount = () => root.unmount();
@@ -59,6 +64,7 @@ function Consumer() {
     sourceUri,
     onError: (error) => { document.body.dataset.error = error.message; },
     onStateChange: (state) => {
+      document.body.dataset.callbackGeneration = callbackGeneration + ':' + (state.location?.trigger || '');
       document.body.dataset.states = JSON.stringify([...(JSON.parse(document.body.dataset.states || '[]')), state]);
       document.body.dataset.status = state.status;
     },
@@ -102,9 +108,16 @@ root.render(${strictMode ? 'React.createElement(StrictMode, null, React.createEl
         await page.evaluate(() => window.readerPrevious());
         await waitForFrameText(page, 'First chapter.', diagnostics);
         await waitForTrigger(page, 'previousControl');
+        await page.evaluate(() => window.readerNextWithCurrentCallback());
+        await waitForFrameText(page, 'Second chapter.', diagnostics);
+        await page.waitForFunction(
+          () => document.body.dataset.callbackGeneration === 'updated:nextControl',
+        );
         await page.evaluate(() => window.readerSwitch());
         await waitForFrameText(page, 'Second volume opening.', diagnostics);
-        expect(await page.locator('body').getAttribute('data-error')).toBeNull();
+        expect(await page.locator('body').getAttribute('data-callback-generation')).toBe(
+          'updated:location',
+        );
         await page.evaluate(() => window.readerUnmount());
         await page.waitForFunction(() => document.querySelectorAll('iframe').length === 0);
         await page.waitForFunction(

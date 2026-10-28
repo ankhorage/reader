@@ -34,7 +34,7 @@ function useReaderCallbacks(
     onOpenExternalLink: props.onOpenExternalLink,
     onStateChange: props.onStateChange,
   });
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     callbacksRef.current = {
       onError: props.onError,
       onOpenExternalLink: props.onOpenExternalLink,
