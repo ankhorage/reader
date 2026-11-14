@@ -1,5 +1,11 @@
 # @ankhorage/reader
 
+## 0.1.3
+
+### Patch Changes
+
+- bc177b5: Add canonical repository metadata for package discovery and generated documentation.
+
 ## 0.1.2
 
 ### Patch Changes
