@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "kind": "library",
+  "title": "Ankhorage Reader",
+  "summary": "Provides a standalone EPUB 3 and PDF reader engine for web and React Native.",
+  "purpose": "Offer a reusable reading surface for EPUB 3 and PDF documents across web and React Native consumers.",
+  "domain": "document reading",
+  "responsibilities": [
+    "Render EPUB 3 and PDF documents through the public ReaderView API.",
+    "Expose reader appearance, navigation, location, status, and error types.",
+    "Provide platform-specific web and React Native package resolution."
+  ],
+  "boundaries": [
+    "Does not own application document storage or access authorization.",
+    "Does not prescribe a product navigation shell around the reader.",
+    "Does not require a particular web server or mobile application host."
+  ],
+  "audience": [
+    "Web and React Native applications that need EPUB 3 or PDF reading.",
+    "Package consumers integrating a document reading surface."
+  ],
+  "useCases": [
+    "Render an EPUB 3 or PDF document in a web application.",
+    "Render a document reader in a React Native application.",
+    "React to reader locations, commands, status, and error events."
+  ],
+  "architecture": {
+    "role": "Reusable document-reader engine with package-level web and React Native entrypoint resolution.",
+    "invariants": [
+      "The public reader API is exported from the package root.",
+      "Web and React Native consumers resolve their platform-specific build through package exports."
+    ]
+  },
+  "constraints": {
+    "platforms": ["Web", "React Native"],
+    "limitations": ["The package supports EPUB 3 and PDF document formats."]
+  }
+}
